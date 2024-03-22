@@ -1,0 +1,17 @@
+h1 {
+    color: burlywood;
+}
+
+body {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.contenedor {
+    border-radius: 3px;
+    background-color: wheat;
+    position: relative;
+    top: 30vh;
+    padding: 10px;
+}
