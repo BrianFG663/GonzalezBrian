@@ -9,7 +9,15 @@ body {
 }
 
 p {
-    font-size: 20px;
+    width: 15vw;
+    height: 3vh;
+    font-size: 1.1vw;
+}
+
+h2 {
+    width: 15vw;
+    height: 5vh;
+    font-size: 1.5vw;
 }
 
 body {
@@ -27,7 +35,7 @@ body {
     z-index: 1;
     top: 25vh;
     width: 25%;
-    height: 50vh;
+    height: 52vh;
     border-radius: 3px;
     background-color: rgba(255, 255, 255, 0.4);
     font-family: Arial, Helvetica, sans-serif;
