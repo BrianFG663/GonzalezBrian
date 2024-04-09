@@ -216,13 +216,11 @@ function getValueInput() {
             document.getElementById("valurInput").innerHTML = $personaje[i].name;
             encontado = true;
             break;
-        }  
+        } 
+        else {
+            document.getElementById("valurInput").innerHTML = 'No se pudo encontrar el personaje'
+        }
     }
-
-    if (!encontado) {
-    document.getElementById("valurInput").innerHTML = 'No se pudo encontrar el personaje'
-    }
-
 }
   
 
