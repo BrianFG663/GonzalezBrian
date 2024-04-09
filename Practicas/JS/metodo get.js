@@ -218,7 +218,7 @@ function getValueInput() {
             break;
         } 
         else {
-            document.getElementById("valurInput").innerHTML = 'No se pudo encontrar el personaje'
+            document.getElementById("valurInput").innerHTML = 'Personaje fuera de rango'
         }
     }
 }
