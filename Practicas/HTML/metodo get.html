@@ -4,19 +4,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
-
+    <link rel="stylesheet" href="/Practicas/CSS/Metodo Get.css">
   </head>
   <body>
 
-    <label for="domTextElement">ID: </label>
-    <input type="number" id="Texto" > 
-    
-    <button type="button"  onclick="getValueInput()"> 
-        Obtener 
-    </button> 
+    <div class="Container">
 
-    
-    <p id="valurInput"></p> 
+      <label for="Texto" class="ID">ID del personaje: </label>
+      <input type="number" id="Texto" > 
+      <button type="button"  onclick="obtenervalor()" class="boton"> 
+        Obtener 
+      </button> 
+      <br>
+      <p id="valornombre"></p>
+      <p id="valorestado"></p> 
+  </div>
 
   </body>
 

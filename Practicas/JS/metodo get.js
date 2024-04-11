@@ -209,19 +209,21 @@ $personaje = [{
     "created": "2017-11-04T19:09:56.428Z",
 }]
 
-function getValueInput() {
-    var inputValue = document.getElementById("Texto").value;
+function obtenervalor() {
+    var valor = document.getElementById("Texto").value;
     for (i=0; i < $personaje.length; i++) {
-        if ($personaje[i].id == inputValue) {
-            document.getElementById("valurInput").innerHTML = $personaje[i].name;
+        if ($personaje[i].id == valor) {
+            document.getElementById("valornombre").innerHTML = 'Nombre del personaje: ' + $personaje[i].name;
+            document.getElementById("valorestado").innerHTML = 'Estado: ' + $personaje[i].status;
             encontado = true;
             break;
         } 
         else {
-            document.getElementById("valurInput").innerHTML = 'Personaje fuera de rango'
+            document.getElementById("valornombre").innerHTML = 'Personaje fuera de rango'
         }
     }
 }
+
   
 
 
