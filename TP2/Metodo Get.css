@@ -1,0 +1,153 @@
+html {
+    background-image: url(/TP2/Imagenes/rick-and-morty-minimalist-hd-wallpaper-uhdpaper.com-921@0@e.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Container {
+    display: block;
+    margin: 0;
+    gap: 0px;
+    position: relative;
+    top: 10vh;
+    height: 70vh;
+    width: 60%;
+    border: 1px #cd1329 solid;
+    background-color: #151a2de7;
+}
+
+.Containerhijo {
+    display: inline-block;
+    position: relative;
+    top: 10vh;
+    height: 25%;
+    width: 100%;
+}
+
+.containerbotonuno {
+    width: 20%;
+    position: relative;
+    left: 3vw;
+    top: 5vh;
+    width: 20vw;
+}
+
+.containerbotondos{
+    width: 20%;
+    position: relative;
+    top: 3vh;
+    left: 41vw;
+    width: 20vw;
+}
+
+#IdUno {
+    text-align: center;
+    color: white;
+    background-color: #cd132959;
+    border: 1px solid #cd1329;
+    transition: 0.5s;
+}
+
+#IdUno:focus {
+    text-align: center;
+    color: white;
+    background-color: #cd1329c0;
+    border: 1px solid #cd1329;
+    outline: none;
+}
+
+#IdDos {
+    text-align: center;
+    color: white;
+    background-color: #cd132959;
+    border: 1px solid #cd1329;
+    transition: 0.5s;
+}
+
+#IdDos:focus {
+    text-align: center;
+    color: white;
+    background-color: #cd1329c0;
+    border: 1px solid #cd1329;
+    outline: none;
+}
+
+#boton {
+    position: relative;
+    top: 0vh;
+    left: 25vw;
+    width: 15%;
+    height: 20%;
+    background-color: #cd132959;
+    border: 1px solid #cd1329;
+    transition: 0.5s;
+}
+
+#boton:hover {
+    position: relative;
+    top: 0vh;
+    left: 25vw;
+    width: 15%;
+    height: 20%;
+    background-color: #cd1329c0;
+    border: 1px solid #cd1329;
+}
+
+#personajeuno {
+    text-align: center;
+    position:relative;
+    left: 1.5vw;
+    top: 13vh;
+    width: 45%;
+}
+
+#personajedos {
+    text-align: center;
+    position:relative;
+    top: 11.5vh;
+    left: 31.5vw;
+    width: 45%;
+
+}
+
+#contimguno{
+position: relative;
+}
+
+#contimgdos{
+    position: relative;
+
+}
+
+.check {
+    position: relative;
+    width: 5vw;
+    height: 5wh;
+    left: 14vw;
+    bottom: 0vh;
+}
+
+.imagen1 {
+    position: relative;
+    top: 15vh;
+    left: 10vw;
+    width: 10vw;
+    border: 1px solid #cd1329;
+}
+
+.imagen2 {
+    position: relative;
+    left: 40vw;
+    width: 10vw;
+    bottom: 14.7vh;
+    border: 1px solid #cd1329;
+}
