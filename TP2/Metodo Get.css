@@ -44,8 +44,8 @@ body {
 .containerbotondos{
     width: 20%;
     position: relative;
-    top: 3vh;
-    left: 41vw;
+    top: 2vh;
+    left: 36vw;
     width: 20vw;
 }
 
@@ -83,7 +83,7 @@ body {
 
 #boton {
     position: relative;
-    top: 0vh;
+    bottom: 1.3vh;
     left: 25vw;
     width: 15%;
     height: 20%;
@@ -94,7 +94,7 @@ body {
 
 #boton:hover {
     position: relative;
-    top: 0vh;
+    bottom: 1.3vh;
     left: 25vw;
     width: 15%;
     height: 20%;
@@ -113,7 +113,7 @@ body {
 #personajedos {
     text-align: center;
     position:relative;
-    top: 11.5vh;
+    top: 10.5vh;
     left: 31.5vw;
     width: 45%;
 
@@ -148,6 +148,6 @@ position: relative;
     position: relative;
     left: 40vw;
     width: 10vw;
-    bottom: 14.7vh;
+    bottom: 18.2vh;
     border: 1px solid #cd1329;
 }
