@@ -1,0 +1,31 @@
+button {
+    position: relative;
+    top: 1vh;
+    left:48.5%;
+}
+
+#map {
+    position: relative;
+    left: 43%;
+    top: 15vh;
+    height: 180px;
+    width: 180px;
+}
+
+#Informacion {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    left: 40%;
+    top: 10vh;
+    border: 1px solid black;
+    width: 20%;
+}
+
+.BoxNames {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
