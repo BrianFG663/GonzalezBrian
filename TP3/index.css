@@ -1,31 +1,136 @@
+html {
+    background-image: url(/TP3/Tierra.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: "Title";
+}
+
+body {
+    height: 100%;
+}
+
+.title {
+    position: relative;
+    top: 10vh;
+    left: 30.05%;
+    font-weight: 100;
+    border: 1px solid white;
+    width: 40%; 
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.751);
+    background-color: rgba(255, 255, 255, 0.664);
+}
+
 button {
     position: relative;
-    top: 1vh;
-    left:48.5%;
+    top: 10vh;
+    left: 45vw;
+    width: 10vw;
+    height: 4vh;
+    border: 1px solid rgba(255, 255, 255, 0.751);
+    background-color: rgba(255, 255, 255, 0.664);
+    transition: 1s;
 }
 
-#map {
+button:hover {
     position: relative;
-    left: 43%;
-    top: 15vh;
-    height: 180px;
-    width: 180px;
+    top: 10vh;
+    left: 45vw;
+    width: 10vw;
+    height: 4vh;
+    border: 1px solid rgba(255, 255, 255, 0.87);
+    background-color: rgba(255, 255, 255, 0.87);
 }
 
-#Informacion {
+.Mapstyle {
+    position: relative;
+    bottom: 1vh;
+    height: 256px;
+    width: 256px;
+    border: 1px solid rgba(255, 255, 255, 0.751);
+}
+
+.MapContain {
+    font-weight: 600;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 34vh;
+    width: 20%;
+    border: 1px solid rgba(255, 255, 255, 0.751);
+    background-color: rgba(255, 255, 255, 0.664);
+}
+
+.Container {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    top: 30vh;
+    width: 100%;
+    height: 34vh;
+    border: 1px solid gold;
+}
+
+.BoxLatLon {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.Informacion {
+    font-size: 2vh;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    left: 40%;
-    top: 10vh;
-    border: 1px solid black;
-    width: 20%;
+    border: 1px solid rgba(255, 255, 255, 0.751);
+    background-color: rgba(255, 255, 255, 0.664);
+    width: 20vw;
+    height: 34vh;
+    transition: 0.7s, 0.7s; 
+}
+
+.Informacion:hover {
+    font-size: 2vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 1px solid rgba(255, 255, 255, 0.751);
+    background-color: rgba(255, 255, 255, 0.664);
+    width: 23vw;
+    height: 37vh;
+}
+
+.Profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.751);
+    background-color: rgba(255, 255, 255, 0.664);
+    width: 23vw;
+    height: 34vh;
 }
 
 .BoxNames {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+}
+
+.ProfileImage {
+    width: 10vw;
+    border: 1px solid rgba(255, 255, 255, 0.751);
+}
+
+@font-face {
+    font-family: "Title";
+    src: url(Louis\ George\ Cafe.ttf);
 }
