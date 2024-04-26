@@ -11,13 +11,15 @@ function map(latitude, longitude) {
 
 }
 
+
+
 function SearchUser() {
     const url = 'https://randomuser.me/api/'
     fetch(url)
         .then(response => response.json())
         .then(data => {
 
-            const latitude = data.results[0].location.coordinates.latitude
+            const latitude = data.results[0].location.coordinates.latitud
             const longitude = data.results[0].location.coordinates.longitude
 
             document.getElementById("ContainMap").classList.add("MapContain")
@@ -56,6 +58,11 @@ function SearchUser() {
             }
 
             map(latitude, longitude)
+        })
+
+        .catch (error => {
+            document.getElementById("error").innerHTML =
+            `<p class= "ErrorCatch">${error}</p>`
         })
 }
 

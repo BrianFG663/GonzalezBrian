@@ -133,3 +133,18 @@ button:hover {
     font-family: "Title";
     src: url(Louis\ George\ Cafe.ttf);
 }
+
+.ErrorCatch {
+    font-weight: 600;
+    display: flex;
+    padding-top: 6vh;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    height: 10vh;
+    left: 30%;
+    width: 40%;
+    background-color: rgba(255, 255, 255, 0.664);
+    border: 1px solid white;
+    color: red;
+}
