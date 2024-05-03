@@ -1,0 +1,40 @@
+html {
+    background-image: url(/TP2/Imagenes/rick-and-morty-minimalist-hd-wallpaper-uhdpaper.com-921@0@e.jpg);
+    background-size: cover;
+}
+
+.ContenedorGeneral{
+    position: relative;
+    top: 5vh;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid white;
+    display: block;
+    height: 4vh;
+}
+
+.ContenedroImputUno {
+position: relative;
+left: 18vw;
+}
+
+.ContenedorImputDos {
+    position: relative;
+    left: 68vw;
+    bottom: 3.5vh;
+}
+
+.Buscar {
+    position: relative;
+    left: 47vw;
+    bottom: 6.8vh;
+}
+
+.ContanedorImagenes {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 9vh;
+    border: 1px solid white;
+}
