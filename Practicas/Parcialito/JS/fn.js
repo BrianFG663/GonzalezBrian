@@ -24,7 +24,7 @@ function BuscarNumero() {
 function ObtenerId(numeroMaximo) {
     fetch("https://rickandmortyapi.com/api/character/" + [numeroMaximo])
         .then(res => res.json())
-        .then(dataRickAndMorty => {
+        .then(dataRickAndMoty => {
             console.log(dataRickAndMorty)
 
             fetch("https://randomuser.me/api/")
@@ -56,9 +56,9 @@ function ObtenerId(numeroMaximo) {
                 .catch(error => {
                     document.getElementById("error").innerHTML =
                         `<div class= "ErrorCatch">
-                    <img src="/CSS/Imagenes/error-icon-4.png" class="ImageError">
-                    <p>${error}</p>
-                </div>`
+                            <img src="/CSS/Imagenes/error-icon-4.png" class="ImageError">
+                            <p>${error}</p>
+                        </div>`
                 })
         })
 
