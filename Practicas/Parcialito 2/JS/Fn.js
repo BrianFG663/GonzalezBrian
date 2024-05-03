@@ -1,6 +1,6 @@
 ImputUno = []
 ImputDos = []
-
+Personajes = []
  
 function CargarUno() {
 
@@ -53,7 +53,31 @@ function BuscarPersonaje() {
     fetch ("https://rickandmortyapi.com/api/character/"+ImputUno+","+ImputDos)
         .then(Response => Response.json())
         .then(data =>{
-            document.getElementById("ImagenesUno").innerHTML = 
+            for (i=0; i<data.length; i++){
+                for (j=0; j<ImputUno.length; j++) {
+                    if(data[i].id == ImputUno[j]){
+                        document.getElementById("ImagenesUno").innerHTML = 
+                        `<img src="${data[i].image}" alt="">`
+                }
+            }
+    }
+
+            for (i=0; i<data.length; i++){
+                for (j=0; j<ImputDos.length; j++){
+                    if(data[i].id == ImputDos[j]){
+                        document.getElementById("ImagenesDos").innerHTML = 
+                        `<img src="${data[i].image}" alt="">`
+                    }
+                }
+            }
+        })
+}
+
+
+
+
+
+/*            document.getElementById("ImagenesUno").innerHTML = 
             `<img src="${data[0].image}" alt="">
             <img src="${data[1].image}" alt="">
             <img src="${data[2].image}" alt="">`
@@ -70,5 +94,4 @@ function BuscarPersonaje() {
                     <img src="/Practicas/Parcialito/CSS/Imagenes/error-icon-4.png" class="ImageError">
                     <p>${error}</p>
                 </div>`
-        })
-}
+        })*/
