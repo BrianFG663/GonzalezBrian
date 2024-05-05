@@ -15,6 +15,14 @@ function CargarUno() {
                 if (ImputUno.length == 3){
                     document.getElementById('ButtonOne').disabled = true;
                 } 
+                    for (i=0; i<ImputUno; i++){
+                        for (j=0; j<ImputDos.length; j++) {
+                            if (ImputUno[i]=ImputDos[j]){
+                                alert("No se puede ingresar numeros de un mismo ")
+                            }
+                        }
+                    }
+            
         }
         else {
             alert("The Rick and Morty API solo cuenta con 826 personajes disponibles, por favor ingrese un numero mas bajo.")
@@ -25,7 +33,7 @@ function CargarUno() {
     }
 }
 
-function CargarDos(Personajes) {
+function CargarDos() {
 
     if (Number(document.getElementById("ImputNumberTwo").value) > 0) {
 
@@ -38,6 +46,15 @@ function CargarDos(Personajes) {
                 if (ImputDos.length == 3){
                     document.getElementById('ButtonTwo').disabled = true;
                 }
+
+
+                    for (i=0; i<ImputUno; i++){
+                        for (j=0; j<ImputDos.length; j++) {
+                            if (ImputUno[i]=ImputDos[j]){
+                                alert("No se puede ingresar numeros de un mismo ")
+                            }
+                        }
+                    }
         }
         else {
             alert("The Rick and Morty API solo cuenta con 826 personajes disponibles, por favor ingrese un numero menor")
@@ -50,22 +67,25 @@ function CargarDos(Personajes) {
 }
 
 function BuscarPersonaje() {
-    fetch ("https://rickandmortyapi.com/api/character/"+ImputUno+","+ImputDos)
+    let Personajes = ImputUno.concat(ImputDos)
+    let medioarray = Personajes.length/2
+
+    fetch ("https://rickandmortyapi.com/api/character/"+Personajes)
         .then(Response => Response.json())
         .then(data =>{
             for (i=0; i<data.length; i++){
-                for (j=0; j<ImputUno.length; j++) {
-                    if(data[i].id == ImputUno[j]){
-                        document.getElementById("ImagenesUno").innerHTML = 
+                for (j=0; j<medioarray; j++) {
+                    if(data[i].id == Personajes[j]){
+                        document.getElementById("ImagenesUno").innerHTML += 
                         `<img src="${data[i].image}" alt="">`
                 }
             }
     }
 
             for (i=0; i<data.length; i++){
-                for (j=0; j<ImputDos.length; j++){
-                    if(data[i].id == ImputDos[j]){
-                        document.getElementById("ImagenesDos").innerHTML = 
+                for (j=medioarray; j<Personajes.length; j++){
+                    if(data[i].id == Personajes[j]){
+                        document.getElementById("ImagenesDos").innerHTML += 
                         `<img src="${data[i].image}" alt="">`
                     }
                 }
@@ -75,23 +95,10 @@ function BuscarPersonaje() {
 
 
 
-
-
-/*            document.getElementById("ImagenesUno").innerHTML = 
-            `<img src="${data[0].image}" alt="">
-            <img src="${data[1].image}" alt="">
-            <img src="${data[2].image}" alt="">`
-
-            document.getElementById("ImagenesDos").innerHTML = 
-            `<img src="${data[3].image}" alt="">
-            <img src="${data[4].image}" alt="">
-            <img src="${data[5].image}" alt="">`
-        })
-
-        .catch(error => {
-            document.getElementById("error").innerHTML =
-                `<div class= "ErrorCatch">
-                    <img src="/Practicas/Parcialito/CSS/Imagenes/error-icon-4.png" class="ImageError">
-                    <p>${error}</p>
-                </div>`
-        })*/
+/* problemas a resolver:
+    -no se puede agregar dos valores iguales /// usar funcion true false
+    -bloquear boton una vez se hayan mostrado las imagenes /// contador
+    -internet // ya esta
+    -bloquear los imput
+    -tener que cargar si o si 3 personajes en cada array //// if
+*/
