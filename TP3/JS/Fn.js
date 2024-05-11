@@ -107,11 +107,7 @@ function BuscarPersonaje() {
                             document.getElementById("ImagenesUno").innerHTML += 
                             `<img src="${data[i].image}" alt="">`
                         }
-                    }
-                }
 
-                for (i=0; i<data.length; i++){
-                    for (j=0; j<ImputDos.length; j++){
                         if(data[i].id == ImputDos[j]){
                             document.getElementById("ImagenesDos").innerHTML += 
                             `<img src="${data[i].image}" alt="">`

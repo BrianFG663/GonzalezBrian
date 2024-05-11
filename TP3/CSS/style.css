@@ -99,12 +99,22 @@ img {
     background-color: #cf112b;
 }
 
+.Boton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 .BotonBuscar{
     color: white;
     border-radius: 1px;
     border: 1px solid #cf112b;
     background-color: #191919;
     transition: 0.2s;
+}
+
+.BotonBuscar:disabled{
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 .BotonBuscar:hover{
