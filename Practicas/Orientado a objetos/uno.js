@@ -15,6 +15,15 @@ class Persona{
 
 }
 
+
+class Cliente extends Persona {
+    cuenta = "";
+}
+
+
+
+
+
 const brian = new Persona ("Brian","Gonzalez",2001) // instanciar personas(objeto)
 
 
