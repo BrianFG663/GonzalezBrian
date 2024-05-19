@@ -1,0 +1,80 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+#pantalla {
+    width: 240px;
+    height: 50px;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 10px;
+    font-size: 24px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+div {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: 260px;
+    justify-items: center;
+}
+
+button {
+    width: 70px;
+    height: 70px;
+    font-size: 18px;
+    background-color: #4CAF50;
+    color: white;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+    border-color: #aaa;
+}
+
+button:active {
+    background-color: #3e8e41;
+    border-color: #888;
+}
+
+#total {
+    background-color: #2196F3;
+}
+
+#total:hover {
+    background-color: #1e88e5;
+}
+
+#total:active {
+    background-color: #1976d2;
+}
+
+#BorrarDigito, #BorrarPantalla {
+    background-color: #f44336;
+}
+
+#BorrarDigito:hover, #BorrarPantalla:hover {
+    background-color: #e53935;
+}
+
+#BorrarDigito:active, #BorrarPantalla:active {
+    background-color: #d32f2f;
+}
