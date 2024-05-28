@@ -4,17 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cajero Automático</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
-    <input type="number" id="Ingresar-Retirar">
-    <button onclick="">Ingresar</button>
-    <button onclick="">Debitar</button>
+    <div id="container" class="container">
+        <h1>Crear Cuenta de banco</h1>
+        <div>
+            <input type="text" id="Nombre" placeholder="Nombre">
+            <input type="text" id="Apellido" placeholder="Apellido">
+            <input type="date" id="FechaNacimiento">
+            <button onclick="subirInfo()">Subir</button>
+        </div>
+    </div>
 
-    <div id="MostrarSaldo"></div>
-
-
+    <script src="Fn.js"></script>
 </body>
-<script src="/Practicas/Banco/Fn.js"></script>
 </html>
