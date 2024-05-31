@@ -1,0 +1,56 @@
+.Contenedor{
+    border: 1px solid black;
+    margin: 5px;
+}
+
+#ContenedorBoton{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid green;
+    margin: 5px;
+}
+
+#ContenedorGral{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border: 1px solid blueviolet;
+    margin: 5px;
+}
+
+#Mujeres{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid pink;
+    margin: 5px;
+    width: 25%;
+    height: 200px;
+    background-color: rgba(255, 255, 0, 0.5);
+}
+
+#Hombres{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid pink;
+    margin: 5px;
+    width: 25%;
+    height: 200px;
+    background-color: rgba(0, 102, 255, 0.521);
+}
+
+#BotonByO{
+    width: 20%;
+}
+
+.ContadorGral{
+    text-align: center;
+    width: 20%;
+    border: 1px solid blueviolet;
+}
+
