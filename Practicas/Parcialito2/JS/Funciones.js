@@ -1,8 +1,17 @@
-function buscarOrdenar() {
-    fetch ("Personas.json")
+function buscarOrdenar(valor) {
+    
+    if (valor == "Local"){
+        var url = "Personas.json"
+    }
+
+    if(valor == "Internet"){
+        var url = "https://randomuser.me/api/?results=10"
+    }
+
+    fetch (url)
         .then(res => res.json())
         .then(data =>{
-
+            var mayor = 0
             var contadorpersonas = 0;
             var contadormujeres = 0;
             var contadorhombres = 0;
@@ -13,14 +22,27 @@ function buscarOrdenar() {
                 if (data.results[i].gender == "female"){
                     contadormujeres ++
                     document.getElementById("Mujeres").innerHTML += 
-                    `<div>Nombre: ${data.results[i].name.first} ${data.results[i].name.last}</div>`
+                    `<div>Nombre: ${data.results[i].name.first} ${data.results[i].name.last}, edad: ${data.results[i].dob.age}</div>`
                 }
 
                 if (data.results[i].gender == "male"){
                     contadorhombres ++
                     document.getElementById("Hombres").innerHTML += 
-                    `<div>Nombre: ${data.results[i].name.first} ${data.results[i].name.last}</div>`
+                    `<div>Nombre: ${data.results[i].name.first} ${data.results[i].name.last}, edad: ${data.results[i].dob.age}</div>`
                 }
+
+                if (mayor < data.results[i].dob.age){
+                    mayor = data.results[i].dob.age
+                    var imagen = data.results[i].picture.large
+                    var Nombre = data.results[i].name.first
+                    var apellido = data.results[i].name.last
+                }
+            }
+
+            if (url = "https://randomuser.me/api/?results=10"){
+                document.getElementById("PersonaMayor").innerHTML =
+                `<img src="${imagen}" alt="">
+                 <div>${Nombre} ${apellido}</div>`
             }
 
             document.getElementById("Mujeres").innerHTML += 

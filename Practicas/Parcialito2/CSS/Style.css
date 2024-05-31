@@ -3,6 +3,13 @@
     margin: 5px;
 }
 
+#PersonaMayor{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 #ContenedorBoton{
     display: flex;
     flex-direction: column;

@@ -11,7 +11,10 @@
 <body>
     <div class="Contenedor">    
         <div id="ContenedorBoton">
-            <button id="BotonByO" onclick="buscarOrdenar()">BUscar y ordenar</button>
+            <label for="BotonLocal">Local</label>
+            <input type="checkbox" name="Boton" id="BotonLocal" value="Local" onclick="buscarOrdenar(this.value)">
+            <label for="BotonInternet">Internet</label>
+            <input type="checkbox" name="Boton" id="BotonInternet" value="Internet" onclick="buscarOrdenar(this.value)">
         </div>
 
         <div id="ContenedorGral">
@@ -20,6 +23,9 @@
             </div>
 
             <div id="Hombres">
+
+            </div>
+            <div id="PersonaMayor">
 
             </div>
         </div>
