@@ -1,0 +1,182 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.container-title img {
+    width: 50px; /* Ajusta el tamaño de la imagen según sea necesario */
+    height: auto;
+    margin-right: 10px;
+}
+
+h2 {
+    color: #333;
+    margin: 0;
+}
+
+.container-bd{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+table {
+    width: 80%; /* Ajusta el ancho de la tabla */
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd; /* Aumenta la visibilidad de las separaciones */
+}
+
+th {
+    background-color: #3498db; /* Color azul para los encabezados */
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+.id {
+    width: 10%;
+}
+
+.nombre {
+    width: 25%;
+}
+
+.apellido {
+    width: 25%;
+}
+
+.correo {
+    width: 30%;
+}
+
+.fecha {
+    width: 20%;
+}
+
+/* Estilos para los formularios de filtro */
+.container-filtros {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.formulario-filtro {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #ffffff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.formulario-filtro label {
+    margin-right: 5px;
+}
+
+.formulario-filtro input[type="number"],
+.formulario-filtro input[type="text"] {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.formulario-filtro .filtrar-boton {
+    padding: 8px 15px;
+    background-color: #3498db; /* Mismo color que el botón 'registrar' */
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.formulario-filtro .filtrar-boton:hover {
+    background-color: #2980b9;
+}
+
+/* Estilos para el botón para eliminar filtros */
+.quitar-filtro {
+    padding: 8px 15px;
+    background-color: transparent;
+    border: 2px solid #db344a; /* Color del borde del botón */
+    color: #db344a;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 0; /* Alineado con los filtros */
+    margin-left: 10px; /* Espaciado con los formularios de filtro */
+}
+
+.quitar-filtro:hover {
+    background-color: #db344a;
+    color: white;
+}
+
+/* Estilos para el botón 'regresar' */
+.boton-regresar {
+    padding: 8px 15px;
+    background-color: transparent;
+    border: 2px solid #db344a;
+    color: #db344a;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+}
+
+.boton-regresar:hover {
+    background-color: #db344a;
+    color: white;
+}
+
+/* Estilos para el contenedor de error */
+.container-error {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    border: 1px solid #db344a; /* Borde color rojo para el error */
+    border-radius: 4px;
+    background-color: #fbe9e7; /* Fondo color claro para el error */
+    color: #db344a; /* Color del texto */
+    margin-top: 20px;
+    width: 100%;
+    max-width: 600px; /* Ajusta el tamaño máximo si es necesario */
+    text-align: center;
+}
+
+.container-error img {
+    width: 30px; /* Ajusta el tamaño del icono de error */
+    height: auto;
+}
+    

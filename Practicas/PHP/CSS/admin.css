@@ -1,0 +1,65 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.titles,
+.botones {
+    width: 100%;
+    max-width: 600px; /* Ancho máximo para los divs */
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #ffffff; /* Fondo blanco para los divs */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    margin-bottom: 20px; /* Espacio entre los divs */
+}
+
+.titles {
+    text-align: center;
+}
+
+.titles h2 {
+    font-size: 24px;
+    color: #333;
+    margin: 0;
+}
+
+.Titletarea {
+    font-size: 18px;
+    color: #555;
+    margin-top: 10px;
+}
+
+.botones {
+    display: flex;
+    flex-direction: column; /* Alinea los botones verticalmente */
+    gap: 15px;
+}
+
+form {
+    margin: 0;
+}
+
+input[type="submit"] {
+    padding: 10px 20px;
+    border: none;
+    background-color: #3498db;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%; /* Hace que los botones ocupen todo el ancho del form */
+    box-sizing: border-box; /* Incluye el padding en el ancho total del botón */
+}
+
+input[type="submit"]:hover {
+    background-color: #2980b9;
+}

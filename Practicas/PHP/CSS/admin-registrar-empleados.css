@@ -1,0 +1,123 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    width: 50%;
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+#formulario-registro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#formulario-registro label {
+    margin-top: 10px;
+    width: 100%;
+    text-align: left;
+    font-weight: bold;
+}
+
+#formulario-registro input[type="text"],
+#formulario-registro input[type="date"] {
+    padding: 8px;
+    margin-top: 5px;
+    width: 90%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.checkbox-container div {
+    margin-right: 10px;
+}
+
+#administrador {
+    margin-right: 5px;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}
+
+.boton-regresar {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: transparent;
+    border: 2px solid #db344a;
+    color: #db344a;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.boton-regresar:hover {
+    background-color: #db344a;
+    color: white;
+}
+
+.container-botones {
+    width: 22%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#boton-registrar {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: transparent;
+    border: 2px solid #3498db;
+    color: #3498db;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#boton-registrar:hover {
+    background-color: #3498db;
+    color: white;
+}
+
+/* Estilos para el div de éxito */
+.Registro {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    border-radius: 4px;
+    text-align: center;
+}
+
+/* Estilos para el div de error */
+.remail {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    text-align: center;
+}
