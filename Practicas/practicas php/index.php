@@ -49,7 +49,7 @@
     </div>
 
 
-    <input type="submit" value="Subir">
+    <input type="button" value="Subir" onclick="verficarFormulario()">
 </form>
 
 
