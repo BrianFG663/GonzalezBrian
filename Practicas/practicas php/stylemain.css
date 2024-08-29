@@ -1,0 +1,48 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+div {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+label {
+    font-weight: bold;
+    margin-right: 10px;
+    width: 150px; /* Establece una anchura fija para alinear las etiquetas */
+    color: #333;
+}
+
+div div {
+    background-color: #eaeaea;
+    padding: 10px;
+    border-radius: 5px;
+    flex: 1;
+}
+
+#nombre, #apellido, #fecha_nacimiento, #dni, #localidad, #provincia, #telefono, #mail, #sueldo, #numero {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+    min-width: 200px; /* Establece un ancho mínimo */
+}
+
+#menor_edad {
+    position: fixed; /* Fija el div en una posición específica en la pantalla */
+    top: 50%; /* Posición vertical en el centro de la pantalla */
+    left: 50%; /* Posición horizontal en el centro de la pantalla */
+    transform: translate(-50%, -50%); /* Ajusta la posición para centrar completamente */
+    background-color: rgba(255, 0, 0, 0.5); /* Fondo rojo con un 50% de opacidad */
+    color: white; /* Color del texto blanco para contrastar con el fondo */
+    border: 2px solid red; /* Borde rojo de 2px */
+    padding: 20px; /* Espaciado interno del div */
+    border-radius: 5px; /* Bordes redondeados */
+    text-align: center; /* Centra el texto horizontalmente */
+    z-index: 1000; /* Asegura que el mensaje esté sobre otros elementos */
+}
