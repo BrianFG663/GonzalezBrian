@@ -8,7 +8,7 @@
 </head>
 <body>
     
-<form action="main.php" method="get" id="formulario">
+<form action="main.php" method="post" id="formulario">
     <label for="nombre">Nombre:</label>
     <input type="text" name="nombre" id="nombre" placeholder="Nombre..." required>
 

@@ -4,6 +4,7 @@
 
 
     class Cliente extends Persona{
+
         protected $numero_legajo;
 
         public function __construct($nombre,$apellido,$fecha_nacimiento,$dni,$localidad,$provincia,$telefono,$mail,$sueldo,$numero_legajo){
@@ -21,5 +22,6 @@
         }
 
     }
+
 
 ?>

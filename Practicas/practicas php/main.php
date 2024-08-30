@@ -2,26 +2,26 @@
 
     require 'Empleado.php';
 
-    if(isset($_GET['nombre']) && !empty($_GET['nombre'])){
-        if(isset($_GET['apellido']) && !empty($_GET['apellido'])){
-            if(isset($_GET['fecha_nacimiento']) && !empty($_GET['fecha_nacimiento'])){
-                if(isset($_GET['dni']) && !empty($_GET['dni'])){
-                    if(isset($_GET['localidad']) && !empty($_GET['localidad'])){
-                        if(isset($_GET['provincia']) && !empty($_GET['provincia'])){
-                            if(isset($_GET['telefono']) && !empty($_GET['telefono'])){
-                                if(isset($_GET['mail']) && !empty($_GET['mail'])){
-                                    if(isset($_GET['sueldo']) && !empty($_GET['sueldo'])){
-                                        if(isset($_GET['sueldo']) && !empty($_GET['sueldo'])){
-                                            $nombre = $_GET['nombre'];
-                                            $apellido = $_GET['apellido'];
-                                            $fecha_nacimiento = $_GET['fecha_nacimiento'];
-                                            $dni = $_GET['dni'];
-                                            $localidad = $_GET['localidad'];
-                                            $provincia = $_GET['provincia'];
-                                            $telefono = $_GET['telefono'];
-                                            $mail = $_GET['mail'];
-                                            $sueldo = $_GET['sueldo'];
-                                            $numero = $_GET['numero'];
+    if(isset($_POST['nombre']) && !empty($_POST['nombre'])){
+        if(isset($_POST['apellido']) && !empty($_POST['apellido'])){
+            if(isset($_POST['fecha_nacimiento']) && !empty($_POST['fecha_nacimiento'])){
+                if(isset($_POST['dni']) && !empty($_POST['dni'])){
+                    if(isset($_POST['localidad']) && !empty($_POST['localidad'])){
+                        if(isset($_POST['provincia']) && !empty($_POST['provincia'])){
+                            if(isset($_POST['telefono']) && !empty($_POST['telefono'])){
+                                if(isset($_POST['mail']) && !empty($_POST['mail'])){
+                                    if(isset($_POST['sueldo']) && !empty($_POST['sueldo'])){
+                                        if(isset($_POST['sueldo']) && !empty($_POST['sueldo'])){
+                                            $nombre = $_POST['nombre'];
+                                            $apellido = $_POST['apellido'];
+                                            $fecha_nacimiento = $_POST['fecha_nacimiento'];
+                                            $dni = $_POST['dni'];
+                                            $localidad = $_POST['localidad'];
+                                            $provincia = $_POST['provincia'];
+                                            $telefono = $_POST['telefono'];
+                                            $mail = $_POST['mail'];
+                                            $sueldo = $_POST['sueldo'];
+                                            $numero = $_POST['numero'];
                                         }
                                     }
                                 }
@@ -33,13 +33,13 @@
         }
     }
 
-    if(isset($_GET['empleado'])){
+    if(isset($_POST['empleado'])){
         $empleado = new Empleado($nombre,$apellido,$fecha_nacimiento,$dni,$localidad,$provincia,$telefono,$mail,$sueldo,$numero);
         $empleado->__setSueldo($sueldo,$numero);
         $empleado->cambiarFecha($fecha_nacimiento);
     }
 
-    if(isset($_GET['cliente'])){
+    if(isset($_POST['cliente'])){
         $cliente = new Cliente($nombre,$apellido,$fecha_nacimiento,$dni,$localidad,$provincia,$telefono,$mail,$sueldo,$numero);
         $cliente->__setSueldo($sueldo);
         $cliente->cambiarFecha($fecha_nacimiento);

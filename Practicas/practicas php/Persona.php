@@ -1,6 +1,11 @@
 <?php
 
+    require 'Funciones.php';
+
     class Persona{
+        use Funciones;
+
+
         public $nombre;
         public $apellido;
         public $fecha_nacimiento;
@@ -11,7 +16,8 @@
         public $mail;
         protected $sueldo;
 
-
+        
+    
         public function __construct($nombre,$apellido,$fecha_nacimiento,$dni,$localidad,$provincia,$telefono,$mail,$sueldo){
 
             $this->nombre=$nombre;
@@ -26,7 +32,7 @@
         }
 
         public function mostrarInfo(){
-            return '<div><label for="nombre">Nombre: </label><div id="nombre">' . $this->nombre . '</div></div>
+            return '<div><label for="nombre">Nombre: </label><div id="nombre">' . $this->mayuscula($this->nombre) . '</div></div>
                     <div><label for="apellido">Apellido: </label><div id="apellido">' . $this->apellido . '</div></div>
                     <div><label for="fecha_nacimiento">Fecha de Nacimiento: </label><div id="fecha_nacimiento">' . $this->fecha_nacimiento . '</div></div>
                     <div><label for="dni">DNI: </label><div id="dni">' . $this->dni . '</div></div>
