@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="Resources\CSS\Style.css">
 </head>
 <body>
     
@@ -55,5 +55,5 @@
 
 </body>
 
-<script src="Fn.js"></script>
+<script src="Resources\JS\Fn.js"></script>
 </html>

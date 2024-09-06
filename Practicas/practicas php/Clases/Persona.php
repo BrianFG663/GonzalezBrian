@@ -1,6 +1,6 @@
 <?php
 
-    require 'Funciones.php';
+    require 'Traits/Funciones.php';
 
     class Persona{
         use Funciones;

@@ -1,6 +1,6 @@
 <?php
 
-    require 'Empleado.php';
+    require 'Clases\Empleado.php';
 
     if(isset($_POST['nombre']) && !empty($_POST['nombre'])){
         if(isset($_POST['apellido']) && !empty($_POST['apellido'])){
@@ -55,7 +55,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="stylemain.css">
+    <link rel="stylesheet" href="Resources\CSS\stylemain.css">
 </head>
 <body>
 <?php
