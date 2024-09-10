@@ -1,15 +1,9 @@
 <?php
 
-    $servername = 'localhost';
-    $username = 'root';
-    $password =  '';
-    $dbname = 'brian';
+$dsn = 'mysql:host=localhost;dbname=brian';
+$usuario = 'root';
+$contraseña = '';
+$options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,];
 
-    $conexion = new mysqli($servername,$username,$password,$dbname);
-
-    if ($conexion->connect_error) {
-        die("Conexión fallida: " . $conexion->connect_error);
-    } else{
-       // echo "Conexión exitosa";
-    }
+    $conexion = new PDO($dsn,$usuario,$contraseña,$options);
 ?>

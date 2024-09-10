@@ -15,6 +15,11 @@ function verificarTipo(){
           `<label for="numero">Numero de empleado:</label>
           <input type="number" name="numero" id="numero" placeholder="Numero de empleado...." required>`
      }
+
+     if(!empleado && !cliente){
+          document.getElementById("empleado-cliente").innerHTML = 
+          ``
+     }
 }
 
 function verficarFormulario(){
@@ -28,9 +33,16 @@ function verficarFormulario(){
      let mail = document.getElementById('mail').value;
      let sueldo = document.getElementById('sueldo').value;
      let numero = document.getElementById('numero').value;
+     let contraseña = document.getElementById('contraseña').value
+     let rcontraseña = document.getElementById('rcontraseña').value
 
-     if(nombre !="" && apellido !="" && fecha_nacimiento !="" && dni !="" && localidad !="" && provincia !="" && telefono !="" && mail !="" && sueldo !="" && numero !=""){
-          document.getElementById("formulario").submit();  
+     if(nombre !="" && apellido !="" && fecha_nacimiento !="" && dni !="" && localidad !="" && provincia !="" && telefono !="" && mail !="" && sueldo !="" && numero !="" && contraseña !="" && rcontraseña !=""){
+          if(contraseña === rcontraseña){
+               document.getElementById("formulario").submit();
+          }else{
+               alert("Las contraseña deben coincidir")
+          }
+            
      }else{
           alert("Debe llenar el formulario completo.")
      }

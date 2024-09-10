@@ -4,40 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="Resources\CSS\Style.css">
+    <link rel="stylesheet" href="Resources/CSS/Style.css">
 </head>
 <body>
-    
+
 <form action="main.php" method="post" id="formulario">
-    <label for="nombre">Nombre:</label>
-    <input type="text" name="nombre" id="nombre" placeholder="Nombre..." required>
+    <h2>Registrarse</h2>
+    
+    <div class="form-group-container">
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" name="nombre" id="nombre" placeholder="Nombre..." required>
+            <label for="apellido">Apellido:</label>
+            <input type="text" name="apellido" id="apellido" placeholder="Apellido..." required>
+        </div>
+        <div class="form-group">
+            <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+            <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" required>
+            <label for="dni">DNI:</label>
+            <input type="number" name="dni" id="dni" placeholder="DNI..." required>
+        </div>
+    </div>
+    
+    <div class="form-group-container">
+        <div class="form-group">
+            <label for="localidad">Localidad:</label>
+            <input type="text" name="localidad" id="localidad" placeholder="Localidad..." required>
+            <label for="provincia">Provincia:</label>
+            <input type="text" name="provincia" id="provincia" placeholder="Provincia..." required>
+        </div>
+        <div class="form-group">
+            <label for="telefono">Teléfono:</label>
+            <input type="number" name="telefono" id="telefono" placeholder="Teléfono..." required>
+            <label for="mail">E-Mail:</label>
+            <input type="text" name="mail" id="mail" placeholder="E-Mail..." required>
+        </div>
+    </div>
 
-    <label for="apellido">Apellido:</label>
-    <input type="text" name="apellido" id="apellido" placeholder="Apellido..." required>
-    
-    <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
-    <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" required>
-    
-    <label for="dni">DNI:</label>
-    <input type="number" name="dni" id="dni" placeholder="DNI..." required>
-    
-    <label for="localidad">Localidad:</label>
-    <input type="text" name="localidad" id="localidad" placeholder="Localidad..." required>
-    
-    <label for="provincia">Provincia:</label>
-    <input type="text" name="provincia" id="provincia" placeholder="Provincia..." required>
-    
-    <label for="telefono">Teléfono:</label>
-    <input type="number" name="telefono" id="telefono" placeholder="Teléfono..." required>
-    
-    <label for="mail">E-Mail:</label>
-    <input type="text" name="mail" id="mail" placeholder="E-Mail..." required>
-    
-    <label for="sueldo">Sueldo:</label>
-    <input type="number" name="sueldo" id="sueldo" placeholder="Sueldo..." required>
+    <div class="contraseña-repetir">
+        <label for="contraseña">Contraseña:</label>
+        <input type="password" name="contraseña" id="contraseña" placeholder="Contraseña..." required>
+        <label for="rcontraseña">Repetir contraseña:</label>
+        <input type="password" name="rcontraseña" id="rcontraseña" placeholder="Repetir contraseña..." required>
+    </div>
 
+    <div class="sueldo">
+        <label for="sueldo">Sueldo:</label>
+        <input type="number" name="sueldo" id="sueldo" placeholder="Sueldo..." required>
+    </div>
+    
     <div id="empleado-cliente">
-
+        <!-- input generado con JS -->
     </div>
     
     <div class="checkbox-container">
@@ -48,12 +65,13 @@
         <input type="checkbox" name="cliente" id="check_cliente" onclick="verificarTipo()">
     </div>
 
-
-    <input type="button" value="Subir" onclick="verficarFormulario()">
+    <input type="button" value="Registrar" onclick="verficarFormulario()">
 </form>
 
+<div class="registrar">
+    Ya tiene una cuenta?<a href="Login/login.php"> Inicia sesion aqui.</a>
+</div>
 
+<script src="Resources/JS/Fn.js"></script>
 </body>
-
-<script src="Resources\JS\Fn.js"></script>
 </html>

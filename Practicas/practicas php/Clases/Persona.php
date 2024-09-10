@@ -1,6 +1,7 @@
 <?php
 
-    require 'Traits/Funciones.php';
+    require_once 'Traits/Funciones.php';
+    require_once 'Conexion.php';
 
     class Persona{
         use Funciones;
@@ -14,21 +15,23 @@
         public $provincia;
         public $telefono;
         public $mail;
+        protected $contrasena;
         protected $sueldo;
 
         
     
-        public function __construct($nombre,$apellido,$fecha_nacimiento,$dni,$localidad,$provincia,$telefono,$mail,$sueldo){
+        public function __construct($nombre,$apellido,$fecha_nacimiento,$dni,$localidad,$provincia,$telefono,$mail,$contrasena,$sueldo){
 
             $this->nombre=$nombre;
             $this->apellido=$apellido;
             $this->fecha_nacimiento=$fecha_nacimiento;
-            $this->dni=$dni;
+            $this->dni=strval($dni);
             $this->localidad=$localidad;
             $this->provincia=$provincia;
-            $this->telefono=$telefono;
+            $this->telefono=strval($telefono);
             $this->mail=$mail;
-            $this->sueldo=$sueldo;
+            $this->contrasena=$contrasena;
+            $this->sueldo=intval($sueldo);
         }
 
         public function mostrarInfo(){
@@ -54,8 +57,62 @@
             $this->fecha_nacimiento = $dia.'-'.$mes.'-'.$anio;
         }
 
+        public function verificaEmail($conexion){
+            $sqlmail = 
+            "SELECT email
+            FROM personas
+            WHERE email = :mail";
 
+            $resultado = $conexion->prepare($sqlmail);
+
+            $resultado->bindParam(':mail', $this->mail);
+            $resultado->execute();
+
+            $rows = count($resultado->fetchAll());
+
+            if ($rows == 0){
+                return true;
+            }else{
+                return false;
+            }
+
+        }
+
+        public function modificaSaldo($operacion,$retiro_ingreso,$conexion){
+            if($operacion){
+                $saldo = $this->sueldo + $retiro_ingreso;
+                $this->sueldo=$saldo;
+
+                $sqlsaldo = 
+                "UPDATE nombre_tabla
+                SET saldo = :saldo
+                WHERE email = :mail";
+
+                $resultado = $conexion->prepare($sqlsaldo);
+                $resultado->bindparam(':mail', $this->mail);
+                $resultado->bindparam('saldo',$this->sueldo);
+                $resultado->execute();
+
+                return '<div>Ingreso exitoso</div>';
+            }
+
+            if(!$operacion){
+                $saldo = $this->sueldo - $retiro_ingreso;
+                $this->sueldo=$saldo;
+
+                $sqlsaldo = 
+                "UPDATE nombre_tabla
+                SET saldo = :saldo
+                WHERE email = :mail";
+
+                $resultado = $conexion->prepare($sqlsaldo);
+                $resultado->bindparam(':mail', $this->mail);
+                $resultado->bindparam('saldo',$this->sueldo);
+                $resultado->execute();
+
+                return '<div>Retiro exitoso</div>';
+            }
+        }
 
     }
-
 ?>

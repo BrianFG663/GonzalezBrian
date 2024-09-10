@@ -1,18 +1,19 @@
 <?php
-    require 'Cliente.php';
+    require_once 'Cliente.php';
+    require_once 'Conexion.php';
 
     class Empleado extends Persona{
 
-        protected $numero_empleado;
+        protected $legajo;
 
-        public function __construct($nombre,$apellido,$fecha_nacimiento,$dni,$localidad,$provincia,$telefono,$mail,$sueldo,$numero_empleado){
-            parent:: __construct($nombre,$apellido,$fecha_nacimiento,$dni,$localidad,$provincia,$telefono,$mail,$sueldo);
+        public function __construct($nombre,$apellido,$fecha_nacimiento,$dni,$localidad,$provincia,$telefono,$mail,$contrasena,$sueldo,$legajo){
+            parent:: __construct($nombre,$apellido,$fecha_nacimiento,$dni,$localidad,$provincia,$telefono,$mail,$contrasena,$sueldo);
             
-            $this->numero_empleado=$numero_empleado;
+            $this->legajo=intval($legajo);
         }
 
         public function mostrarEmpleado(){
-           return parent::mostrarInfo().'<div><label for="numero">Número de empleado: </label><div id="numero">' . $this->numero_empleado . '</div></div>';
+           return parent::mostrarInfo().'<div><label for="numero">Número de empleado: </label><div id="numero">' . $this->legajo . '</div></div>';
         }
         
 
@@ -43,8 +44,37 @@
                 return false;
             }
         }
-    }   
 
+        
+        public function subirBaseDatos($conexion){
+            $sqlregistro = 
+            "INSERT INTO personas(nombre, apellido, fecha_nacimiento, dni, localidad, provincia, telefono, email, contraseña, sueldo, legajo, checkeo)
+            VALUES (:nombre, :apellido, :fecha_nacimiento, :dni, :localidad, :provincia, :telefono, :email, :contrasena, :sueldo, :legajo, :checkeo)";
+        
+            $resultado = $conexion->prepare($sqlregistro);
+            $checkeo = 'e';
+        
+            $resultado->bindParam(':nombre', $this->nombre);
+            $resultado->bindParam(':apellido', $this->apellido);
+            $resultado->bindParam(':fecha_nacimiento', $this->fecha_nacimiento);
+            $resultado->bindParam(':dni', $this->dni);
+            $resultado->bindParam(':localidad', $this->localidad);
+            $resultado->bindParam(':provincia', $this->provincia);
+            $resultado->bindParam(':telefono', $this->telefono);
+            $resultado->bindParam(':email', $this->mail);
+            $resultado->bindParam(':contrasena', $this->contrasena);
+            $resultado->bindParam(':sueldo', $this->sueldo);
+            $resultado->bindParam(':legajo', $this->legajo);
+            $resultado->bindParam(':checkeo', $checkeo);
+        
+            try {
+                $resultado->execute();
+            } catch (PDOException $e) {
+                echo 'Error: ' . $e->getMessage();
+            }
+        }
+        
+    }   
     
 
 ?>

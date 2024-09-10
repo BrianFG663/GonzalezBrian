@@ -1,0 +1,77 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    flex-direction: column; /* Cambiar disposición a columna */
+}
+
+/* Título */
+.titulo-principal {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Div principal */
+.div-principal {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+}
+
+/* Formulario */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form input[type="text"],
+form input[type="password"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+form input[type="submit"] {
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+form input[type="submit"]:hover {
+    background-color: #2980b9;
+}
+
+/* Div de registro */
+.registrar {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.registrar a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.registrar a:hover {
+    text-decoration: underline;
+}
