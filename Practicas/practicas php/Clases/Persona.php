@@ -138,7 +138,15 @@
         }
 
         public function transferencia($conexion,$monto,$contacto){
+            $sqltransferencia = 
+            "UPDATE personas
+            SET sueldo= sueldo + :monto
+            WHERE email = :contacto OR telefono = :contacto";
 
+            $resultado =$conexion->prepare($sqltransferencia);
+            $resultado->bindParam(':contacto',$contacto);
+            $resultado->bindParam('monto',$monto);
+            $resultado->execute();
         }
 
     }
