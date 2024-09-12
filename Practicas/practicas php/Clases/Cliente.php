@@ -1,6 +1,7 @@
 <?php
 
-    require 'Persona.php';
+    require_once 'Persona.php';
+    require_once '../conexion.php';
 
 
     class Cliente extends Persona{
@@ -13,7 +14,7 @@
         }
 
         public function mostrarCliente(){
-           return parent::mostrarInfo().'<div><label for="numero">Número de cliente: </label><div id="numero">' . $this->numero_cuenta . '</div></div>';
+           return parent::mostrarInfo().'<div class="contenedor-numero"><label for="numero">Número de empleado: </label><div id="numero">' . $this->numero_cuenta . '</div></div>';
         }
 
         public function __setSueldo($sueldo){

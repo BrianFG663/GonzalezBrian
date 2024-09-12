@@ -1,0 +1,171 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4;
+    flex-direction: column;
+}
+
+.contenedor-general {
+    width: 95%;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    top: 20vh;
+}
+
+.informacion-de-cuenta {
+    background-color: #f4f4f4;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    padding: 20px;
+    width: 90%;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.informacion-de-cuenta div {
+    font-size: 1.1em;
+    color: #333;
+    flex: 1;
+    padding: 10px;
+    width: 33%;
+}
+
+.nombre-title, .nombre-legajo {
+    background-color: #fff; /* Fondo blanco para un aspecto más limpio */
+    border: 1px solid #27ae60; /* Verde bancario más suave */
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1em;
+    color: #333; /* Color de texto oscuro para contraste */
+}
+
+.nombre-title {
+    font-size: 1.4em; /* Tamaño mayor para el título */
+    font-weight: bold;
+}
+
+.nombre-legajo {
+    font-size: 1.2em; /* Tamaño ligeramente menor que el título */
+    font-weight: normal;
+}
+
+.saldo {
+    background-color: white;
+    border: 2px solid #27ae60; /* Verde bancario */
+    border-radius: 10px;
+    padding: 15px 25px;
+    margin: 20px auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: space-between;
+    width: 25%; /* Ajustado a 25% */
+    align-items: center;
+    font-size: 1.2em;
+}
+
+.saldo span {
+    font-weight: bold;
+}
+
+.saldo .cantidad {
+    color: #27ae60;
+    font-size: 1.5em;
+    margin-left: 10px;
+}
+
+.ingresa-dinero, .retira-dinero, .transfiere-dinero {
+    width: 33.3%;
+    background-color: white;
+    border-color: 0.5px solid grey;
+    padding: 15px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.ingresa-dinero h5, .retira-dinero h5, .transfiere-dinero h5 {
+    text-align: center;
+    font-size: 30px;
+}
+
+.ingresa-dinero input[type="number"], .retira-dinero input[type="number"], .transfiere-dinero input[type="number"] {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.ingresa-dinero input[type="submit"], 
+.retira-dinero input[type="submit"], 
+.transfiere-dinero input[type="submit"] {
+    width: 50%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 2px solid #27ae60; /* Verde para los bordes */
+    background-color: #fff; /* Fondo blanco */
+    color: #27ae60; /* Texto verde */
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.ingresa-dinero input[type="submit"]::before, 
+.retira-dinero input[type="submit"]::before, 
+.transfiere-dinero input[type="submit"]::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #27ae60; /* Mismo verde que el borde */
+    z-index: -1;
+    transition: transform 0.6s ease;
+    transform: translateX(-100%);
+}
+
+.ingresa-dinero input[type="submit"]:hover::before, 
+.retira-dinero input[type="submit"]:hover::before, 
+.transfiere-dinero input[type="submit"]:hover::before {
+    transform: translateX(0); /* El fondo verde se desplaza y cubre todo el botón */
+}
+
+.ingresa-dinero input[type="submit"]:hover, 
+.retira-dinero input[type="submit"]:hover, 
+.transfiere-dinero input[type="submit"]:hover {
+    color: #fff; /* Texto blanco cuando se aplica el hover */
+    background-color: #27ae60;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor-dinero {
+    display: flex;
+    justify-content: space-between;
+}

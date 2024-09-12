@@ -47,3 +47,7 @@ function verficarFormulario(){
           alert("Debe llenar el formulario completo.")
      }
 }
+
+function transacciones(){
+     location.href ="transacciones.php";
+}

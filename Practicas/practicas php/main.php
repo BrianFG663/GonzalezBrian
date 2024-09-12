@@ -78,9 +78,8 @@
 </head>
 <body>
 <?php
-                             
+                            
     if(isset($empleado)){
-
         if($empleado->verificarEdad($valores['fecha_nacimiento'])){
             if($empleado->verificaEmail($conexion)){
                 echo $empleado->mostrarEmpleado();
@@ -93,16 +92,6 @@
         }else{
             echo '<div id="menor_edad">Debe ser mayor de edad para ser empleado.</div>';
         }
-
-
-    }else{
-        echo '<div>
-                <form action="main.php" method="post">
-                    <input type="number" name="retiro-ingreso" id="retiro-ingreso">
-                    <input type="submit" name="retirar" id="retirar" value="Retirar">
-                    <input type="submit" name="ingresar" id="ingresar" value="Ingresar">
-                </form>
-              </div>'; 
     }
 
     if(isset($cliente)){
@@ -112,43 +101,9 @@
         }else{
             echo '<div id="menor_edad">Correo electronico ya registrado</div>';
         }
-    }else{
-        echo '<div>
-                <form action="main.php" method="post">
-                    <input type="number" name="" id="">
-                    <input type="submit" name="retirar" id="retirar" value="Retirar">
-                    <input type="submit" name="ingresar" id="ingresar" value="Ingresar">
-                </form>
-              </div>';
-    }            
-
-    //revisar
-
-   /* if(isset($empleado)){
-        if(isset($_POST['retirar'])){
-            $retiro = $_POST['retiro-ingreso'];
-            $empleado->modificaSaldo(false,$retiro,$conexion);
-        }
-
-        if(isset($_POST['ingresar'])){
-            $ingreso = $_POST['retiro-ingreso'];
-            $empleado->modificaSaldo(true,$ingreso,$conexion);
-        }
-    }
-
-    if(isset($cliente)){
-        if(isset($_POST['retirar'])){
-            $retiro = $_POST['retiro-ingreso'];
-            $cliente->modificaSaldo(false,$retiro,$conexion);
-        }
-
-        if(isset($_POST['ingresar'])){
-            $ingreso = $_POST['retiro-ingreso'];
-            $cliente->modificaSaldo(true,$ingreso,$conexion);
-        }
-    } */ 
-     
+    }         
 ?>
+
 
 
 </body>

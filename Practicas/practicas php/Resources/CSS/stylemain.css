@@ -1,48 +1,122 @@
+/* General styling */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
     margin: 0;
     padding: 20px;
+    background-color: #f4f4f4;
 }
 
-div {
-    margin-bottom: 15px;
+/* Contenedor de la información */
+.contenedor-informacion {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    margin: auto;
+    position: relative;
+    top: 10vh;
+}
+
+.contenedor-informacion h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    width: 100%;
+    color: #3498db;
+    font-size: 24px;
+}
+
+/* Informacion 1 e Informacion 2 a mitad y mitad */
+.informacion1, .informacion2 {
     display: flex;
-    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.informacion1 div, .informacion2 div {
+    width: 48%; /* Para que ocupen la mitad */
+    margin-bottom: 10px;
 }
 
 label {
     font-weight: bold;
     margin-right: 10px;
-    width: 150px; /* Establece una anchura fija para alinear las etiquetas */
-    color: #333;
 }
 
-div div {
-    background-color: #eaeaea;
-    padding: 10px;
+div[id] {
+    background-color: #ecf0f1;
+    padding: 5px;
     border-radius: 5px;
-    flex: 1;
-}
-
-#nombre, #apellido, #fecha_nacimiento, #dni, #localidad, #provincia, #telefono, #mail, #sueldo, #numero {
-    background-color: #fff;
     border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 4px;
-    min-width: 200px; /* Establece un ancho mínimo */
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-#menor_edad {
-    position: fixed; /* Fija el div en una posición específica en la pantalla */
-    top: 50%; /* Posición vertical en el centro de la pantalla */
-    left: 50%; /* Posición horizontal en el centro de la pantalla */
-    transform: translate(-50%, -50%); /* Ajusta la posición para centrar completamente */
-    background-color: rgba(255, 0, 0, 0.5); /* Fondo rojo con un 50% de opacidad */
-    color: white; /* Color del texto blanco para contrastar con el fondo */
-    border: 2px solid red; /* Borde rojo de 2px */
-    padding: 20px; /* Espaciado interno del div */
-    border-radius: 5px; /* Bordes redondeados */
-    text-align: center; /* Centra el texto horizontalmente */
-    z-index: 1000; /* Asegura que el mensaje esté sobre otros elementos */
+/* Contenedor de botones */
+.contenedor-botones {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    max-width: 900px;
+    margin: auto;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+}
+
+.contenedor-botones h5 {
+    margin-bottom: 10px;
+}
+
+.contenedor-numero input[type="submit"] {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 60%;
+    position: sticky;
+    left: 100%;
+}
+
+.contenedor-botones label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+/* Contenedor de número */
+.contenedor-numero {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    max-width: 900px;
+    margin: auto;
+    width: 25%;
+    position: relative;
+    top: 12vh;
+}
+
+.contenedor-numero div {
+    display: inline-block;
+    padding: 5px;
+    background-color: #ecf0f1;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100px;
+    text-align: left;
+}
+
+.contenedor-numero label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+#numero{
+    text-align: center;
 }

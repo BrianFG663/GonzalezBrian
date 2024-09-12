@@ -1,10 +1,11 @@
 <?php
-    require_once 'Cliente.php';
-    require_once 'Conexion.php';
+
+    require_once 'Persona.php';
+    require_once '../conexion.php';
 
     class Empleado extends Persona{
 
-        protected $legajo;
+        public $legajo;
 
         public function __construct($nombre,$apellido,$fecha_nacimiento,$dni,$localidad,$provincia,$telefono,$mail,$contrasena,$sueldo,$legajo){
             parent:: __construct($nombre,$apellido,$fecha_nacimiento,$dni,$localidad,$provincia,$telefono,$mail,$contrasena,$sueldo);
@@ -13,7 +14,7 @@
         }
 
         public function mostrarEmpleado(){
-           return parent::mostrarInfo().'<div><label for="numero">Número de empleado: </label><div id="numero">' . $this->legajo . '</div></div>';
+           return parent::mostrarInfo().'<div class="contenedor-numero"><label for="numero">Número de empleado: </label><div id="numero">' . $this->legajo . '</div><input type="submit" name="retirar" id="retirar" value="Mis transacciones" onclick="transacciones()"></div>';
         }
         
 
