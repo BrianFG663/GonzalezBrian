@@ -24,11 +24,10 @@
         $sqluser = 
         "select *
         from personas
-        where email = :usuario and contraseña = :contrasena";
+        where email = :usuario";
 
         $result=$conexion->prepare($sqluser);
         $result->bindParam(':usuario', $usuario);
-        $result->bindParam(':contrasena', $contraseña);
         $result->execute();
 
         $row = $result->fetch(PDO::FETCH_ASSOC);
@@ -49,13 +48,15 @@
     
     <div class="operacion">
         <?php
-        if($row['checkeo'] == 'e'){ //se chequea si es empleado o cliente
-            $nuevousuario = new Empleado($row['nombre'],$row['apellido'],$row['fecha_nacimiento'],$row['dni'],$row['localidad'],$row['provincia'],$row['telefono'],$row['email'],$row['contraseña'],$row['sueldo'],$row['legajo']);
-            echo $nuevousuario->modificaSaldo($operacion,$monto,$conexion);
-        }
-        if($row['checkeo'] == 'c'){
-            $nuevousuario = new Cliente($row['nombre'],$row['apellido'],$row['fecha_nacimiento'],$row['dni'],$row['localidad'],$row['provincia'],$row['telefono'],$row['email'],$row['contraseña'],$row['sueldo'],$row['numero_cuenta']);
-            echo $nuevousuario->modificaSaldo($operacion,$monto,$conexion);
+        if(password_verify($contraseña,$row['contraseña'])){
+            if($row['checkeo'] == 'e'){ //se chequea si es empleado o cliente
+                $nuevousuario = new Empleado($row['nombre'],$row['apellido'],$row['fecha_nacimiento'],$row['dni'],$row['localidad'],$row['provincia'],$row['telefono'],$row['email'],$row['contraseña'],$row['sueldo'],$row['legajo']);
+                echo $nuevousuario->modificaSaldo($operacion,$monto,$conexion);
+            }
+            if($row['checkeo'] == 'c'){
+                $nuevousuario = new Cliente($row['nombre'],$row['apellido'],$row['fecha_nacimiento'],$row['dni'],$row['localidad'],$row['provincia'],$row['telefono'],$row['email'],$row['contraseña'],$row['sueldo'],$row['numero_cuenta']);
+                echo $nuevousuario->modificaSaldo($operacion,$monto,$conexion);
+            }
         }
         ?>
         <div class="informacion">

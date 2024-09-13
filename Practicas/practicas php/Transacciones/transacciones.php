@@ -1,10 +1,10 @@
 <?php
 
-require_once '../Conexion.php';
-require_once '../Clases/Empleado.php';
-require_once '../Clases/Cliente.php';
+    require_once '../Conexion.php';
+    require_once '../Clases/Empleado.php';
+    require_once '../Clases/Cliente.php';
 
-session_start();
+    session_start();
     $usuario=$_SESSION["mail"];
     $contraseña=$_SESSION["contraseña"];
 
@@ -13,23 +13,23 @@ session_start();
         $sqluser = 
         "select *
         from personas
-        where email = :usuario and contraseña = :contrasena";
+        where email = :usuario";
 
         $result=$conexion->prepare($sqluser);
         $result->bindParam(':usuario', $usuario);
-        $result->bindParam(':contrasena', $contraseña);
         $result->execute();
 
         $row = $result->fetch(PDO::FETCH_ASSOC);
     }
 
-    if($row['checkeo'] == 'e'){ //se chequea si es empleado o cliente
-        $nuevousuario = new Empleado($row['nombre'],$row['apellido'],$row['fecha_nacimiento'],$row['dni'],$row['localidad'],$row['provincia'],$row['telefono'],$row['email'],$row['contraseña'],$row['sueldo'],$row['legajo']);
+    if(password_verify($contraseña,$row['contraseña'])){
+        if($row['checkeo'] == 'e'){ //se chequea si es empleado o cliente
+            $nuevousuario = new Empleado($row['nombre'],$row['apellido'],$row['fecha_nacimiento'],$row['dni'],$row['localidad'],$row['provincia'],$row['telefono'],$row['email'],$row['contraseña'],$row['sueldo'],$row['legajo']);
+        }
+        if($row['checkeo'] == 'c'){
+            $nuevousuario = new Cliente($row['nombre'],$row['apellido'],$row['fecha_nacimiento'],$row['dni'],$row['localidad'],$row['provincia'],$row['telefono'],$row['email'],$row['contraseña'],$row['sueldo'],$row['numero_cuenta']);
+        }
     }
-    if($row['checkeo'] == 'c'){
-        $nuevousuario = new Cliente($row['nombre'],$row['apellido'],$row['fecha_nacimiento'],$row['dni'],$row['localidad'],$row['provincia'],$row['telefono'],$row['email'],$row['contraseña'],$row['sueldo'],$row['numero_cuenta']);
-    }
-
 ?>
 
 <!DOCTYPE html>

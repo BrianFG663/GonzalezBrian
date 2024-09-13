@@ -1,4 +1,5 @@
 /* General styling */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -94,8 +95,12 @@ div[id] {
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
+    margin-top: 20px;   
     max-width: 900px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     margin: auto;
     width: 25%;
     position: relative;
@@ -108,7 +113,7 @@ div[id] {
     background-color: #ecf0f1;
     border-radius: 5px;
     border: 1px solid #ccc;
-    width: 100px;
+    width: 200px;
     text-align: left;
 }
 
@@ -119,4 +124,52 @@ div[id] {
 
 #numero{
     text-align: center;
+}
+
+.admin-registrado {
+    display: flex;
+    align-items: center;
+    background-color: #eaf5ea; /* Verde claro */
+    border: 2px solid #4caf50; /* Verde */
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 300px; /* Ajusta según tu necesidad */
+    margin: 20px auto; /* Centra el div horizontalmente */
+}
+
+.admin-registrado img.check {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.admin-registrado span {
+    font-size: 16px;
+    color: #4caf50; /* Verde */
+    font-weight: bold;
+}
+
+.cabecera-error{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 25px;
+    text-align: center;
+    height: 80px;
+    width: 60%;
+    position: relative;
+    left: 20%;
+    top: 40vh;
+    background-color: rgba(252, 43, 43, 0.705);
+    border: 1px solid red;
+    border-radius: 10px;
+}
+
+.check{
+    height: 30px;
+    width: 30px;
+    margin-right: 10px;
 }

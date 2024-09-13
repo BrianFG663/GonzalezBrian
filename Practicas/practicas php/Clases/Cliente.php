@@ -28,6 +28,7 @@
             VALUES (:nombre, :apellido, :fecha_nacimiento, :dni, :localidad, :provincia, :telefono, :email, :contrasena, :sueldo, :numero_cuenta, :checkeo)";
         
             $resultado = $conexion->prepare($sqlregistro);
+            $encriptado = password_hash($this->contrasena, PASSWORD_BCRYPT);
             $checkeo = 'c';
         
             $resultado->bindParam(':nombre', $this->nombre);
@@ -38,7 +39,7 @@
             $resultado->bindParam(':provincia', $this->provincia);
             $resultado->bindParam(':telefono', $this->telefono);
             $resultado->bindParam(':email', $this->mail);
-            $resultado->bindParam(':contrasena', $this->contrasena);
+            $resultado->bindParam(':contrasena', $encriptado);
             $resultado->bindParam(':sueldo', $this->sueldo);
             $resultado->bindParam(':legajo', $this->numero_cuenta);
             $resultado->bindParam(':checkeo', $checkeo);

@@ -38,16 +38,76 @@ function verficarFormulario(){
 
      if(nombre !="" && apellido !="" && fecha_nacimiento !="" && dni !="" && localidad !="" && provincia !="" && telefono !="" && mail !="" && sueldo !="" && numero !="" && contraseña !="" && rcontraseña !=""){
           if(contraseña === rcontraseña){
-               document.getElementById("formulario").submit();
+               Swal.fire({
+                    title: "Desea subir este usuario a base de datos?",
+                    showDenyButton: true,
+                    showCancelButton: false,
+                    confirmButtonText: "Save",
+                    denyButtonText: `Cancel`
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      document.getElementById("formulario").submit();
+                    } else if (result.isDenied) {
+                      Swal.fire("Changes are not saved", "", "info");
+                    }
+                  });
           }else{
-               alert("Las contraseña deben coincidir")
+               Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Las contraseñas deben coincidir"
+                  });
           }
             
      }else{
-          alert("Debe llenar el formulario completo.")
+          Swal.fire({
+               icon: "error",
+               title: "Oops...",
+               text: "Debe llenar el formulario completo"
+             });
      }
+}
+
+function verificarAdmin(){
+     let nombre=document.getElementById("nombre").value;
+     let apellido=document.getElementById("apellido").value;
+     let mail=document.getElementById("mail").value;
+     let contraseña=document.getElementById("contraseña").value;
+
+     if(nombre !="" && apellido !="" && mail !="" && contraseña !=""){
+          Swal.fire({
+               title: "Desea subir este usuario a base de datos?",
+               showDenyButton: true,
+               showCancelButton: false,
+               confirmButtonText: "Save",
+               denyButtonText: `Cancel`
+             }).then((result) => {
+               if (result.isConfirmed) {
+                 document.getElementById("formulario").submit();
+               } else if (result.isDenied) {
+                 Swal.fire("Changes are not saved", "", "info");
+               }
+             });
+     }else{
+          Swal.fire({
+               icon: "error",
+               title: "Oops...",
+               text: "Debe llenar el formulario completo"
+             });
+     }
+
 }
 
 function transacciones(){
      location.href ="transacciones.php";
+}
+
+function indexAdministrador(valor){
+     if(valor == "empleado"){
+          location.href = "registro-administrador/registro-admin.php"
+     }
+
+     if(valor == "persona"){
+          location.href = "registro-personas/registrar-persona.php"
+     }
 }

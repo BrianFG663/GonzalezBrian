@@ -83,13 +83,13 @@
 
             $resultado->bindParam(':mail', $this->mail);
             $resultado->execute();
+            
+            $row = $resultado->fetch(PDO::FETCH_ASSOC);
 
-            $rows = count($resultado->fetchAll());
-
-            if ($rows == 0){
-                return true;
-            }else{
-                return false;
+            if (!$row) {
+                return true; // No se encontró el correo
+            } else {
+                return false; // Ya existe el correo
             }
 
         }

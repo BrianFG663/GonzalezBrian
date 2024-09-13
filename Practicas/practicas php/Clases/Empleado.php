@@ -14,14 +14,13 @@
         }
 
         public function mostrarEmpleado(){
-           return parent::mostrarInfo().'<div class="contenedor-numero"><label for="numero">Número de empleado: </label><div id="numero">' . $this->legajo . '</div><input type="submit" name="retirar" id="retirar" value="Mis transacciones" onclick="transacciones()"></div>';
+           return parent::mostrarInfo().'<div class="contenedor-numero"><label for="numero">Número de empleado: </label><div id="numero">' . $this->legajo;
         }
         
 
         public function __setSueldo($sueldo,$numero){
-
             $check_iva = substr($numero,0,2);
-
+            
             if($check_iva == "99"){
                 $this->sueldo = $sueldo;
             }else{   
@@ -53,6 +52,7 @@
             VALUES (:nombre, :apellido, :fecha_nacimiento, :dni, :localidad, :provincia, :telefono, :email, :contrasena, :sueldo, :legajo, :checkeo)";
         
             $resultado = $conexion->prepare($sqlregistro);
+            $encriptado = password_hash($this->contrasena, PASSWORD_BCRYPT);
             $checkeo = 'e';
         
             $resultado->bindParam(':nombre', $this->nombre);
@@ -63,7 +63,7 @@
             $resultado->bindParam(':provincia', $this->provincia);
             $resultado->bindParam(':telefono', $this->telefono);
             $resultado->bindParam(':email', $this->mail);
-            $resultado->bindParam(':contrasena', $this->contrasena);
+            $resultado->bindParam(':contrasena', $encriptado);
             $resultado->bindParam(':sueldo', $this->sueldo);
             $resultado->bindParam(':legajo', $this->legajo);
             $resultado->bindParam(':checkeo', $checkeo);
