@@ -105,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `materia_instituto` (
   CONSTRAINT `materia_instituto_ibfk_2` FOREIGN KEY (`instituto_id`) REFERENCES `instituto` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla escueladb.materia_instituto: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla escueladb.materia_instituto: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla escueladb.materia_profesor
 CREATE TABLE IF NOT EXISTS `materia_profesor` (
@@ -153,9 +153,9 @@ CREATE TABLE IF NOT EXISTS `profesor` (
   CONSTRAINT `profesor_ibfk_1` FOREIGN KEY (`instituto_id`) REFERENCES `instituto` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla escueladb.profesor: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla escueladb.profesor: ~1 rows (aproximadamente)
 INSERT INTO `profesor` (`id`, `apellido`, `nombre`, `dni`, `legajo`, `instituto_id`) VALUES
-	(20, 'Gonzalez', 'Brian', '43681175', '001', NULL);
+	(20, 'Gonzalez', 'Brian', '43681175', '001', 112);
 
 -- Volcando estructura para tabla escueladb.usuario
 CREATE TABLE IF NOT EXISTS `usuario` (
@@ -172,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   CONSTRAINT `id_profesor` FOREIGN KEY (`id_profesor`) REFERENCES `profesor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=238 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla escueladb.usuario: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla escueladb.usuario: ~2 rows (aproximadamente)
 INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `mail`, `passw`, `rol`, `id_profesor`) VALUES
 	(223, 'Javier', 'Parra', 'javier@gmail.com', '$2y$10$Fga7foscWCjerL6CONEyd.A/Npku/tTL6A1UZgc7/vFwXoKl34MTG', 'administrador', NULL),
 	(237, 'Gonzalez', 'Brian', 'briangonzaz305@gmail.com', '$2y$10$H0miP..gqdnqGR2ZFO25Ou8S4.7yzncgCVdxLYusmvuAraCcb5hTe', 'profesor', 20);

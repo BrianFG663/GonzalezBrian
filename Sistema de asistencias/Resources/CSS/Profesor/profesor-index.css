@@ -1,0 +1,23 @@
+@font-face {
+    font-family: 'MiFuente';
+    src: url('/Resources/Fonts/CaviarDreams.ttf') format('truetype');
+}
+
+html {
+    font-family: 'MiFuente', sans-serif;
+}
+
+body {
+    background: rgb(240, 240, 240);
+    margin: 0px;
+    padding: 0px;
+}
+
+.contenedores{
+    border: 1px solid black;
+    position: relative;
+    left: 15%;
+    top: 15vh;
+    width: 70%;
+    height: 60vh;
+}

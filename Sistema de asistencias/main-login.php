@@ -77,7 +77,7 @@
                     $row_profesor = $resultado->fetch(PDO::FETCH_ASSOC);
 
                     $_SESSION['rowprofesor'] = $row_profesor;
-                    header('location: Profesores/profesores.php'); //dependiendo de su rol lo redirecciona a una archivo u otro
+                    header('location: Profesores/profesores-index.php'); //dependiendo de su rol lo redirecciona a una archivo u otro
                     exit();
                 }
             }else{ //en caso de encontrar un usuario con ese mail pero la contraseña es incorrecta, salta alerta y redirecciona otra vez al login.

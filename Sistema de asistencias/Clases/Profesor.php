@@ -16,6 +16,32 @@
             $this->legajo = $legajo;
         }
 
+        public function institutosProfesor($conexion,$id){
+            $sql_profesor = 
+            "SELECT instituto_id
+            FROM profesor
+            WHERE id = :id";
+
+            $resultado = $conexion->prepare($sql_profesor);
+            $resultado->bindParam('id', $id);
+            $resultado->execute();
+
+            $row = $resultado->fetch(PDO::FETCH_ASSOC);
+            $instituto_id = $row['instituto_id'];
+
+            $sql_institutos =
+            "SELECT id,nombre
+            FROM instituto
+            WHERE id = :instituto_id";
+
+            $resultado = $conexion->prepare($sql_institutos);
+            $resultado->bindParam('instituto_id', $instituto_id);
+            $resultado->execute();
+            $row_institutos = $resultado->fetch(PDO::FETCH_ASSOC);
+
+            return $row_institutos;
+        }
+
         public function insertProfesor($conexion){
 
             $sql_insert = 
