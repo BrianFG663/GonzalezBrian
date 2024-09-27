@@ -35,14 +35,14 @@
             return $row;
         }
 
-        public function comprobarMail($conexion){
+        public function comprobarMail($conexion,$mail){
             $sql_mail = 
             "SELECT mail
             FROM usuario
             WHERE mail = :mail";
 
             $resultado = $conexion->prepare($sql_mail);
-            $resultado->bindParam(':mail', $this->mail);
+            $resultado->bindParam(':mail', $mail);
             $resultado->execute();
 
             $row = $resultado->fetch(PDO::FETCH_ASSOC);

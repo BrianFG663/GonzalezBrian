@@ -45,7 +45,7 @@
     <link rel="stylesheet" href="../../Resources/CSS/Administrador/Administrador-db.css">
     <link rel="shortcut icon" href="../../Resources/Images/icono.png" sizes="64x64">
     <script src="../../Resources/JS/Menu.js"></script>
-    <title>Document</title>
+    <title>Administradores</title>
 </head>
 <header class="encabezado">
     <img class="imagen-encabezado" src="../../Resources/Images/director-de-escuela.png">

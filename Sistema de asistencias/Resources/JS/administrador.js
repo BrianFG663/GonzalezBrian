@@ -30,6 +30,10 @@ function redireccion(valor){
             location.href = '../Administrador-index.php';
         break;
 
+        case 8:
+            location.href = 'Administrador-index.php';
+        break;
+
     }
 }
 

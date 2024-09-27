@@ -94,7 +94,7 @@ $row = $_SESSION['row'];
 
         $profesor = new Profesor($nombre,$apellido,$dni,$legajo);
         $usuario = new Usuario($nombre,$apellido,$mail,$pass,$rol);
-        $comprobarMail = $usuario->comprobarMail($conexion);
+        $comprobarMail = $usuario->comprobarMail($conexion,$mail);
         $comprobarDni =  $profesor->comprobarDni($conexion);
         $comprobarlegajo = $profesor->comprobarlegajo($conexion);
 

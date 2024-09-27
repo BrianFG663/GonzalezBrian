@@ -86,7 +86,7 @@ $row = $_SESSION['row'];
 
 
         $usuario = new Usuario($nombre,$apellido,$mail,$pass,$rol);
-        $comprobarMail = $usuario->comprobarMail($conexion);
+        $comprobarMail = $usuario->comprobarMail($conexion,$mail);
 
         if($comprobarMail){
             $usuario->insertUsuario($conexion);

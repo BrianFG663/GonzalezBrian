@@ -84,26 +84,6 @@ class Materia{
         $resultado_eliminar_materia->bindParam(':id', $id);
         $resultado_eliminar_materia->execute();
 
-        $sql_eliminar_materia_profesor = 
-        "DELETE FROM materia_profesor
-        WHERE materia_id = :id";
-        $resultado_eliminar_materia_profesor = $conexion->prepare($sql_eliminar_materia_profesor);
-        $resultado_eliminar_materia_profesor->bindParam(':id', $id);
-        $resultado_eliminar_materia_profesor->execute();
-
-        $sql_eliminar_materia_instituto = 
-        "DELETE FROM materia_instituto
-        WHERE materia_id = :id";
-        $resultado_eliminar_materia_instituto = $conexion->prepare($sql_eliminar_materia_instituto);
-        $resultado_eliminar_materia_instituto->bindParam(':id', $id);
-        $resultado_eliminar_materia_instituto->execute();
-
-        $sql_eliminar_materia_alumno = 
-        "DELETE FROM materia_alumno
-        WHERE materia_id = :id";
-        $resultado_eliminar_materia_alumno = $conexion->prepare($sql_eliminar_materia_alumno);
-        $resultado_eliminar_materia_alumno->bindParam(':id', $id);
-        $resultado_eliminar_materia_alumno->execute();
     }
     
 }

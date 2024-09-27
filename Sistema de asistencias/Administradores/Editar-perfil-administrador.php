@@ -8,6 +8,11 @@ $usuario = new Usuario($row['nombre'],$row['apellido'],$row['mail'],$row['passw'
 $id = $row['id'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if(isset($_POST['boton_atras'])){
+        header('Location: Administrador-index.php');
+        exit();
+    }
+
     if (isset($_POST['nombre']) && !empty($_POST['nombre'])) {
         $nombre = $_POST['nombre'];
         $usuario->cambiarNombre($conexion, $id, $nombre);
@@ -28,12 +33,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (isset($_POST['mail']) && !empty($_POST['mail'])) {
         $mail = $_POST['mail'];
-        
-        $usuario->cambiarMail($conexion, $id, $mail);
-        $nuevo_row = $usuario->buscarUsuario($conexion, $id);
-        $_SESSION['row'] = $nuevo_row;
-        header('Location: Editar-perfil-administrador.php');
-        exit();
+        $comprobar_mail = $usuario->comprobarMail($conexion,$mail);
+
+        if($comprobar_mail){
+            $usuario->cambiarMail($conexion, $id, $mail);
+            $nuevo_row = $usuario->buscarUsuario($conexion, $id);
+            $_SESSION['row'] = $nuevo_row;
+            header('Location: Editar-perfil-administrador.php');
+            exit();
+        }else{
+            echo '<script>
+                    Swal.fire({
+                        icon: "error",
+                        title: "Correo electronico ya registrado"
+                    })
+                </script>';
+        }
     }
 
     if (isset($_POST['contraseña-actual']) && isset($_POST['contraseña-nueva'])) {
@@ -103,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div><label for="contraseña-actual">Contraseña actual</label><input name="contraseña-actual" id="contraseña-actual" type="text" autocomplete="off"></div>
                 <div><label for="contraseña-nueva">Contraseña nueva</label><input name="contraseña-nueva" id="contraseña-nueva" type="text" autocomplete="off"></div>
                 <div class="container-botones-editar">
-                    <input type="submit" value="Menu" id="boton_atras">
+                    <input type="submit" value="Menu" id="boton_atras" name="boton_atras">
                     <input type="button" value="Editar" id="boton_agregar" name="boton_agregar" onclick="editarPerfil()">
                 </div>
             </form>
