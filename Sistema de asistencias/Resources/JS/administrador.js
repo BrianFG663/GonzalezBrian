@@ -308,32 +308,13 @@ function editarPerfil(){
     }
 
     if(mail !== ""){
-        Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Se ha cambiado el mail correctamente",
-            showConfirmButton: false,
-            timer: 1500
-        });
+        document.getElementById("formulario-editar").submit();
 
-        setTimeout(() => {
-            document.getElementById("formulario-editar").submit();
-        }, 1600);
+
     }
 
     if(contraseñaActual !== ""){
-        if(contraseñaNueva){
-            Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Se ha cambiado el mail correctamente",
-            showConfirmButton: false,
-            timer: 1500
-        });
-
-        setTimeout(() => {
-            document.getElementById("formulario-editar").submit();
-        }, 1600);  
-        }
+        document.getElementById("formulario-editar").submit();
     }
 }
+

@@ -23,7 +23,7 @@ $row = $_SESSION['row'];
 
     <div class="container-button">
         <div><a href="../../index.php"><img src="../../Resources/Images/cerrar-sesion.png" class="img-session"><span class="span-sesion">CERRAR SESION</span></a></div>
-        <div><a href="Editar-perfil-administrador.php"><img src="../../Resources/Images/avatar-de-usuario.png" class="img-perfil"><span class="span-perfil">EDITAR PERFIL</span></a></div>
+        <div><a href="../Editar-perfil-administrador.php"><img src="../../Resources/Images/avatar-de-usuario.png" class="img-perfil"><span class="span-perfil">EDITAR PERFIL</span></a></div>
     </div>
 </header>
 
@@ -101,8 +101,8 @@ $row = $_SESSION['row'];
         if($comprobarMail){
             if($comprobarDni){
                 if($comprobarlegajo){
-                    $profesor->insertProfesor($conexion);
-                    $usuario->insertUsuario($conexion);
+                    $profesor->insertProfesor($conexion,$mail);
+                    $usuario->insertUsuario($conexion,$dni);
     
                     echo '<script> 
                             Swal.fire({

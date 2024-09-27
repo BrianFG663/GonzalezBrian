@@ -55,13 +55,35 @@
 
         }
 
-        public function insertUsuario($conexion){
+        public function comprobarContraseña($contraseña_actual){
 
+            if(password_verify($contraseña_actual, $this->pass)){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        public function insertUsuario($conexion,$dni){
             $contraseña = password_hash($this->pass, PASSWORD_DEFAULT);
+            $sql_dni = 
+            "SELECT id
+            FROM profesor
+            WHERE dni = :dni";
+
+            $resultado = $conexion->prepare($sql_dni);
+            $resultado->bindParam(':dni', $dni);
+            $resultado->execute();
+
+            $row = $resultado->fetch(PDO::FETCH_ASSOC);
+            if($row){
+                $profesor_id = (int)$row['id'];
+            }
+
 
             $sql_insert =
-            "INSERT INTO  usuario(nombre,apellido,mail,passw,rol)
-            VALUE (:nombre,:apellido,:mail,:passw,:rol)";
+            "INSERT INTO  usuario(nombre,apellido,mail,passw,rol,id_profesor)
+            VALUE (:nombre,:apellido,:mail,:passw,:rol,:id_profesor)";
 
             $resultado = $conexion->prepare($sql_insert);
 
@@ -70,6 +92,7 @@
             $resultado->bindParam(':mail', $this->mail);
             $resultado->bindParam(':passw', $contraseña);
             $resultado->bindParam(':rol', $this->rol);
+            $resultado->bindParam(':id_profesor', $profesor_id);
             $resultado->execute();
         }
 
@@ -115,8 +138,24 @@
 
             $resultado_cambio = $conexion->prepare($sql_cambiar_mail);
             $resultado_cambio->bindParam(':id', $id);
-            $resultado_cambio->bindParam(':mail', $this->uperCase($mail));
+            $resultado_cambio->bindParam(':mail', $mail);
             $resultado_cambio->execute();
+        }
+
+        public function cambiarContraseña($conexion,$id,$contraseña_nueva){
+
+            $contraseña_nueva = password_hash($contraseña_nueva, PASSWORD_BCRYPT);
+
+            $sql_cambiar_pass = 
+            "UPDATE usuario
+            SET passw = :pass
+            WHERE id = :id";
+
+            $resultado_cambio = $conexion->prepare($sql_cambiar_pass);
+            $resultado_cambio->bindParam(':id', $id);
+            $resultado_cambio->bindParam(':pass', $contraseña_nueva);
+            $resultado_cambio->execute();
+
         }
 
     }

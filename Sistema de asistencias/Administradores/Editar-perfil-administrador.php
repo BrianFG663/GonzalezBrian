@@ -1,3 +1,4 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <?php
 session_start();
 require_once '../Conexion.php';
@@ -30,31 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: Editar-perfil-administrador.php');
         exit();
     }
-
-    if (isset($_POST['mail']) && !empty($_POST['mail'])) {
-        $mail = $_POST['mail'];
-        $comprobar_mail = $usuario->comprobarMail($conexion,$mail);
-
-        if($comprobar_mail){
-            $usuario->cambiarMail($conexion, $id, $mail);
-            $nuevo_row = $usuario->buscarUsuario($conexion, $id);
-            $_SESSION['row'] = $nuevo_row;
-            header('Location: Editar-perfil-administrador.php');
-            exit();
-        }else{
-            echo '<script>
-                    Swal.fire({
-                        icon: "error",
-                        title: "Correo electronico ya registrado"
-                    })
-                </script>';
-        }
-    }
-
-    if (isset($_POST['contraseña-actual']) && isset($_POST['contraseña-nueva'])) {
-        // Lógica para cambiar la contraseña
-    }
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -68,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="shortcut icon" href="../Resources/Images/icono.png" sizes="64x64">
     <script src="../Resources/JS/administrador.js"></script>
     <script src="../Resources/JS/Menu.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <header class="encabezado">
     <img class="imagen-encabezado" src="../Resources/Images/director-de-escuela.png">
@@ -126,3 +105,78 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 </body>
 </html>
+
+<?php
+
+    if (isset($_POST['mail']) && !empty($_POST['mail'])) {
+        $mail = $_POST['mail'];
+        $comprobar_mail = $usuario->comprobarMail($conexion,$mail);
+
+        if($comprobar_mail){
+            $usuario->cambiarMail($conexion, $id, $mail);
+            $nuevo_row = $usuario->buscarUsuario($conexion, $id);
+            $_SESSION['row'] = $nuevo_row;
+
+            echo '<script>
+                    Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Se ha cambiado el correo correctamente",
+                    showConfirmButton: false,
+                    timer: 1500
+                    });
+
+                    setTimeout(() => {
+                        location.href = "Editar-perfil-administrador.php";
+                    }, 1600);
+                </script>';
+
+        }else{
+            echo '<script>
+                    Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: "Correo ya registrado",
+                    showConfirmButton: false,
+                    timer: 1500
+                    });
+                </script>';
+        }
+    }
+
+    if (isset($_POST['contraseña-actual']) && !empty($_POST['contraseña-actual'])) {
+        if (isset($_POST['contraseña-nueva']) && !empty($_POST['contraseña-nueva'])){
+            $contraseña_actual = $_POST['contraseña-actual'];
+            $contraseña_nueva = $_POST['contraseña-nueva'];
+            $comprobar_contraseña = $usuario->comprobarContraseña($contraseña_actual);
+            if($comprobar_contraseña){
+                $usuario->cambiarContraseña($conexion,$id,$contraseña_nueva);
+
+                echo '<script>
+                        Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Cambio de contraseña exitoso",
+                        showConfirmButton: false,
+                        timer: 1500
+                        });
+    
+                        setTimeout(() => {
+                            location.href = "Editar-perfil-administrador.php";
+                        }, 1600);
+                    </script>';
+    
+            }else{
+                echo '<script>
+                        Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: "Contraseña actual incorrecta",
+                        showConfirmButton: false,
+                        timer: 1500
+                        });
+                    </script>';
+            }
+        }
+    }
+?>

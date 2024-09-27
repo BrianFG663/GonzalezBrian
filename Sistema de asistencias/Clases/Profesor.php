@@ -17,6 +17,7 @@
         }
 
         public function insertProfesor($conexion){
+
             $sql_insert = 
             "INSERT INTO profesor(nombre,apellido,dni,legajo)
             VALUE (:nombre, :apellido, :dni, :legajo)";

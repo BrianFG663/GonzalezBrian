@@ -138,8 +138,6 @@ button:hover {
     flex-direction: row;
     justify-content: space-around;
     width: 100%;
-    position: relative;
-    left: 5%;
 }
 
 #boton_agregar,#boton_atras{

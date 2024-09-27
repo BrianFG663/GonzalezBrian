@@ -62,7 +62,23 @@
                 }
 
                 if($row['rol'] == "profesor"){
+                    session_start();
+                    $_SESSION['rowuser'] = $row;
+                    $id_profesor = $row['id_profesor'];
 
+                    $sql_id = 
+                    "SELECT *
+                    FROM profesor
+                    WHERE id = :id";
+
+                    $resultado = $conexion->prepare($sql_id);
+                    $resultado->bindParam(':id', $id_profesor);
+                    $resultado->execute();
+                    $row_profesor = $resultado->fetch(PDO::FETCH_ASSOC);
+
+                    $_SESSION['rowprofesor'] = $row_profesor;
+                    header('location: Profesores/profesores.php'); //dependiendo de su rol lo redirecciona a una archivo u otro
+                    exit();
                 }
             }else{ //en caso de encontrar un usuario con ese mail pero la contraseña es incorrecta, salta alerta y redirecciona otra vez al login.
                 echo '<script> 

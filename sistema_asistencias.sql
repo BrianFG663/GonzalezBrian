@@ -34,8 +34,8 @@ CREATE TABLE IF NOT EXISTS `alumno` (
   UNIQUE KEY `email` (`email`),
   KEY `profesor_id` (`profesor_id`),
   KEY `usuario_id` (`usuario_id`),
-  CONSTRAINT `alumno_ibfk_1` FOREIGN KEY (`profesor_id`) REFERENCES `profesor` (`id`),
-  CONSTRAINT `alumno_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
+  CONSTRAINT `alumno_ibfk_1` FOREIGN KEY (`profesor_id`) REFERENCES `profesor` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `alumno_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Volcando datos para la tabla escueladb.alumno: ~0 rows (aproximadamente)
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `asistencias` (
   `cantidad_dias` int DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `alumno_id` (`alumno_id`),
-  CONSTRAINT `asistencias_ibfk_1` FOREIGN KEY (`alumno_id`) REFERENCES `alumno` (`id`)
+  CONSTRAINT `asistencias_ibfk_1` FOREIGN KEY (`alumno_id`) REFERENCES `alumno` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Volcando datos para la tabla escueladb.asistencias: ~0 rows (aproximadamente)
@@ -80,10 +80,7 @@ CREATE TABLE IF NOT EXISTS `materias` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla escueladb.materias: ~2 rows (aproximadamente)
-INSERT INTO `materias` (`id`, `nombre`, `descripcion`, `fecha_creacion`, `codigo_materia`) VALUES
-	(11, 'A', 'a', '2024-09-25', 1),
-	(12, 'MATEMATICAS', '2', '2024-09-25', 2);
+-- Volcando datos para la tabla escueladb.materias: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla escueladb.materia_alumno
 CREATE TABLE IF NOT EXISTS `materia_alumno` (
@@ -109,9 +106,6 @@ CREATE TABLE IF NOT EXISTS `materia_instituto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Volcando datos para la tabla escueladb.materia_instituto: ~2 rows (aproximadamente)
-INSERT INTO `materia_instituto` (`materia_id`, `instituto_id`) VALUES
-	(11, 112),
-	(12, 112);
 
 -- Volcando estructura para tabla escueladb.materia_profesor
 CREATE TABLE IF NOT EXISTS `materia_profesor` (
@@ -138,7 +132,7 @@ CREATE TABLE IF NOT EXISTS `notas` (
   `total_asistencias` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `alumno_id` (`alumno_id`),
-  CONSTRAINT `notas_ibfk_1` FOREIGN KEY (`alumno_id`) REFERENCES `alumno` (`id`),
+  CONSTRAINT `notas_ibfk_1` FOREIGN KEY (`alumno_id`) REFERENCES `alumno` (`id`) ON DELETE CASCADE,
   CONSTRAINT `notas_chk_1` CHECK (((`promedio` >= 0) and (`promedio` <= 10)))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -152,20 +146,16 @@ CREATE TABLE IF NOT EXISTS `profesor` (
   `dni` varchar(20) NOT NULL,
   `legajo` varchar(20) NOT NULL,
   `instituto_id` int DEFAULT NULL,
-  `usuario_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `dni` (`dni`),
   UNIQUE KEY `legajo` (`legajo`),
   KEY `instituto_id` (`instituto_id`),
-  KEY `usuario_id` (`usuario_id`),
-  CONSTRAINT `profesor_ibfk_1` FOREIGN KEY (`instituto_id`) REFERENCES `instituto` (`id`),
-  CONSTRAINT `profesor_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `profesor_ibfk_1` FOREIGN KEY (`instituto_id`) REFERENCES `instituto` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla escueladb.profesor: ~1 rows (aproximadamente)
-INSERT INTO `profesor` (`id`, `apellido`, `nombre`, `dni`, `legajo`, `instituto_id`, `usuario_id`) VALUES
-	(8, 'Gonzalez', 'Brian', '43681145', '001', NULL, NULL),
-	(12, 'Aaaaa', 'Aaaaa', '2', '2', NULL, NULL);
+-- Volcando datos para la tabla escueladb.profesor: ~0 rows (aproximadamente)
+INSERT INTO `profesor` (`id`, `apellido`, `nombre`, `dni`, `legajo`, `instituto_id`) VALUES
+	(20, 'Gonzalez', 'Brian', '43681175', '001', NULL);
 
 -- Volcando estructura para tabla escueladb.usuario
 CREATE TABLE IF NOT EXISTS `usuario` (
@@ -175,19 +165,17 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `mail` varchar(100) NOT NULL,
   `passw` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `rol` enum('administrador','profesor','alumno') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `id_profesor` int DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `mail` (`mail`)
-) ENGINE=InnoDB AUTO_INCREMENT=231 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `mail` (`mail`),
+  KEY `id_profesor` (`id_profesor`),
+  CONSTRAINT `id_profesor` FOREIGN KEY (`id_profesor`) REFERENCES `profesor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=238 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla escueladb.usuario: ~7 rows (aproximadamente)
-INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `mail`, `passw`, `rol`) VALUES
-	(223, 'Javier', 'Parra', 'Javier@gmail.com', '$2y$10$YtbD8z5bFGQg18cm3UFXCeT7TWn1TNun/ABiF7daEhZNOVRqzL/M.', 'administrador'),
-	(224, 'Gonzalez', 'brian', 'briangonzaz305@gmail.com', '$2y$10$PHPvxQ8kCj6UOPPgaMvKZe1fkVSxTSCcJPTNqY6ltX61hZzEWKCe.', 'profesor'),
-	(226, 'Gonzalez', 'brian', 'aaaaaad', '$2y$10$G75z4LCNg1cJlwMjOskin.ZACdiZ5NsYefdGnmgCwCpZbnJmAT30u', 'profesor'),
-	(227, 'Gonzalez', 'Brian', 'briangonzsaza305@gmail.com', '$2y$10$M6.gy3QqKvf12goGztNGCuuwHP/prfKvsL5lmVp6Rr34QFrwQnljq', 'profesor'),
-	(228, 'Gonzalez', 'Brian', 'briangonzsazaaa305@gmail.com', '$2y$10$.Eye8IgB/BS08lDlkQ8Rpem262n/Vsj0s5sibDWZFXvShu9pmzUB6', 'profesor'),
-	(229, 'Gonzalez', 'Brian', 'briangonaazsazaaa305@gmail.com', '$2y$10$Qv5OurkrqXi5ctMEJ3ExguE5jj48kty4Vwablb2eFnBgyqUalljYC', 'administrador'),
-	(230, 'Aaaaa', 'Aaaaa', 'aaaaaaaa', '$2y$10$k1FnjdCZEpoi5ou8a7fMNOP9lepIlC6uhwT9TIASiDxDMSv.FpV.2', 'profesor');
+-- Volcando datos para la tabla escueladb.usuario: ~0 rows (aproximadamente)
+INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `mail`, `passw`, `rol`, `id_profesor`) VALUES
+	(223, 'Javier', 'Parra', 'javier@gmail.com', '$2y$10$Fga7foscWCjerL6CONEyd.A/Npku/tTL6A1UZgc7/vFwXoKl34MTG', 'administrador', NULL),
+	(237, 'Gonzalez', 'Brian', 'briangonzaz305@gmail.com', '$2y$10$H0miP..gqdnqGR2ZFO25Ou8S4.7yzncgCVdxLYusmvuAraCcb5hTe', 'profesor', 20);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
