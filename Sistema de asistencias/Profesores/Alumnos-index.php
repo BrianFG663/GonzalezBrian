@@ -5,7 +5,7 @@
 
     $rowprofesor = $_SESSION['rowprofesor'];
     $id_materia = $_POST['id-materia'];
-    $id_instituto = $_POST['id-instituto'];
+    $id_instituto = $_SESSION['id_instituto'];
 
     $_SESSION['id_materia'] = $id_materia;
     $_SESSION['id_instituto'] = $id_instituto;
@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="../Resources/CSS/Encabezado.css">
     <link rel="stylesheet" href="../Resources/CSS/menu-fijo.css">
     <link rel="shortcut icon" href="../Resources/Images/icono.png" sizes="64x64">
-    <script src="../Resources/JS/administrador.js"></script>
+    <script src="../Resources/JS/Profesor.js"></script>
     <script src="../Resources/JS/Menu.js"></script>
 </head>
 <header class="encabezado">

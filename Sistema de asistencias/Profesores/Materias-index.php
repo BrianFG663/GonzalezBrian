@@ -6,6 +6,8 @@
     $rowprofesor = $_SESSION['rowprofesor'];
     $id = $rowprofesor['id'];
     $instituto_id=$_POST['id-instituto'];
+    $_SESSION['id_instituto'] = $instituto_id;
+
 
     $profesor = new Profesor($rowprofesor['nombre'],$rowprofesor['apellido'],$rowprofesor['dni'],$rowprofesor['legajo']);
     $materias_profesor = $profesor->mostrarMaterias($conexion,$id,$instituto_id);

@@ -9,5 +9,5 @@ function redireccion(valor){
 }
 
 function formularioAsistencias(){
-    document.getElementById("").submit()
+    document.getElementById("formulario-asistencias").submit()
 }
