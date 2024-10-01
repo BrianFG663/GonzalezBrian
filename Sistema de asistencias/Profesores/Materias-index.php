@@ -1,20 +1,19 @@
 <?php
-    include_once '../Clases/Profesor.php';
     include_once '../Conexion.php';
+    include_once '../Clases/Profesor.php';
     session_start();
 
     $rowprofesor = $_SESSION['rowprofesor'];
     $id = $rowprofesor['id'];
-    $profesor = new Profesor($rowprofesor['nombre'],$rowprofesor['apellido'],$rowprofesor['dni'],$rowprofesor['legajo']);
-    $institutos_profesor = $profesor->institutosProfesor($conexion,$id)
+    $instituto_id=$_POST['id-instituto'];
 
-    
+    $profesor = new Profesor($rowprofesor['nombre'],$rowprofesor['apellido'],$rowprofesor['dni'],$rowprofesor['legajo']);
+    $materias_profesor = $profesor->mostrarMaterias($conexion,$id,$instituto_id);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienvenido</title>
     <link rel="stylesheet" href="../Resources/CSS/Profesor/profesor-index.css">
@@ -50,22 +49,28 @@
 
 <body>
     <div class="contenedores">
-        <div class="top"></button><span class="titulo-encabezado">SELECCIONA EL INSTITUTO EN EL QUE TE ENCUENTRAS</span></div>
-        <div class="container-institutos">
-            <?php
-                if(!$institutos_profesor){
-                    echo '<form action="" method="post">
-                            <input type="submit" value="INSCRIBIRSE A INSTITUTO" class="inscribirse-instituto">
-                          </form>';
-                }else{
-                    foreach ($institutos_profesor as $instituto) {
-                        echo '<div class="instituto"><form action="Materias-index.php" method="post"><input type="hidden" name="id-instituto" value="'.$instituto['id'].'"><input class="button-instituto" type="submit" value="'.$instituto['nombre'].'"></form></div>';
-                    }
+        <div class="top"><button class="button-back" onclick="redireccion(1)"></button><span class="titulo-encabezado">SELECCIONA LA MATERIA EN LA QUE DESEAS TOMAR ASISTENCIAS</span></div>
+        
+        <?php
+            if (!$materias_profesor) {
+                echo '<form action="" method="post">
+                        <input type="submit" value="INSCRIBIRSE A UNA MATERIA" class="inscribirse-instituto">
+                      </form>';
+            } else {
+                echo '<div class="container-institutos">'; // Nuevo contenedor para los botones
+                foreach ($materias_profesor as $materias) {
+                    echo '<div class="instituto">
+                            <form action="Alumnos-index.php" method="post">
+                                <input type="hidden" name="id-instituto" value="'.$instituto_id.'">
+                                <input type="hidden" name="id-materia" value="'.$materias['id'].'">
+                                <input class="button-instituto" type="submit" value="'.$materias['nombre'].'">
+                            </form>
+                          </div>';
                 }
-            ?>
-        </div>
+                echo '</div>'; // Cierre del contenedor de botones
+            }
+        ?>  
         <div class="bottom"></div>
     </div>
 </body>
 </html>
-
