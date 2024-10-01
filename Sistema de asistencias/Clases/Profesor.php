@@ -16,31 +16,37 @@
             $this->legajo = $legajo;
         }
 
-        public function institutosProfesor($conexion,$id){
-            $sql_profesor = 
-            "SELECT instituto_id
-            FROM profesor
-            WHERE id = :id";
-
+        public function institutosProfesor($conexion, $id) {
+            $sql_profesor = "
+                SELECT id_instituto
+                FROM instituto_profesor
+                WHERE id_profesor = :id";
+        
             $resultado = $conexion->prepare($sql_profesor);
-            $resultado->bindParam('id', $id);
+            $resultado->bindParam('id', $id, PDO::PARAM_INT);
             $resultado->execute();
-
-            $row = $resultado->fetch(PDO::FETCH_ASSOC);
-            $instituto_id = $row['instituto_id'];
-
-            $sql_institutos =
-            "SELECT id,nombre
-            FROM instituto
-            WHERE id = :instituto_id";
-
+        
+            $instituto_ids = $resultado->fetchAll(PDO::FETCH_COLUMN);
+        
+            // se crea un array del tamaño de la cantidad que tenga institutos_ids asi poder utilizarlo desde la con sulta con IN, sin este array con '?' no se puede ejecutar con pdo ya que es para evitar sql inyection
+            $array_ids = implode(',', array_fill(0, count($instituto_ids), '?'));
+        
+            $sql_institutos = "
+                SELECT id, nombre
+                FROM instituto
+                WHERE id IN ($array_ids)";
+        
             $resultado = $conexion->prepare($sql_institutos);
-            $resultado->bindParam('instituto_id', $instituto_id);
-            $resultado->execute();
-            $row_institutos = $resultado->fetch(PDO::FETCH_ASSOC);
+        
+            if(count($instituto_ids) > 0){
+                $resultado->execute($instituto_ids); //le pasa como parametro el array con los ids
+                return $resultado->fetchAll(PDO::FETCH_ASSOC);
+            }else{
+                return false;
+            }
 
-            return $row_institutos;
         }
+        
 
         public function insertProfesor($conexion){
 
@@ -112,6 +118,39 @@
             $resultado_eliminar->bindParam(':id', $id);
             $resultado_eliminar->execute();
     
+        }
+
+        public function mostrarMaterias($conexion,$id_profesor,$id_instituto){
+            $sql_materias =
+            "SELECT DISTINCT m.id, m.nombre
+            FROM materias m
+            JOIN profesor p ON m.profesor_id = p.id
+            JOIN instituto_profesor ip ON p.id = ip.id_profesor
+            JOIN materia_instituto mi ON m.id = mi.materia_id
+            WHERE p.id = :id_profesor AND mi.instituto_id = :id_instituto;";
+
+            $resultado = $conexion->prepare($sql_materias);
+            $resultado->bindParam(':id_profesor',$id_profesor);
+            $resultado->bindParam(':id_instituto',$id_instituto);
+            $resultado->execute();
+
+            return $resultado->fetchall(PDO::FETCH_ASSOC);
+        }
+
+        public function mostrarAlumnos($conexion,$id_materia,$id_instituto){
+            $sql_alumnos =
+            "SELECT DISTINCT *
+            FROM alumno a
+            JOIN materia_alumno m ON m.alumno_id = a.id
+            WHERE m.materia_id = :materia_id AND a.instituto_id = :id_instituto;";
+
+            
+            $resultado = $conexion->prepare($sql_alumnos);
+            $resultado->bindParam(':materia_id',$id_materia);
+            $resultado->bindParam(':id_instituto',$id_instituto);
+            $resultado->execute();
+
+            return $resultado->fetchall(PDO::FETCH_ASSOC);
         }
     }
 

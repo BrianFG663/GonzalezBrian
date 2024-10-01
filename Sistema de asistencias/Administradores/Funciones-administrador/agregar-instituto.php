@@ -13,6 +13,7 @@ $row = $_SESSION['row'];
     <title>Agregar instituto</title>
     <link rel="stylesheet" href="../../Resources/CSS/Administrador/Agregar-institutos.css">
     <link rel="stylesheet" href="../../Resources/CSS/Encabezado.css">
+    <link rel="stylesheet" href="../../Resources/CSS/menu-desplegable.css">
     <link rel="shortcut icon" href="../../Resources/Images/icono.png" sizes="64x64">
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

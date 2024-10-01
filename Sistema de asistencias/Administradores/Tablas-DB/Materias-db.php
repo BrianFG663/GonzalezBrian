@@ -40,6 +40,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../Resources/CSS/Encabezado.css">
+    <link rel="stylesheet" href="../../Resources/CSS/menu-desplegable.css">
     <link rel="stylesheet" href="../../Resources/CSS/Administrador/Administrador-db.css">
     <link rel="shortcut icon" href="../../Resources/Images/icono.png" sizes="64x64">
     <script src="../../Resources/JS/Menu.js"></script>

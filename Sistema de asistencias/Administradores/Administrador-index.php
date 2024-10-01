@@ -13,6 +13,7 @@ $row = $_SESSION['row'];
     <title>Administrador</title>
     <link rel="stylesheet" href="../Resources/CSS/Administrador/Administrador-index.css">
     <link rel="stylesheet" href="../Resources/CSS/Encabezado.css">
+    <link rel="stylesheet" href="../Resources/CSS/menu-desplegable.css">
     <link rel="shortcut icon" href="../Resources/Images/icono.png" sizes="64x64">
     <script src="../Resources/JS/administrador.js"></script>
     <script src="../Resources/JS/Menu.js"></script>

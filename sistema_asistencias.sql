@@ -25,35 +25,34 @@ CREATE TABLE IF NOT EXISTS `alumno` (
   `apellido` varchar(50) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `dni` varchar(20) NOT NULL,
-  `email` varchar(100) NOT NULL,
   `fecha_nacimiento` date NOT NULL,
-  `profesor_id` int DEFAULT NULL,
-  `usuario_id` int DEFAULT NULL,
+  `instituto_id` int NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `dni` (`dni`),
-  UNIQUE KEY `email` (`email`),
-  KEY `profesor_id` (`profesor_id`),
-  KEY `usuario_id` (`usuario_id`),
-  CONSTRAINT `alumno_ibfk_1` FOREIGN KEY (`profesor_id`) REFERENCES `profesor` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `alumno_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `FK_alumno_instituto` (`instituto_id`),
+  CONSTRAINT `FK_alumno_instituto` FOREIGN KEY (`instituto_id`) REFERENCES `instituto` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla escueladb.alumno: ~0 rows (aproximadamente)
-INSERT INTO `alumno` (`id`, `apellido`, `nombre`, `dni`, `email`, `fecha_nacimiento`, `profesor_id`, `usuario_id`) VALUES
-	(1, 'aaa', 'aa', '22', 'aa', '2024-09-24', NULL, NULL);
+-- Volcando datos para la tabla escueladb.alumno: ~2 rows (aproximadamente)
+INSERT INTO `alumno` (`id`, `apellido`, `nombre`, `dni`, `fecha_nacimiento`, `instituto_id`) VALUES
+	(2, 'Ruiz', 'Lucila', '44421224', '2002-12-03', 115),
+	(3, 'Cedres', 'Lucas', '44444444', '2024-09-30', 115),
+	(4, 'Parada', 'Fausto', '33333333', '1997-09-30', 115);
 
 -- Volcando estructura para tabla escueladb.asistencias
 CREATE TABLE IF NOT EXISTS `asistencias` (
   `id` int NOT NULL AUTO_INCREMENT,
   `alumno_id` int DEFAULT NULL,
-  `fecha` date NOT NULL,
-  `cantidad_dias` int DEFAULT '1',
+  `fecha_asistencia` timestamp NOT NULL,
   PRIMARY KEY (`id`),
   KEY `alumno_id` (`alumno_id`),
   CONSTRAINT `asistencias_ibfk_1` FOREIGN KEY (`alumno_id`) REFERENCES `alumno` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla escueladb.asistencias: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla escueladb.asistencias: ~2 rows (aproximadamente)
+INSERT INTO `asistencias` (`id`, `alumno_id`, `fecha_asistencia`) VALUES
+	(3, 2, '2024-10-01 01:34:00'),
+	(4, 3, '2024-10-01 01:34:00');
 
 -- Volcando estructura para tabla escueladb.instituto
 CREATE TABLE IF NOT EXISTS `instituto` (
@@ -64,11 +63,29 @@ CREATE TABLE IF NOT EXISTS `instituto` (
   `gestion` enum('publico','privado') NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `cue` (`cue`)
-) ENGINE=InnoDB AUTO_INCREMENT=115 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=119 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla escueladb.instituto: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla escueladb.instituto: ~4 rows (aproximadamente)
 INSERT INTO `instituto` (`id`, `nombre`, `direccion`, `cue`, `gestion`) VALUES
-	(112, 'UNER', 'Del valle 663', 1, 'privado');
+	(115, 'SEDES', 'aaa', 2, 'privado'),
+	(116, 'UADER', 'AAAS', 3, 'publico'),
+	(117, 'UNER', 'ASS', 23, 'privado'),
+	(118, 'UP', 'DDD', 221, 'privado');
+
+-- Volcando estructura para tabla escueladb.instituto_profesor
+CREATE TABLE IF NOT EXISTS `instituto_profesor` (
+  `id_profesor` int NOT NULL,
+  `id_instituto` int NOT NULL,
+  KEY `FK_instituto_profesor_instituto` (`id_instituto`),
+  KEY `FK_instituto_profesor_profesor` (`id_profesor`),
+  CONSTRAINT `FK_instituto_profesor_instituto` FOREIGN KEY (`id_instituto`) REFERENCES `instituto` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_instituto_profesor_profesor` FOREIGN KEY (`id_profesor`) REFERENCES `profesor` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Volcando datos para la tabla escueladb.instituto_profesor: ~2 rows (aproximadamente)
+INSERT INTO `instituto_profesor` (`id_profesor`, `id_instituto`) VALUES
+	(24, 115),
+	(24, 116);
 
 -- Volcando estructura para tabla escueladb.materias
 CREATE TABLE IF NOT EXISTS `materias` (
@@ -77,23 +94,32 @@ CREATE TABLE IF NOT EXISTS `materias` (
   `descripcion` text NOT NULL,
   `fecha_creacion` date NOT NULL,
   `codigo_materia` int NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `profesor_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_materias_profesor` (`profesor_id`),
+  CONSTRAINT `FK_materias_profesor` FOREIGN KEY (`profesor_id`) REFERENCES `profesor` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla escueladb.materias: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla escueladb.materias: ~2 rows (aproximadamente)
+INSERT INTO `materias` (`id`, `nombre`, `descripcion`, `fecha_creacion`, `codigo_materia`, `profesor_id`) VALUES
+	(13, 'MATEMATICAS', 'matematicas', '2024-09-27', 1, 24),
+	(14, 'PROGRAMACION', 'ssss', '2024-09-29', 111, 24);
 
 -- Volcando estructura para tabla escueladb.materia_alumno
 CREATE TABLE IF NOT EXISTS `materia_alumno` (
   `alumno_id` int NOT NULL,
   `materia_id` int NOT NULL,
-  `fecha_inscripcion` date DEFAULT NULL,
-  PRIMARY KEY (`alumno_id`,`materia_id`),
-  KEY `idx_materia_id` (`materia_id`),
-  CONSTRAINT `materia_alumno_ibfk_1` FOREIGN KEY (`alumno_id`) REFERENCES `alumno` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `materia_alumno_ibfk_2` FOREIGN KEY (`materia_id`) REFERENCES `materias` (`id`) ON DELETE CASCADE
+  KEY `FK__alumno` (`alumno_id`),
+  KEY `FK__materias` (`materia_id`),
+  CONSTRAINT `FK__alumno` FOREIGN KEY (`alumno_id`) REFERENCES `alumno` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK__materias` FOREIGN KEY (`materia_id`) REFERENCES `materias` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla escueladb.materia_alumno: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla escueladb.materia_alumno: ~2 rows (aproximadamente)
+INSERT INTO `materia_alumno` (`alumno_id`, `materia_id`) VALUES
+	(2, 13),
+	(3, 13),
+	(4, 14);
 
 -- Volcando estructura para tabla escueladb.materia_instituto
 CREATE TABLE IF NOT EXISTS `materia_instituto` (
@@ -106,34 +132,19 @@ CREATE TABLE IF NOT EXISTS `materia_instituto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Volcando datos para la tabla escueladb.materia_instituto: ~0 rows (aproximadamente)
-
--- Volcando estructura para tabla escueladb.materia_profesor
-CREATE TABLE IF NOT EXISTS `materia_profesor` (
-  `materia_id` int NOT NULL,
-  `profesor_id` int NOT NULL,
-  `fecha_asignacion` date DEFAULT NULL,
-  PRIMARY KEY (`materia_id`,`profesor_id`),
-  KEY `idx_profesor_id` (`profesor_id`),
-  CONSTRAINT `materia_profesor_ibfk_1` FOREIGN KEY (`materia_id`) REFERENCES `materias` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `materia_profesor_ibfk_2` FOREIGN KEY (`profesor_id`) REFERENCES `profesor` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- Volcando datos para la tabla escueladb.materia_profesor: ~0 rows (aproximadamente)
+INSERT INTO `materia_instituto` (`materia_id`, `instituto_id`) VALUES
+	(13, 115),
+	(14, 115);
 
 -- Volcando estructura para tabla escueladb.notas
 CREATE TABLE IF NOT EXISTS `notas` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `alumno_id` int DEFAULT NULL,
-  `final_uno` float DEFAULT NULL,
-  `final_dos` float DEFAULT NULL,
-  `trabajo_final` float DEFAULT NULL,
-  `promedio` float DEFAULT NULL,
-  `estado` varchar(20) DEFAULT NULL,
-  `total_asistencias` int DEFAULT NULL,
+  `alumno_id` int NOT NULL,
+  `estado` enum('Promocion','Regular','Desaprobado') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'Regular',
+  `nota` float NOT NULL,
   PRIMARY KEY (`id`),
   KEY `alumno_id` (`alumno_id`),
-  CONSTRAINT `notas_ibfk_1` FOREIGN KEY (`alumno_id`) REFERENCES `alumno` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `notas_chk_1` CHECK (((`promedio` >= 0) and (`promedio` <= 10)))
+  CONSTRAINT `notas_ibfk_1` FOREIGN KEY (`alumno_id`) REFERENCES `alumno` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Volcando datos para la tabla escueladb.notas: ~0 rows (aproximadamente)
@@ -145,17 +156,29 @@ CREATE TABLE IF NOT EXISTS `profesor` (
   `nombre` varchar(50) NOT NULL,
   `dni` varchar(20) NOT NULL,
   `legajo` varchar(20) NOT NULL,
-  `instituto_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `dni` (`dni`),
-  UNIQUE KEY `legajo` (`legajo`),
-  KEY `instituto_id` (`instituto_id`),
-  CONSTRAINT `profesor_ibfk_1` FOREIGN KEY (`instituto_id`) REFERENCES `instituto` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `legajo` (`legajo`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Volcando datos para la tabla escueladb.profesor: ~1 rows (aproximadamente)
-INSERT INTO `profesor` (`id`, `apellido`, `nombre`, `dni`, `legajo`, `instituto_id`) VALUES
-	(20, 'Gonzalez', 'Brian', '43681175', '001', 112);
+INSERT INTO `profesor` (`id`, `apellido`, `nombre`, `dni`, `legajo`) VALUES
+	(24, 'Gonzalez', 'Brian', '1234', '001'),
+	(25, 'aaa', 'aaa', '222', '2');
+
+-- Volcando estructura para tabla escueladb.ram
+CREATE TABLE IF NOT EXISTS `ram` (
+  `desaprobado` int NOT NULL DEFAULT '5',
+  `regular` int NOT NULL DEFAULT '6',
+  `promocion` int NOT NULL DEFAULT '7',
+  `asistencias_regular` int NOT NULL DEFAULT '60',
+  `asistencias_promocion` int NOT NULL DEFAULT '70',
+  `fecha_funcionamiento` year NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Volcando datos para la tabla escueladb.ram: ~0 rows (aproximadamente)
+INSERT INTO `ram` (`desaprobado`, `regular`, `promocion`, `asistencias_regular`, `asistencias_promocion`, `fecha_funcionamiento`) VALUES
+	(5, 6, 7, 60, 70, '2024');
 
 -- Volcando estructura para tabla escueladb.usuario
 CREATE TABLE IF NOT EXISTS `usuario` (
@@ -170,12 +193,12 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   UNIQUE KEY `mail` (`mail`),
   KEY `id_profesor` (`id_profesor`),
   CONSTRAINT `id_profesor` FOREIGN KEY (`id_profesor`) REFERENCES `profesor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=238 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=239 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Volcando datos para la tabla escueladb.usuario: ~2 rows (aproximadamente)
 INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `mail`, `passw`, `rol`, `id_profesor`) VALUES
 	(223, 'Javier', 'Parra', 'javier@gmail.com', '$2y$10$Fga7foscWCjerL6CONEyd.A/Npku/tTL6A1UZgc7/vFwXoKl34MTG', 'administrador', NULL),
-	(237, 'Gonzalez', 'Brian', 'briangonzaz305@gmail.com', '$2y$10$H0miP..gqdnqGR2ZFO25Ou8S4.7yzncgCVdxLYusmvuAraCcb5hTe', 'profesor', 20);
+	(238, 'Gonzalez', 'Brian', 'briangonzaz305@gmail.com', '$2y$10$sCfd5xs2OnW3cdkDHnkNEe39Bcwm3pslomyfG4NsAOzl7oKGWoC/i', 'profesor', 24);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

@@ -44,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Editar Perfil</title>
     <link rel="stylesheet" href="../Resources/CSS/Administrador/Editar-perfil-admin.css">
     <link rel="stylesheet" href="../Resources/CSS/Encabezado.css">
+    <link rel="stylesheet" href="../Resources/CSS/menu-desplegable.css">
     <link rel="shortcut icon" href="../Resources/Images/icono.png" sizes="64x64">
     <script src="../Resources/JS/administrador.js"></script>
     <script src="../Resources/JS/Menu.js"></script>
