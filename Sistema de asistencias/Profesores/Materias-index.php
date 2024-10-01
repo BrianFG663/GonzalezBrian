@@ -3,10 +3,11 @@
     include_once '../Clases/Profesor.php';
     session_start();
 
+    
     $rowprofesor = $_SESSION['rowprofesor'];
     $id = $rowprofesor['id'];
-    $instituto_id=$_POST['id-instituto'];
-    $_SESSION['id_instituto'] = $instituto_id;
+    $_SESSION['id_instituto']=$_POST['id-instituto'];
+    $instituto_id = $_SESSION['id_instituto'];
 
 
     $profesor = new Profesor($rowprofesor['nombre'],$rowprofesor['apellido'],$rowprofesor['dni'],$rowprofesor['legajo']);
@@ -55,7 +56,7 @@
         
         <?php
             if (!$materias_profesor) {
-                echo '<form action="" method="post">
+                echo '<form action="funciones-profesor/inscribirse-materia.php" method="post">
                         <input type="submit" value="INSCRIBIRSE A UNA MATERIA" class="inscribirse-instituto">
                       </form>';
             } else {

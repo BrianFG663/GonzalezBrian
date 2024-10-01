@@ -5,6 +5,11 @@ function redireccion(valor){
         case 1:
             location.href =  "profesores-index.php";
         break
+
+        case 2:
+            location.href =  "materias-index.php";
+        break
+
     }
 }
 

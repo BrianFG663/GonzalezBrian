@@ -85,6 +85,40 @@ class Materia{
         $resultado_eliminar_materia->execute();
 
     }
+
+    public function buscarMateria($conexion, $instituto_id) {
+        // Consulta para obtener los IDs de las materias
+        $sql_materias = 
+        "SELECT DISTINCT materia_id
+         FROM materia_instituto 
+         WHERE instituto_id = :instituto_id";
+    
+        $resultado = $conexion->prepare($sql_materias);
+        $resultado->bindParam(':instituto_id', $instituto_id);
+        $resultado->execute();
+        $ids_materias = $resultado->fetchAll(PDO::FETCH_COLUMN);
+    
+        if (count($ids_materias) > 0) {
+            // Crear placeholders para la consulta IN
+            $array_ids = implode(',', array_fill(0, count($ids_materias), '?'));
+    
+            $sql_institutos = 
+            "SELECT id, nombre
+             FROM materias
+             WHERE id IN ($array_ids) AND profesor_id IS NULL";
+    
+            $resultado = $conexion->prepare($sql_institutos);
+            
+            // Ejecutar con los valores de los IDs
+            $resultado->execute($ids_materias);
+    
+            return $resultado->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            // No hay materias para ese instituto
+            return false;
+        }
+    }
+    
     
 }
 
