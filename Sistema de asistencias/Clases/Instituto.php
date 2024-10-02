@@ -82,6 +82,20 @@ class Instituto{
         $resultado_eliminar_materia_instituto->bindParam(':id', $id);
         $resultado_eliminar_materia_instituto->execute();
     }
+
+    public function buscarInstituto($conexion,$id_instituto){
+
+        $sql_buscar_instituto= 
+        "SELECT *
+        FROM instituto
+        WHERE id = :id";
+
+        $resultado = $conexion->prepare($sql_buscar_instituto);
+        $resultado->bindParam(':id', $id_instituto);
+        $resultado->execute();
+
+        return $resultado->fetch(PDO::FETCH_ASSOC);
+    }
 }
 
 ?>
