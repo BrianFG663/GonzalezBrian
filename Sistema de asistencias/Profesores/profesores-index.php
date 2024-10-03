@@ -54,7 +54,7 @@
         <div class="container-institutos">
             <?php
                 if(!$institutos_profesor){
-                    echo '<form action="" method="post">
+                    echo '<form action="funciones-profesor/inscribirse-instituto.php" method="post">
                             <input type="submit" value="INSCRIBIRSE A INSTITUTO" class="inscribirse-instituto">
                           </form>';
                 }else{

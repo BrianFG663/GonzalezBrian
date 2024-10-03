@@ -2,16 +2,17 @@
     include_once '../Conexion.php';
     include_once '../Clases/Profesor.php';
     session_start();
-
-    
     $rowprofesor = $_SESSION['rowprofesor'];
-    $id = $rowprofesor['id'];
-    $_SESSION['id_instituto']=$_POST['id-instituto'];
+
+    if(isset($_POST['id-instituto'])){
+        $_SESSION['id_instituto']=$_POST['id-instituto'];
+
+    }
+
     $instituto_id = $_SESSION['id_instituto'];
+    $id = $rowprofesor['id'];
 
-
-    $profesor = new Profesor($rowprofesor['nombre'],$rowprofesor['apellido'],$rowprofesor['dni'],$rowprofesor['legajo']);
-    $materias_profesor = $profesor->mostrarMaterias($conexion,$id,$instituto_id);
+    $materias_profesor = Profesor::mostrarMaterias($conexion,$id,$instituto_id);
 ?>
 
 <!DOCTYPE html>
@@ -60,17 +61,17 @@
                         <input type="submit" value="INSCRIBIRSE A UNA MATERIA" class="inscribirse-instituto">
                       </form>';
             } else {
-                echo '<div class="container-institutos">'; // Nuevo contenedor para los botones
+                echo '<div class="container-institutos">'; 
                 foreach ($materias_profesor as $materias) {
                     echo '<div class="instituto">
-                            <form action="Alumnos-index.php" method="post">
+                            <form action="funciones-profesor/tomar-asistencia.php" method="post">
                                 <input type="hidden" name="id-instituto" value="'.$instituto_id.'">
                                 <input type="hidden" name="id-materia" value="'.$materias['id'].'">
                                 <input class="button-instituto" type="submit" value="'.$materias['nombre'].'">
                             </form>
                           </div>';
                 }
-                echo '</div>'; // Cierre del contenedor de botones
+                echo '</div>'; 
             }
         ?>  
         <div class="bottom"></div>

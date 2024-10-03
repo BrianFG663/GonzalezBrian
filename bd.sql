@@ -28,26 +28,29 @@ CREATE TABLE IF NOT EXISTS `alumno` (
   `fecha_nacimiento` date NOT NULL,
   `instituto_id` int NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `dni` (`dni`),
   KEY `FK_alumno_instituto` (`instituto_id`),
   CONSTRAINT `FK_alumno_instituto` FOREIGN KEY (`instituto_id`) REFERENCES `instituto` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Volcando datos para la tabla escueladb.alumno: ~2 rows (aproximadamente)
 INSERT INTO `alumno` (`id`, `apellido`, `nombre`, `dni`, `fecha_nacimiento`, `instituto_id`) VALUES
 	(2, 'Ruiz', 'Lucila', '44421224', '2002-12-03', 115),
 	(3, 'Cedres', 'Lucas', '44444444', '2024-09-30', 115),
-	(4, 'Parada', 'Fausto', '33333333', '1997-09-30', 115);
+	(4, 'Parada', 'Fausto', '33333333', '1997-09-30', 115),
+	(13, 'Agustin', 'Gomez', '44332243', '1111-11-11', 116);
 
 -- Volcando estructura para tabla escueladb.asistencias
 CREATE TABLE IF NOT EXISTS `asistencias` (
   `id` int NOT NULL AUTO_INCREMENT,
   `alumno_id` int DEFAULT NULL,
   `fecha_asistencia` timestamp NOT NULL,
+  `materia_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `alumno_id` (`alumno_id`),
-  CONSTRAINT `asistencias_ibfk_1` FOREIGN KEY (`alumno_id`) REFERENCES `alumno` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `FK_asistencias_materias` (`materia_id`),
+  CONSTRAINT `asistencias_ibfk_1` FOREIGN KEY (`alumno_id`) REFERENCES `alumno` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_asistencias_materias` FOREIGN KEY (`materia_id`) REFERENCES `materias` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Volcando datos para la tabla escueladb.asistencias: ~0 rows (aproximadamente)
 
@@ -79,10 +82,7 @@ CREATE TABLE IF NOT EXISTS `instituto_profesor` (
   CONSTRAINT `FK_instituto_profesor_profesor` FOREIGN KEY (`id_profesor`) REFERENCES `profesor` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla escueladb.instituto_profesor: ~2 rows (aproximadamente)
-INSERT INTO `instituto_profesor` (`id_profesor`, `id_instituto`) VALUES
-	(24, 115),
-	(24, 116);
+-- Volcando datos para la tabla escueladb.instituto_profesor: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla escueladb.materias
 CREATE TABLE IF NOT EXISTS `materias` (
@@ -118,7 +118,8 @@ CREATE TABLE IF NOT EXISTS `materia_alumno` (
 INSERT INTO `materia_alumno` (`alumno_id`, `materia_id`) VALUES
 	(2, 13),
 	(3, 13),
-	(4, 14);
+	(4, 14),
+	(13, 15);
 
 -- Volcando estructura para tabla escueladb.materia_instituto
 CREATE TABLE IF NOT EXISTS `materia_instituto` (

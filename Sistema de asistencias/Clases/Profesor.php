@@ -120,7 +120,7 @@
     
         }
 
-        public function mostrarMaterias($conexion,$id_profesor,$id_instituto){
+        public static function mostrarMaterias($conexion,$id_profesor,$id_instituto){
             $sql_materias =
             "SELECT DISTINCT m.id, m.nombre
             FROM materias m

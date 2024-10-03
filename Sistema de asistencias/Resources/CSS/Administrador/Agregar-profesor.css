@@ -150,6 +150,21 @@ input[type="number"]:focus {
     box-shadow: 0 0 5px rgba(179, 51, 51, 0.5);
 }
 
+input[type="date"] {
+    margin-bottom: 16px;
+    padding: 8px;
+    border: 1px solid #b33333;
+    border-radius: 2px;
+    font-size: 16px;
+    width: 80%; /* Ocupa todo el ancho del contenedor */
+    text-align: center;
+}
+input[type="date"]:focus {
+    outline: none;
+    border-color: #b33333;
+    box-shadow: 0 0 5px rgba(179, 51, 51, 0.5);
+}
+
 input[type="button"] {
     width: 30%;
 }

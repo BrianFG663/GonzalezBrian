@@ -86,7 +86,7 @@ class Materia{
 
     }
 
-    public function buscarMateria($conexion, $instituto_id) {
+    public static function buscarMateria($conexion, $instituto_id) {
         $sql_materias = 
         "SELECT DISTINCT materia_id
          FROM materia_instituto 
@@ -115,7 +115,7 @@ class Materia{
         }
     }
 
-    public function asignarProfesor($conexion,$materia_id,$profesor_id,$instituto_id){
+    public static function asignarProfesor($conexion,$materia_id,$profesor_id){
         $sql_materia = 
         "UPDATE materias
         SET profesor_id = :profesor_id
@@ -126,6 +126,30 @@ class Materia{
         $resultado->bindParam(':materia_id',$materia_id);
         $resultado->execute();
     }
+
+    public static function asistenciasDia($conexion, $materia_id) {
+
+        date_default_timezone_set('America/Argentina/Buenos_Aires');
+        $fecha_actual = date('Y-m-d');
+
+        $sql_asistencia = "
+        SELECT *
+        FROM asistencias
+        WHERE DATE(fecha_asistencia) = :fecha_actual AND materia_id = :materia_id"; // se pone el date para comparar solo la fecha sin hora
+    
+        $resultado = $conexion->prepare($sql_asistencia);
+        $resultado->bindParam(':fecha_actual', $fecha_actual);
+        $resultado->bindParam(':materia_id', $materia_id);
+        $resultado->execute();
+        $row = $resultado->fetch(PDO::FETCH_ASSOC);
+    
+        if ($row) {
+            return false; // Si se encontró, significa que ya hay asistencia para esa fecha
+        } else {
+            return true; // No se encontró asistencia para esa fecha
+        }
+    }
+    
     
     
 }

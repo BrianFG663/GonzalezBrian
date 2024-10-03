@@ -83,7 +83,7 @@ class Instituto{
         $resultado_eliminar_materia_instituto->execute();
     }
 
-    public function buscarInstituto($conexion,$id_instituto){
+    public static function buscarInstituto($conexion,$id_instituto){
 
         $sql_buscar_instituto= 
         "SELECT *

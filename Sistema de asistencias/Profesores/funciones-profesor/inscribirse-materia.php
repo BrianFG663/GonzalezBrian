@@ -6,10 +6,8 @@ session_start();
 $rowprofesor = $_SESSION['rowprofesor'];
 $instituto_id = $_SESSION['id_instituto'];
 
-$materia = new Materia('prueba','prueba','22-1-2001',1);
-$inst = new Instituto("prueba","brueba","prueba",1);
-$instituto = $inst->buscarInstituto($conexion,$instituto_id); 
-$materias_libres=$materia->buscarMateria($conexion,$instituto_id);
+$instituto = Instituto::buscarInstituto($conexion,$instituto_id); 
+$materias_libres= Materia::buscarMateria($conexion,$instituto_id);
 ?>
 
 
@@ -89,7 +87,7 @@ $materias_libres=$materia->buscarMateria($conexion,$instituto_id);
     if(isset($_POST['id_materia'])){
         $materia_id = $_POST['id_materia'];
         $profesor_id = $rowprofesor['id'];
-        $materia->asignarProfesor($conexion,$materia_id,$profesor_id,$instituto_id);
+        Materia::asignarProfesor($conexion,$materia_id,$profesor_id,$instituto_id);
 
         header('location: inscribirse-materia.php');
         exit();
