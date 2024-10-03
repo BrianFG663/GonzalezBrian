@@ -53,15 +53,15 @@
 <body>
     <div class="container">
         <div class="top"><button class="button-back" onclick="redireccion(1)"></button><span class="titulo">LISTADO DE ALUMNOS</span></div>
-        <div class="alumno-top"><div class="top-id">ID</div><div class="top-nombre">NOMBRE COMPLETO</div><div class="top-dni">DNI</div><div class="top-fecha_nacimiento">FECHA DE NACIMIENTO</div><div class="top-asistencia">ASISTENCIA</div></div>
         <div class="container-alumnos">
             <form action="procesar-asistencia.php" method="post" id="formulario-asistencias">
                 <?php
                     if (!$alumnos) {
                         echo '<form action="" method="post">
-                                <input type="submit" value="INSCRIBIRSE A UNA MATERIA" class="inscribirse-instituto">
+                                <input type="submit" value="INSCRIBIR ALUMNOS" class="boton-inscribir-alumnos">
                             </form>';
                     } else {
+                        '<div class="alumno-top"><div class="top-id">ID</div><div class="top-nombre">NOMBRE COMPLETO</div><div class="top-dni">DNI</div><div class="top-fecha_nacimiento">FECHA DE NACIMIENTO</div><div class="top-asistencia">ASISTENCIA</div></div>';
                         foreach ($alumnos as $alumno) {
                             echo '<div class="alumno"><div class="id">'.$alumno['id'].'</div><div class="nombre">'.$alumno['nombre']." ".$alumno['apellido'].'</div><div class="dni">'.$alumno['dni'].'</div><div class="fecha_nacimiento">'.$alumno['fecha_nacimiento'].'</div><input type="checkbox" class="asistencia" name="asistencia[]" value="'.$alumno['id'].'"></div>';
                         }
@@ -69,7 +69,13 @@
                 ?>
             </form>
         </div>
-        <div class="boton"><input class="boton-tomar-asistencia" type="button" value="SUBIR ASISTENCIA" onclick="formularioAsistencias()"></div>
+        <?php
+        
+        if($alumnos){
+           echo '<div class="boton"><input class="boton-tomar-asistencia" type="button" value="SUBIR ASISTENCIA" onclick="formularioAsistencias()"></div>';
+        }
+        
+        ?>
     </div>
 </body>
 </html>
