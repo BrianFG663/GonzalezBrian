@@ -96,6 +96,36 @@ class Instituto{
 
         return $resultado->fetch(PDO::FETCH_ASSOC);
     }
+
+    public static function institutos($conexion,$profesor_id){
+
+        $sql_institutos = 
+        "SELECT i.id, i.nombre, i.cue, i.direccion, i.gestion
+        FROM instituto i
+        WHERE i.id NOT IN (
+            SELECT id_instituto
+            FROM instituto_profesor
+            WHERE id_profesor = :profesor_id
+        )";
+
+        $resultado = $conexion->prepare($sql_institutos);
+        $resultado->bindParam(':profesor_id',$profesor_id);
+        $resultado->execute();
+
+        return $resultado->fetchall(PDO::FETCH_ASSOC);
+    }
+
+    public static function asignarProfesor($conexion,$materia_id,$instituto_id){
+
+        $sql_asignar_profesor =
+        "INSERT INTO materia_instituto(materia_id,instituto_id)
+        VALUE (:materia_id,:instituto_id)";
+
+        $resultado = $conexion->prepare();
+        $resultado->bindParam(':materia_id',$materia_id);
+        $resultado->bindParam(':instituto_id',$instituto_id);
+        $resultado->execute();
+    }
 }
 
 ?>

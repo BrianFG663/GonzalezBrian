@@ -11,11 +11,11 @@ function redireccion(valor){
         break
 
         case 3:
-            location.href = "funciones-profesor/crear-alumnos.php";
+            location.href = "crear-alumnos.php";
         break
 
         case 4:
-            location.href = "../alumnos-index.php";
+            location.href = "tomar-asistencia.php";
         break
 
         case 5:
