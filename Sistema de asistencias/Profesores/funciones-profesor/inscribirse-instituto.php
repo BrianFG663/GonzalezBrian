@@ -1,15 +1,25 @@
 <?php
 require_once '../../Conexion.php';
-require_once '../../Clases/Materia.php';
+require_once '../../Clases/Profesor.php';
 require_once '../../Clases/Instituto.php';
 session_start();
 $rowprofesor = $_SESSION['rowprofesor'];
 $profesor_id = $rowprofesor['id'];
-$instituto_id = $_SESSION['id_instituto'];
 
 $institutos = Instituto::institutos($conexion,$profesor_id); 
 ?>
 
+
+<?php
+
+    if (isset($_POST['id_instituto'])){
+        $instituto_id = $_POST['id_instituto'];
+        Profesor::asignarInstituto($conexion,$profesor_id,$instituto_id);
+
+        header('location: inscribirse-instituto.php');
+    }
+
+?>
 
 
 <!DOCTYPE html>
@@ -57,7 +67,7 @@ $institutos = Instituto::institutos($conexion,$profesor_id);
                     if(!$institutos){
                         echo "<div class='mensaje-materias'>NO HAY MATERIAS DISPONIBLES EN ESTE INSTITUTO</div>";
                     }else{
-                        echo '<div class="contenedor-materia-top"><div class="id-materia-top">ID</div><div class="nombre_materia_top">NOMBRE</div><div class="descripcion-top">DESCRIPCION</div><div class="fecha_descripcion-top">FECHA DE CREACION</div><div class="codigo_materia-top">CODIGO DE MATERIA</div><div class="div-inscribirse-materia-top">¿DESEA INSCRIBIRSE?</div></div>';
+                        echo '<div class="contenedor-materia-top"><div class="id-materia-top">ID</div><div class="nombre_materia_top">NOMBRE</div><div class="descripcion-top">DIRECCION</div><div class="fecha_descripcion-top">C.U.E</div><div class="codigo_materia-top">GESTION DEL INSTITUTO</div><div class="div-inscribirse-materia-top">¿DESEA INSCRIBIRSE?</div></div>';
                         foreach ($institutos as $instituto) {
                             echo '<div class="contenedor-materia">
                                     <div class="id-materia">'.$instituto['id'].'</div>
@@ -66,9 +76,9 @@ $institutos = Instituto::institutos($conexion,$profesor_id);
                                     <div class="fecha_descripcion">'.$instituto['cue'].'</div>
                                     <div class="codigo_materia">'.$instituto['gestion'].'</div>
                                         <div class="div-inscribirse-materia">
-                                            <form action="'.$_SERVER['PHP_SELF'].'" method="post" id="formulario-incribir-materia">
-                                                <input class="boton-inscribirse-materia" type="button" value="INSCRIBIRSE A LA MATERIA" onclick="formularioInscribirMateria()">
-                                                <input type="hidden" name="id_materia" value="'.$instituto['id'].'">
+                                            <form action="'.$_SERVER['PHP_SELF'].'" method="post"  id="inscribir-profesor">
+                                                <input class="boton-inscribirse-materia" type="button" value="INSCRIBIRSE AL INSTITUTO" onclick="formularioInscribirInstituto(this)">
+                                                <input type="hidden" name="id_instituto" value="'.$instituto['id'].'">
                                             </form>
                                         </div>
                                 </div>';
@@ -81,16 +91,3 @@ $institutos = Instituto::institutos($conexion,$profesor_id);
 </body>
 </html>
 
-
-<?php
-
-    if(isset($_POST['id_materia'])){
-        $materia_id = $_POST['id_materia'];
-        $profesor_id = $rowprofesor['id'];
-        
-
-        header('location: inscribirse-materia.php');
-        exit();
-    }
-
-?>

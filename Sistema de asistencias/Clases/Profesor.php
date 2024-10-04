@@ -152,6 +152,17 @@
 
             return $resultado->fetchall(PDO::FETCH_ASSOC);
         }
+
+        public static function asignarInstituto($conexion,$profesor_id,$instituto_id){
+            $sql_asignar_instituto = 
+            "INSERT INTO instituto_profesor(id_profesor,id_instituto)
+            VALUES (:profesor_id,:instituto_id)";
+
+            $resultado = $conexion->prepare($sql_asignar_instituto);
+            $resultado->bindParam(':profesor_id', $profesor_id);
+            $resultado->bindParam(':instituto_id',$instituto_id);
+            $resultado->execute();
+        }
     }
 
 ?>

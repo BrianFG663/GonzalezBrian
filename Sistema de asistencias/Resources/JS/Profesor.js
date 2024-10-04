@@ -76,6 +76,30 @@ function formularioInscribirMateria(){
 
 }
 
+function formularioInscribirInstituto(button) {
+    Swal.fire({
+        title: "Desea inscribirse a esta materia?",
+        showCancelButton: true,
+        confirmButtonText: "Confirmar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Se ha inscripto a la materia correctamente!",
+                showConfirmButton: false,
+                timer: 1500
+            });
+
+            // Enviar el formulario al que pertenece el botón
+            setTimeout(() => {
+                button.closest('form').submit(); // Envía el formulario correspondiente
+            }, 1600);
+        }
+    });
+}
+
+
 function formularioAlumno(){
     Swal.fire({
         title: "Desea inscribir al alumno?",
