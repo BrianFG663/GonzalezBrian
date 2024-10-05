@@ -79,7 +79,7 @@
         }
         
         }else{ //cierra el if del booleano nque comprueba si se tomo la asistencia de esta materia el dia actual
-            echo '<div class="contenedor-lista"><div class="mensaje-asistencias-tomada">Ya se tomo asistencia este dia😊</div><div class="ver-listado"><a href="#">LISTADO DEL DIA</a></div></div>';
+            echo '<div class="contenedor-lista"><div class="mensaje-asistencias-tomada">Ya se tomo asistencia este dia😊</div><div class="ver-listado"><a href="../listado-alumnos.php">LISTADO DEL DIA</a></div></div>';
         }
         ?>
     </div>

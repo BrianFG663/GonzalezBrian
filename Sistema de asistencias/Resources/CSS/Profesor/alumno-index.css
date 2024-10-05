@@ -17,12 +17,13 @@ body {
 
 .container{
     position: relative;
-    top: 1vh;
+    top: 15vh;
     left: 15%;
     width: 83%;
     height: 85vh;
     background-color: white;
     overflow-y: auto;
+    margin-bottom: 4vh;
 }
 
 .container-materia{
@@ -473,7 +474,7 @@ body {
 
 .mensaje-asistencias-tomada{
     width: 30%;
-    height: 50%;
+    height: 30%;
     font-size: 1vw;
     background-color: white; 
     font-weight: 600;
@@ -487,7 +488,7 @@ body {
 .contenedor-lista{
     position: relative;
     top: 35vh;      
-    height: 12vh;
+    height: 20vh;
     margin-right: 1vw;
     display: flex;
     flex-direction: column;

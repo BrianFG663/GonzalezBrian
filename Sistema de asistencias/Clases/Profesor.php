@@ -163,6 +163,45 @@
             $resultado->bindParam(':instituto_id',$instituto_id);
             $resultado->execute();
         }
+        
+        public static function listadoPresentes($conexion,$instituto_id,$id_materia,$fecha){
+            
+            $sql_alumnos_presentes = 
+            "SELECT DISTINCT a.*
+            FROM alumno a
+            JOIN materia_alumno ma ON ma.alumno_id = a.id
+            JOIN asistencias asi ON asi.alumno_id = a.id AND asi.materia_id = ma.materia_id
+            WHERE ma.materia_id = :materia_id 
+                AND a.instituto_id = :id_instituto
+                AND DATE(asi.fecha_asistencia) = :fecha";
+
+            $resultado = $conexion->prepare($sql_alumnos_presentes);
+            $resultado->bindParam(':materia_id',$id_materia);
+            $resultado->bindParam(':id_instituto',$instituto_id);
+            $resultado->bindParam(':fecha', $fecha);
+            $resultado->execute();
+
+            return $resultado->fetchall(PDO::FETCH_ASSOC);
+        }
+
+        public static function listadoAusentes($conexion,$instituto_id,$id_materia,$fecha){
+            $sql_alumnos_ausentes =
+            "SELECT DISTINCT a.*
+            FROM alumno a
+            JOIN materia_alumno ma ON ma.alumno_id = a.id
+            LEFT JOIN asistencias asi ON asi.alumno_id = a.id AND asi.materia_id = ma.materia_id AND DATE(asi.fecha_asistencia) = :fecha
+            WHERE ma.materia_id = :materia_id 
+            AND a.instituto_id = :id_instituto
+            AND asi.id IS NULL";
+
+            $resultado = $conexion->prepare($sql_alumnos_ausentes);
+            $resultado->bindParam(':materia_id',$id_materia);
+            $resultado->bindParam(':id_instituto',$instituto_id);
+            $resultado->bindParam(':fecha', $fecha);
+            $resultado->execute();
+
+            return $resultado->fetchall(PDO::FETCH_ASSOC);
+        }
     }
 
 ?>

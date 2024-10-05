@@ -19,7 +19,7 @@ function redireccion(valor){
         break
 
         case 5:
-            location.href = "../Materias-index.php";
+            location.href = "Materias-index.php";
         break
 
     }

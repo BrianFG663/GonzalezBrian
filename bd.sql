@@ -30,15 +30,16 @@ CREATE TABLE IF NOT EXISTS `alumno` (
   PRIMARY KEY (`id`),
   KEY `FK_alumno_instituto` (`instituto_id`),
   CONSTRAINT `FK_alumno_instituto` FOREIGN KEY (`instituto_id`) REFERENCES `instituto` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table escueladb.alumno: ~3 rows (approximately)
+-- Dumping data for table escueladb.alumno: ~6 rows (approximately)
 INSERT INTO `alumno` (`id`, `apellido`, `nombre`, `dni`, `fecha_nacimiento`, `instituto_id`) VALUES
 	(2, 'Ruiz', 'Lucila', '44421224', '2002-12-03', 115),
 	(3, 'Cedres', 'Lucas', '44444444', '2024-09-30', 115),
 	(4, 'Parada', 'Fausto', '33333333', '1997-09-30', 115),
 	(13, 'Agustin', 'Gomez', '44332243', '1111-11-11', 116),
-	(14, 'Gomez', 'Agus', '33333333', '1111-11-11', 116);
+	(14, 'Gomez', 'Agus', '33333333', '1111-11-11', 116),
+	(15, 'Gomez', 'Agus', '33333333', '0111-11-11', 116);
 
 -- Dumping structure for table escueladb.asistencias
 CREATE TABLE IF NOT EXISTS `asistencias` (
@@ -46,14 +47,18 @@ CREATE TABLE IF NOT EXISTS `asistencias` (
   `alumno_id` int DEFAULT NULL,
   `fecha_asistencia` timestamp NOT NULL,
   `materia_id` int DEFAULT NULL,
+  `valor` float NOT NULL,
   PRIMARY KEY (`id`),
   KEY `alumno_id` (`alumno_id`),
   KEY `FK_asistencias_materias` (`materia_id`),
   CONSTRAINT `asistencias_ibfk_1` FOREIGN KEY (`alumno_id`) REFERENCES `alumno` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_asistencias_materias` FOREIGN KEY (`materia_id`) REFERENCES `materias` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table escueladb.asistencias: ~0 rows (approximately)
+-- Dumping data for table escueladb.asistencias: ~1 rows (approximately)
+INSERT INTO `asistencias` (`id`, `alumno_id`, `fecha_asistencia`, `materia_id`, `valor`) VALUES
+	(38, 3, '2024-10-04 19:15:00', 13, 1),
+	(39, 4, '2024-10-04 22:51:00', 14, 1);
 
 -- Dumping structure for table escueladb.instituto
 CREATE TABLE IF NOT EXISTS `instituto` (
@@ -83,9 +88,8 @@ CREATE TABLE IF NOT EXISTS `instituto_profesor` (
   CONSTRAINT `FK_instituto_profesor_profesor` FOREIGN KEY (`id_profesor`) REFERENCES `profesor` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table escueladb.instituto_profesor: ~2 rows (approximately)
+-- Dumping data for table escueladb.instituto_profesor: ~0 rows (approximately)
 INSERT INTO `instituto_profesor` (`id_profesor`, `id_instituto`) VALUES
-	(24, 116),
 	(24, 115);
 
 -- Dumping structure for table escueladb.materias
@@ -118,11 +122,12 @@ CREATE TABLE IF NOT EXISTS `materia_alumno` (
   CONSTRAINT `FK__materias` FOREIGN KEY (`materia_id`) REFERENCES `materias` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table escueladb.materia_alumno: ~3 rows (approximately)
+-- Dumping data for table escueladb.materia_alumno: ~4 rows (approximately)
 INSERT INTO `materia_alumno` (`alumno_id`, `materia_id`) VALUES
 	(2, 13),
 	(3, 13),
-	(4, 14);
+	(4, 14),
+	(15, 15);
 
 -- Dumping structure for table escueladb.materia_instituto
 CREATE TABLE IF NOT EXISTS `materia_instituto` (
@@ -179,13 +184,14 @@ CREATE TABLE IF NOT EXISTS `ram` (
   `asistencias_promocion` int NOT NULL DEFAULT '70',
   `fecha_funcionamiento` year NOT NULL,
   `instituto_id` int DEFAULT NULL,
+  `tolerancia` int DEFAULT NULL,
   KEY `FK_ram_instituto` (`instituto_id`),
   CONSTRAINT `FK_ram_instituto` FOREIGN KEY (`instituto_id`) REFERENCES `instituto` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table escueladb.ram: ~0 rows (approximately)
-INSERT INTO `ram` (`desaprobado`, `regular`, `promocion`, `asistencias_regular`, `asistencias_promocion`, `fecha_funcionamiento`, `instituto_id`) VALUES
-	(5, 6, 7, 60, 70, '2024', 115);
+-- Dumping data for table escueladb.ram: ~1 rows (approximately)
+INSERT INTO `ram` (`desaprobado`, `regular`, `promocion`, `asistencias_regular`, `asistencias_promocion`, `fecha_funcionamiento`, `instituto_id`, `tolerancia`) VALUES
+	(5, 6, 7, 60, 70, '2024', 115, NULL);
 
 -- Dumping structure for table escueladb.usuario
 CREATE TABLE IF NOT EXISTS `usuario` (
@@ -202,7 +208,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   CONSTRAINT `id_profesor` FOREIGN KEY (`id_profesor`) REFERENCES `profesor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=239 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table escueladb.usuario: ~0 rows (approximately)
+-- Dumping data for table escueladb.usuario: ~2 rows (approximately)
 INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `mail`, `passw`, `rol`, `id_profesor`) VALUES
 	(223, 'Javier', 'Parra', 'javier@gmail.com', '$2y$10$Fga7foscWCjerL6CONEyd.A/Npku/tTL6A1UZgc7/vFwXoKl34MTG', 'administrador', NULL),
 	(238, 'Gonzalez', 'Brian', 'briangonzaz305@gmail.com', '$2y$10$sCfd5xs2OnW3cdkDHnkNEe39Bcwm3pslomyfG4NsAOzl7oKGWoC/i', 'profesor', 24);
