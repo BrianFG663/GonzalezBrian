@@ -50,6 +50,31 @@ function formularioAsistencias(){
 
 }
 
+function formularioSalida(){
+
+    Swal.fire({
+        title: "¿Desea subir las asistencias?",
+        showCancelButton: true,
+        confirmButtonText: "Subir",
+      }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Asistencias guardadas!",
+                showConfirmButton: false,
+                timer: 1500
+              });
+            
+            setTimeout(() => {
+                document.getElementById("formulario-salida").submit()
+            }, 1600);
+
+        }
+      });
+
+}
+
 function formularioInscribirMateria(){
     Swal.fire({
         title: "Desea inscribirse a esta materia?",

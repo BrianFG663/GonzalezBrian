@@ -13,7 +13,7 @@
     $id_instituto = $_SESSION['id_instituto'];
     $profesor = new Profesor($rowprofesor['nombre'],$rowprofesor['apellido'],$rowprofesor['dni'],$rowprofesor['legajo']);
     $alumnos = $profesor->mostrarAlumnos($conexion,$_SESSION['id_materia'],$id_instituto);
-    $asistencia_dia = Materia::asistenciasDia($conexion,$_SESSION['id_materia'])
+    $asistencia_dia = Materia::asistenciasDia($conexion,$_SESSION['id_materia']);
 
 ?>
 

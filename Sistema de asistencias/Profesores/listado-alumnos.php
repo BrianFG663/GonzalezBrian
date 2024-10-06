@@ -58,14 +58,13 @@
     </div>
 </div>
 <body>
-    *
     <div class="container">
-        <div class="top"><button class="button-back" onclick="redireccion(5)"></button><span class="titulo">ALUMNOS PRESENTES</span></div>
+        <div class="top"><span class="titulo">ALUMNOS PRESENTES</span></div>
         <div class="container-alumnos">
-            <form action="procesar-asistencia.php" method="post" id="formulario-asistencias">
+            <form action="funciones-profesor/procesar-asistencia.php" method="post" id="formulario-salida">
                 <?php
                     if($alumnoPresentes){
-                        echo'<div class="alumno-top"><div class="top-id">ID</div><div class="top-nombre">NOMBRE COMPLETO</div><div class="top-dni">DNI</div><div class="top-fecha_nacimiento">FECHA DE NACIMIENTO</div><div class="top-asistencia">MARCAR MEDIA FALTA</div></div>';
+                        echo'<div class="alumno-top"><div class="top-id">ID</div><div class="top-nombre">NOMBRE COMPLETO</div><div class="top-dni">DNI</div><div class="top-fecha_nacimiento">FECHA DE NACIMIENTO</div><div class="top-asistencia">MARCAR SALIDA</div></div>';
                         foreach ($alumnoPresentes as $alumnoPresente) {
                             echo '<div class="alumno"><div class="id">'.$alumnoPresente['id'].'</div><div class="nombre">'.$alumnoPresente['nombre']." ".$alumnoPresente['apellido'].'</div><div class="dni">'.$alumnoPresente['dni'].'</div><div class="fecha_nacimiento">'.$alumnoPresente['fecha_nacimiento'].'</div><input type="checkbox" class="asistencia" name="media-asistencia[]" value="'.$alumnoPresente['id'].'"></div>';
                         }
@@ -73,10 +72,11 @@
                 ?>
             </form>
         </div>
+        <div class="boton"><input class="boton-tomar-asistencia" type="button" value="SUBIR ASISTENCIA" onclick="formularioSalida()"></div>
     </div>
 
     <div class="container">
-        <div class="top"><button class="button-back" onclick="redireccion(5)"></button><span class="titulo">ALUMNOS AUSENTES</span></div>
+        <div class="top"></button><span class="titulo">ALUMNOS AUSENTES</span></div>
         <div class="container-alumnos">
             <form action="procesar-asistencia.php" method="post" id="formulario-asistencias">
                 <?php
@@ -89,6 +89,7 @@
                 ?>
             </form>
         </div>
+        <div class="boton"><input class="boton-tomar-asistencia" type="button" value="SUBIR ASISTENCIA" onclick="formularioAsistencias()"></div>
     </div>
 </body>
 </html>

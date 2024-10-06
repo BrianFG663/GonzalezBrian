@@ -149,9 +149,63 @@ class Materia{
             return true; // No se encontró asistencia para esa fecha
         }
     }
+
+    public static function horaAsistencia($conexion, $materia_id,$instituto_id) {
+
+        date_default_timezone_set('America/Argentina/Buenos_Aires');
+        $fecha_actual = date('Y-m-d');
+
+        $sql_asistencia = "
+        SELECT *
+        FROM asistencias
+        WHERE DATE(fecha_asistencia) = :fecha_actual AND materia_id = :materia_id"; // se pone el date para comparar solo la fecha sin hora
     
+        $resultado = $conexion->prepare($sql_asistencia);
+        $resultado->bindParam(':fecha_actual', $fecha_actual);
+        $resultado->bindParam(':materia_id', $materia_id);
+        $resultado->execute();
+        $row = $resultado->fetch(PDO::FETCH_ASSOC);
+
+        $sql_parametros = 
+        "SELECT tolerancia
+        FROM ram
+        WHERE instituto_id = :instituto_id";
+
+        $resultado_ram = $conexion->prepare($sql_parametros);
+        $resultado_ram->bindParam(':instituto_id', $instituto_id);
+        $resultado_ram->execute();
+        $row_tolerancia = $resultado_ram->fetch(PDO::FETCH_ASSOC);
     
-    
+        $hora_actual = date('H:i'); //hora acutal
+        $hora_asistencia = $row['fecha_asistencia'];
+        $hora_asistencia = date('H:i', strtotime($hora_asistencia)); //hora de asistencia
+        $tolerancia = $row_tolerancia['tolerancia'];
+        
+        // Convertir las horas a segundos
+        $segundosEntrada = strtotime($hora_asistencia);
+        $segundosLlegada = strtotime($hora_actual);
+
+        // Calcular la diferencia en minutos
+        $diferenciaMinutos = ($segundosLlegada - $segundosEntrada) / 60;
+
+        // Verificar si llegó después de la tolerancia
+        if ($diferenciaMinutos > $tolerancia) {
+            return true; // llego despues de la tolerancia
+        } else {
+            return false; //leggo dentro de la tolerancia
+        }
+    }
+
 }
 
+
+
+
+
+
+
+
+
 ?>
+
+
