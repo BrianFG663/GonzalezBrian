@@ -1,0 +1,83 @@
+@font-face {
+    font-family: 'MiFuente';
+    src: url('/Resources/Fonts/CaviarDreams.ttf') format('truetype');
+}
+
+html {
+    font-family: 'MiFuente', sans-serif;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background: rgb(240, 240, 240);
+    margin: 0px;
+    padding: 0px;
+}
+
+.container{
+    position: relative;
+    top: 15vh;
+    left: 27%;
+    width: 60%;
+    height: 75vh;
+    background-color: white;
+    overflow-y: auto;
+    margin-bottom: 4vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.encabezado-contenedor {
+    position: absolute; /* Mantiene el encabezado en la parte superior */
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10%;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    background-color: #b33333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-container{
+    width: 90%;
+    position: relative;
+    left: 5%;
+    height: 50%;
+    top: 15%;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-dos{
+    margin-top: 2vh;
+    border: 1px solid black;
+    height: 10%;
+    width: 90%;
+    position: relative;
+    left: 5%;
+    top: 15%;
+}
+
+.contenedor-tres{
+    width: 90%;
+    border: 1px solid black;
+    position: relative;
+    left: 5%;
+    top: 20%;
+    height: 10%;
+}
+
+.container-input{
+    border: 1px solid green;
+    height: 100%;
+    width: 45%;
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
+}

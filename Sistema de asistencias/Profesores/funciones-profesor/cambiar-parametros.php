@@ -17,7 +17,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienvenido</title>
-    <link rel="stylesheet" href="../../Resources/CSS/Profesor/profesor-index.css">
+    <link rel="stylesheet" href="../../Resources/CSS/Profesor/parametros.css">
     <link rel="stylesheet" href="../../Resources/CSS/Encabezado.css">
     <link rel="stylesheet" href="../../Resources/CSS/menu-fijo.css">
     <link rel="shortcut icon" href="../Resources/Images/icono.png" sizes="64x64">
@@ -37,7 +37,7 @@
 <div class="menu-container">
     <div id="mySidenav" class="sidenav">
         <div class="cont-menu">
-            <a href="../profesores-index.php"><img src="../../Resources/Images/menu.png" class="img-menu-admin"><span class="admin-span">Menu principal</span></a>
+            <a href="../profesores-index.php"><img src="../../Resources/Images/menu.png" class="img-menu-admin"><span class="menu-span">Menu principal</span></a>
             <a href="/Administradores/Tablas-DB/Administradores-db.php"><img src="../../Resources/Images/calificaciones.png" class="img-menu-admin"><span class="calificaciones-span">calificaciones</span></a>
             <a href="/Administradores/Tablas-DB/Administradores-db.php"><img src="../../Resources/Images/graduado.png" class="img-menu-admin"><span class="alumno-span">Alumnos</span></a>
             <a href="/Administradores/Tablas-DB/Institutos-db.php"><img src="../../Resources/Images/inscribir-instituto.png" class="img-menu-admin"><span class="span-institutos">Institutos</span></a>
@@ -51,7 +51,24 @@
 </div>
 
 <body> 
+    <div class="container">
+        <div class="encabezado-contenedor"></div>
+        <div class="container-container">
+            <div class="container-input">
 
+            </div>
+            <div class="container-input">
+
+            </div>
+        </div>
+        <div class="container-dos">
+
+        </div>
+
+        <div class="contenedor-tres">
+
+        </div>
+    </div>
 </body>
 </html>
 
