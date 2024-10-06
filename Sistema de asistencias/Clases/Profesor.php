@@ -149,8 +149,16 @@
             $resultado->bindParam(':materia_id',$id_materia);
             $resultado->bindParam(':id_instituto',$id_instituto);
             $resultado->execute();
+            $row = $resultado->fetchall(PDO::FETCH_ASSOC);
 
-            return $resultado->fetchall(PDO::FETCH_ASSOC);
+
+            if(!$row){
+                return false;
+            }else{
+                return $row;
+            }
+
+
         }
 
         public static function asignarInstituto($conexion,$profesor_id,$instituto_id){

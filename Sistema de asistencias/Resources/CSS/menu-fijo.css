@@ -72,6 +72,16 @@
     left: 2.1vw;
 }
 
+.calificaciones-span{
+    position: relative;
+    left: 1.6vw;  
+}
+
+.span-parametros{
+    position: relative;
+    left: 1.8vw;
+}
+
 .alumno-span{
     position: relative;
     left: 21%;

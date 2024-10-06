@@ -56,7 +56,7 @@
 </div>
 <body>
     <div class="container">
-        <div class="top"><button class="button-back" onclick="redireccion(5)"></button><span class="titulo">LISTADO DE ALUMNOS</span></div>
+        <div class="top"><button class="button-back" onclick="redireccion(6)"></button><span class="titulo">LISTADO DE ALUMNOS</span></div>
         <div class="container-alumnos">
         <?php if($asistencia_dia){  //abre el if del booleano nque comprueba si se tomo la asistencia de esta materia el dia actual?> 
             <form action="procesar-asistencia.php" method="post" id="formulario-asistencias">

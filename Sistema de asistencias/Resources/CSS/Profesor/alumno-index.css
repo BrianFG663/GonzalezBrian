@@ -485,6 +485,17 @@ body {
     border: 2px solid #b33333; 
 }
 
+.contenedor-lista-asistencia{
+    position: relative;
+    top: 30vh;      
+    height: 20vh;
+    margin-right: 1vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .contenedor-lista{
     position: relative;
     top: 35vh;      

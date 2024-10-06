@@ -40,9 +40,11 @@
 <div class="menu-container">
     <div id="mySidenav" class="sidenav">
         <div class="cont-menu">
-            <a href="/Administradores/Tablas-DB/Materias-db.php"><img src="../Resources/Images/libros.png" class="img-menu-admin"><span class="span-materias">Materias</span></a>
-            <a href="/Administradores/Tablas-DB/Institutos-db.php"><img src="../Resources/Images/instituto.png" class="img-menu-admin"><span class="span-institutos">Institutos</span></a>
+            <a href="funciones-profesor/cambiar-parametros.php"><img src="../Resources/Images/parametros.png" class="img-menu-admin"><span class="span-parametros">Parametros</span></a>
+            <a href="/Administradores/Tablas-DB/Administradores-db.php"><img src="../Resources/Images/calificaciones.png" class="img-menu-admin"><span class="calificaciones-span">calificaciones</span></a>
             <a href="/Administradores/Tablas-DB/Administradores-db.php"><img src="../Resources/Images/graduado.png" class="img-menu-admin"><span class="alumno-span">Alumnos</span></a>
+            <a href="/Administradores/Tablas-DB/Institutos-db.php"><img src="../Resources/Images/inscribir-instituto.png" class="img-menu-admin"><span class="span-institutos">Institutos</span></a>
+            <a href="/Administradores/Tablas-DB/Institutos-db.php"><img src="../Resources/Images/agregar materia.png" class="img-menu-admin"><span class="span-institutos">Materias</span></a>
         </div>
         <div class="botton-div">
             <img class="image-div" src="../Resources/Images/profesor.png">

@@ -68,28 +68,44 @@
                         foreach ($alumnoPresentes as $alumnoPresente) {
                             echo '<div class="alumno"><div class="id">'.$alumnoPresente['id'].'</div><div class="nombre">'.$alumnoPresente['nombre']." ".$alumnoPresente['apellido'].'</div><div class="dni">'.$alumnoPresente['dni'].'</div><div class="fecha_nacimiento">'.$alumnoPresente['fecha_nacimiento'].'</div><input type="checkbox" class="asistencia" name="media-asistencia[]" value="'.$alumnoPresente['id'].'"></div>';
                         }
+                    }else{
+                        echo '<div class="contenedor-lista-asistencia"><div class="mensaje-asistencias-tomada">Hoy se encuentran todos asuentes😑</div></div>';
                     }
                 ?>
             </form>
         </div>
-        <div class="boton"><input class="boton-tomar-asistencia" type="button" value="SUBIR ASISTENCIA" onclick="formularioSalida()"></div>
+
+        <?php
+        if($alumnoPresentes){
+            echo '<div class="boton"><input class="boton-tomar-asistencia" type="button" value="MARCAR SALIDA" onclick="formularioSalida()"></div>';
+         }
+        ?>
     </div>
 
     <div class="container">
         <div class="top"></button><span class="titulo">ALUMNOS AUSENTES</span></div>
-        <div class="container-alumnos">
-            <form action="procesar-asistencia.php" method="post" id="formulario-asistencias">
+        <div class="container-alumnos" id="container-alumnos">
+            <form action="funciones-profesor/procesar-asistencia.php" method="post" id="formulario-tarde">
                 <?php
                     if($alumnoAusentes){
                         echo'<div class="alumno-top"><div class="top-id">ID</div><div class="top-nombre">NOMBRE COMPLETO</div><div class="top-dni">DNI</div><div class="top-fecha_nacimiento">FECHA DE NACIMIENTO</div><div class="top-asistencia">MARCAR LLEGADA</div></div>';
                         foreach ($alumnoAusentes as $alumnoAusente) {
-                            echo '<div class="alumno"><div class="id">'.$alumnoAusente['id'].'</div><div class="nombre">'.$alumnoAusente['nombre']." ".$alumnoAusente['apellido'].'</div><div class="dni">'.$alumnoAusente['dni'].'</div><div class="fecha_nacimiento">'.$alumnoAusente['fecha_nacimiento'].'</div><input type="checkbox" class="asistencia" name="asistencia[]" value="'.$alumnoAusente['id'].'"></div>';
+                            echo '<div class="alumno"><div class="id">'.$alumnoAusente['id'].'</div><div class="nombre">'.$alumnoAusente['nombre']." ".$alumnoAusente['apellido'].'</div><div class="dni">'.$alumnoAusente['dni'].'</div><div class="fecha_nacimiento">'.$alumnoAusente['fecha_nacimiento'].'</div><input type="checkbox" class="asistencia" name="asistencia-llegada[]" value="'.$alumnoAusente['id'].'"></div>';
                         }
+                    }else{
+                        echo '<div class="contenedor-lista-asistencia"><div class="mensaje-asistencias-tomada">Hoy se encuentran todos presentes😦</div></div>';
                     }
                 ?>
             </form>
         </div>
-        <div class="boton"><input class="boton-tomar-asistencia" type="button" value="SUBIR ASISTENCIA" onclick="formularioAsistencias()"></div>
+        
+        <?php
+        if($alumnoAusentes){
+            echo '<div class="boton"><input class="boton-tomar-asistencia" type="button" value="SUBIR ASISTENCIA" onclick="formularioLlegada()"></div>';
+         }
+        ?>
+        
     </div>
+
 </body>
 </html>

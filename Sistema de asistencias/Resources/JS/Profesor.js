@@ -22,6 +22,10 @@ function redireccion(valor){
             location.href = "Materias-index.php";
         break
 
+        case 6:
+            location.href = "../Materias-index.php";
+        break
+
     }
 }
 
@@ -36,7 +40,7 @@ function formularioAsistencias(){
             Swal.fire({
                 position: "center",
                 icon: "success",
-                title: "Asistencias guardadas!",
+                title: "Asistencias registradas!",
                 showConfirmButton: false,
                 timer: 1500
               });
@@ -53,7 +57,30 @@ function formularioAsistencias(){
 function formularioSalida(){
 
     Swal.fire({
-        title: "¿Desea subir las asistencias?",
+        title: "¿Desea actualizar la asistencia?",
+        showCancelButton: true,
+        confirmButtonText: "actualizar",
+      }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Asistencias actualizadas!",
+                showConfirmButton: false,
+                timer: 1500
+              });
+            setTimeout(() => {
+                document.getElementById("formulario-salida").submit()
+            }, 1600);
+
+        }
+      });
+}
+
+function formularioLlegada(){
+
+    Swal.fire({
+        title: "¿Desea subir las asitencias?",
         showCancelButton: true,
         confirmButtonText: "Subir",
       }).then((result) => {
@@ -61,18 +88,16 @@ function formularioSalida(){
             Swal.fire({
                 position: "center",
                 icon: "success",
-                title: "Asistencias guardadas!",
+                title: "Asistencias registradas!",
                 showConfirmButton: false,
                 timer: 1500
               });
-            
             setTimeout(() => {
-                document.getElementById("formulario-salida").submit()
+                document.getElementById("formulario-tarde").submit()
             }, 1600);
 
         }
       });
-
 }
 
 function formularioInscribirMateria(){
