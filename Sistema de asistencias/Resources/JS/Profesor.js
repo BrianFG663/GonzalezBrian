@@ -80,7 +80,7 @@ function formularioSalida(){
 function formularioLlegada(){
 
     Swal.fire({
-        title: "¿Desea subir las asitencias?",
+        title: "¿Desea marcar las llegadas?",
         showCancelButton: true,
         confirmButtonText: "Subir",
       }).then((result) => {
@@ -88,7 +88,7 @@ function formularioLlegada(){
             Swal.fire({
                 position: "center",
                 icon: "success",
-                title: "Asistencias registradas!",
+                title: "Llegadas registradas!",
                 showConfirmButton: false,
                 timer: 1500
               });
@@ -102,7 +102,7 @@ function formularioLlegada(){
 
 function formularioInscribirMateria(){
     Swal.fire({
-        title: "Desea inscribirse a esta materia?",
+        title: "¿Desea inscribirse a esta materia?",
         showCancelButton: true,
         confirmButtonText: "Confirmar"
       }).then((result) => {
@@ -128,7 +128,7 @@ function formularioInscribirMateria(){
 
 function formularioInscribirInstituto(button) {
     Swal.fire({
-        title: "Desea inscribirse a esta materia?",
+        title: "¿Desea inscribirse a este instituto",
         showCancelButton: true,
         confirmButtonText: "Confirmar"
     }).then((result) => {
@@ -136,7 +136,7 @@ function formularioInscribirInstituto(button) {
             Swal.fire({
                 position: "center",
                 icon: "success",
-                title: "Se ha inscripto a la materia correctamente!",
+                title: "Se ha inscripto al instituto correctamente!",
                 showConfirmButton: false,
                 timer: 1500
             });
@@ -152,7 +152,7 @@ function formularioInscribirInstituto(button) {
 
 function formularioAlumno(){
     Swal.fire({
-        title: "Desea inscribir al alumno?",
+        title: "¿Desea inscribir al alumno?",
         showCancelButton: true,
         confirmButtonText: "Inscribir"
       }).then((result) => {
@@ -161,6 +161,38 @@ function formularioAlumno(){
           Swal.fire("Saved!", "", "success");
           setTimeout(() => {
             document.getElementById("inscribir-alumno").submit();
+        }, 1000);
+        }
+      });
+}
+
+function formularioParametros(){
+    Swal.fire({
+        title: "¿Desea cambiar los parametros?",
+        showCancelButton: true,
+        confirmButtonText: "Inscribir"
+      }).then((result) => {
+
+        if (result.isConfirmed) {
+          Swal.fire("Parametros cambiados!", "", "success");
+          setTimeout(() => {
+            document.getElementById("formulario-parametros").submit();
+        }, 1000);
+        }
+      });
+}
+
+function formularioCalificaciones(){
+    Swal.fire({
+        title: "¿Desea subir calificaciones?",
+        showCancelButton: true,
+        confirmButtonText: "Inscribir"
+      }).then((result) => {
+
+        if (result.isConfirmed) {
+          Swal.fire("Calificaciones subidas!", "", "success");
+          setTimeout(() => {
+            document.getElementById("formulario-calificaciones").submit();
         }, 1000);
         }
       });

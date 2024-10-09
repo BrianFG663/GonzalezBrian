@@ -64,12 +64,17 @@
 
 .menu-span{
     position: relative;
-    left: 1.5vw;
+    left: 5%;
 }
 
 .span-materias{
     position: relative;
     left: 2.3vw;
+}
+
+.span-listado{
+    position: relative;
+    left: 10%;
 }
 
 .span-profesor{
@@ -79,7 +84,7 @@
 
 .calificaciones-span{
     position: relative;
-    left: 1.6vw;  
+    left: 7%;  
 }
 
 .span-parametros{
@@ -90,6 +95,11 @@
 .alumno-span{
     position: relative;
     left: 21%;
+}
+
+.agregar-alumno-span{
+    position: relative;
+    left: 7%;
 }
 
 @media screen and (max-height: 450px) {

@@ -196,6 +196,19 @@ class Materia{
         }
     }
 
+    public static function asistenciasMateria($conexion,$materia_id){
+        $sql_asistencia = 
+        "SELECT COUNT(DISTINCT DATE(fecha_asistencia)) AS total_fechas
+        FROM asistencias
+        WHERE materia_id = :materia_id";
+
+        $resultado = $conexion->prepare($sql_asistencia);
+        $resultado->bindParam(':materia_id',$materia_id);
+        $resultado->execute();
+
+        return $resultado->fetch(PDO::FETCH_ASSOC);
+    }
+
 }
 
 

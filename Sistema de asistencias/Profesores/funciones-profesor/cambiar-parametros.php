@@ -5,8 +5,7 @@
 
     $rowprofesor = $_SESSION['rowprofesor'];
     $id = $rowprofesor['id'];
-    $profesor = new Profesor($rowprofesor['nombre'],$rowprofesor['apellido'],$rowprofesor['dni'],$rowprofesor['legajo']);
-    $institutos_profesor = $profesor->institutosProfesor($conexion,$id);
+    $institutos = Profesor::institutosProfesor($conexion,$id);
 
     
 ?>
@@ -23,6 +22,7 @@
     <link rel="shortcut icon" href="../Resources/Images/icono.png" sizes="64x64">
     <script src="../../Resources/JS/Menu.js"></script>
     <script src="../../Resources/JS/Profesor.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <header class="encabezado">
     <img class="imagen-encabezado" src="../../Resources/Images/director-de-escuela.png">
@@ -51,24 +51,70 @@
 </div>
 
 <body> 
-    <div class="container">
-        <div class="encabezado-contenedor"></div>
+    <form action="cambiar-parametros.php" method="post" class="container" id="formulario-parametros">
+        <div class="encabezado-contenedor">CAMBIAR PARAMETROS</div>
         <div class="container-container">
             <div class="container-input">
-
+                <label for="desaprobado">Nota desaprobado:</label>
+                <input type="number" name="desaprobado" id="desaprobado">
+                <label for="regular">Nota minima para alumno regular:</label>
+                <input type="number" name="regular" id="relgula">
+                <label for="promocion">Nota minima para alumno promocionado:</label>
+                <input type="number" name="promocion" id="promocion">
             </div>
             <div class="container-input">
-
+                <label for="asistencia-regular">Porcentaje de asistencias para alumnos regulares:</label>
+                <input type="number" name="asistencia-regular" id="asistencia-regular">
+                <label for="asistencia-promocion">Porcentaje de asistencias para alumnos promocionados:</label>
+                <input type="number" name="asistencia-promocion" id="asistencia-promocion">
+                <label for="tolerancia">Tolerancia de llegada/salida</label>
+                <input type="number" name="tolerancia" id="tolerancia">
             </div>
         </div>
+    
         <div class="container-dos">
-
+            <label for="instituto-select">SELECCIONA INSTITUTO PARA LOS PARAMETROS</label>
+            <select name="instituto-select" id="instituto-select" class="styled-select">
+            <?php
+                foreach($institutos as $instituto){
+                    echo '<option value="'.$instituto['id'].'">'.$instituto['nombre'].'</option>';
+                }
+            ?>
+            </select>
         </div>
 
         <div class="contenedor-tres">
-
+            <input type="button" value="Cambiar parametros" class="cambiar-parametros" onclick="formularioParametros()">
         </div>
-    </div>
+    </form>
 </body>
 </html>
+
+<?php
+
+    if(isset($_POST['desaprobado'])){
+        
+        $desaprobado = intval($_POST['desaprobado']);
+        $regular = intval($_POST['regular']);
+        $promocion = intval($_POST['promocion']);
+        $asistencia_regular = intval($_POST['asistencia-regular']);
+        $asistencia_promocion = intval($_POST['asistencia-promocion']);
+        $tolerancia = intval($_POST['tolerancia']);
+        $instituto_id = intval($_POST['instituto-select']);
+
+        $sql_parametros = 
+        "UPDATE ram 
+        SET desaprobado = :desaprobado, regular = :regular, promocion = :promocion, asistencias_regular = :asistencia_regular, asistencias_promocion = :asistencia_promocion,tolerancia = :tolerancia,instituto_id = :instituto_id";
+    
+        $resultado = $conexion->prepare($sql_parametros);
+        $resultado->bindParam(':desaprobado',$desaprobado);
+        $resultado->bindParam(':regular',$regular);
+        $resultado->bindParam(':promocion',$promocion);
+        $resultado->bindParam(':asistencia_regular',$asistencia_regular);
+        $resultado->bindParam(':asistencia_promocion',$asistencia_promocion);
+        $resultado->bindParam(':tolerancia',$tolerancia);
+        $resultado->bindParam(':instituto_id',$instituto_id);
+        $resultado->execute();
+    }
+?>
 

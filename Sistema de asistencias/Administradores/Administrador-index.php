@@ -13,7 +13,7 @@ $row = $_SESSION['row'];
     <title>Administrador</title>
     <link rel="stylesheet" href="../Resources/CSS/Administrador/Administrador-index.css">
     <link rel="stylesheet" href="../Resources/CSS/Encabezado.css">
-    <link rel="stylesheet" href="../Resources/CSS/menu-desplegable.css">
+    <link rel="stylesheet" href="../Resources/CSS/menu-fijo.css">
     <link rel="shortcut icon" href="../Resources/Images/icono.png" sizes="64x64">
     <script src="../Resources/JS/administrador.js"></script>
     <script src="../Resources/JS/Menu.js"></script>
@@ -31,8 +31,6 @@ $row = $_SESSION['row'];
 
 <div class="menu-container">
     <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <span id="button" onclick="openNav()">&#9776;</span>
         <div class="cont-menu">
             <a href="/Administradores/Tablas-DB/Materias-db.php"><img src="../Resources/Images/libros.png" class="img-menu-admin"><span class="span-materias">Materias</span></a>
             <a href="/Administradores/Tablas-DB/Institutos-db.php"><img src="../Resources/Images/instituto.png" class="img-menu-admin"><span class="span-institutos">Institutos</span></a>

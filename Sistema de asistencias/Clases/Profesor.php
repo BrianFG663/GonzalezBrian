@@ -16,7 +16,7 @@
             $this->legajo = $legajo;
         }
 
-        public function institutosProfesor($conexion, $id) {
+        public static function institutosProfesor($conexion, $id) {
             $sql_profesor = "
                 SELECT id_instituto
                 FROM instituto_profesor
@@ -102,22 +102,13 @@
 
         }
 
-        public function eliminarProfesor($conexion,$id){
+        public static function eliminarProfesor($conexion,$id){
             $sql_eliminar_profesor = 
             "DELETE FROM profesor 
             WHERE id = :id";
             $resultado_eliminar = $conexion->prepare($sql_eliminar_profesor);
             $resultado_eliminar->bindParam(':id', $id);
             $resultado_eliminar->execute();
-    
-    
-            $sql_eliminar_profesor_materia = 
-            "DELETE FROM materia_profesor 
-            WHERE profesor_id = :id";
-            $resultado_eliminar = $conexion->prepare($sql_eliminar_profesor_materia);
-            $resultado_eliminar->bindParam(':id', $id);
-            $resultado_eliminar->execute();
-    
         }
 
         public static function mostrarMaterias($conexion,$id_profesor,$id_instituto){
@@ -210,6 +201,7 @@
 
             return $resultado->fetchall(PDO::FETCH_ASSOC);
         }
+
     }
 
 ?>

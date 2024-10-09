@@ -17,7 +17,7 @@ body {
     background-color: white;
     position: relative;
     left: 25%;
-    top: 20vh;
+    top: 30vh;
     width: 60%;
     min-height: 40vh; /* Altura mínima para que el contenedor siempre tenga tamaño */
     display: flex;

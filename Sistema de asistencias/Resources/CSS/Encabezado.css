@@ -8,9 +8,9 @@ header{
     padding: 0px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
     background: #b33333;
+    justify-content: space-between;
 }
 
 .imagen-encabezado{
@@ -54,14 +54,14 @@ header{
 
 .bienvenido {
     position: relative;
-    left: 5.7vw;
+    right: 31vw;
     display: inline-block;
     font-weight: 600;
     padding: 0 20px; /* Ajusta el espacio entre el texto y los corchetes */
     color: rgb(255, 255, 255); /* Color del texto */
     font-size: 2rem; /* Tamaño del texto */
     font-family: 'MiFuente', sans-serif;
-    
+
 }
 
 .bienvenido::before {
@@ -77,6 +77,8 @@ header{
 }
 
 .container-button{
+    position: relative;
+    top: 0.8vh;
     display: flex;
     flex-direction: row;
     width: 20%;

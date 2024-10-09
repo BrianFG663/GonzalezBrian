@@ -100,6 +100,7 @@ $row = $_SESSION['row'];
         if($validarcue){
             if($validarnombre){
                 $instituto->insertInstituto($conexion);
+                $instituto->ramInstituto($conexion);
 
                 echo '<script> 
                     Swal.fire({

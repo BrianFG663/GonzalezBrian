@@ -117,13 +117,13 @@ function formularioInstituto(valor){
         }else{
             Swal.fire({
                 icon: "error",
-                title: "La descripcion de la materia es obligatoria"
+                title: "La direccion del instituto es obligatoria"
             });
         }
     }else{
         Swal.fire({
             icon: "error",
-            title: "El nombre de materia obligatorio."
+            title: "El nombre del instituto obligatorio."
         });
     }
 
@@ -255,7 +255,7 @@ function formularioAdministrador(valor){
 
 function EliminarAdmin(id) {
     Swal.fire({
-        title: "¿Está seguro de eliminar este administrador?",
+        title: "¿Está seguro de eliminar?",
         text: "¡Esta acción no tiene vuelta atrás!",
         icon: "warning",
         showCancelButton: true,
@@ -264,7 +264,7 @@ function EliminarAdmin(id) {
         confirmButtonText: "Eliminar"
     }).then((result) => {
         if (result.isConfirmed) {
-            document.getElementById('eliminar-admin-' + id).submit(); // Cambia a 'eliminar-admin-' 
+            document.getElementById('eliminar-admin-' + id).submit(); 
         }
     });
 }

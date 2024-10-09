@@ -26,6 +26,8 @@ body {
     margin-bottom: 4vh;
     display: flex;
     flex-direction: column;
+    font-weight: 600;
+    color: white;
 }
 
 .encabezado-contenedor {
@@ -33,7 +35,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    height: 10%;
+    height: 8%;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     background-color: #b33333;
@@ -48,16 +50,18 @@ body {
     left: 5%;
     height: 50%;
     top: 15%;
-    border: 1px solid black;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
 }
 
-.container-dos{
+.container-dos{    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     margin-top: 2vh;
-    border: 1px solid black;
     height: 10%;
     width: 90%;
     position: relative;
@@ -67,17 +71,65 @@ body {
 
 .contenedor-tres{
     width: 90%;
-    border: 1px solid black;
     position: relative;
     left: 5%;
     top: 20%;
     height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .container-input{
-    border: 1px solid green;
     height: 100%;
     width: 45%;
     margin-left: 0.5vw;
     margin-right: 0.5vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+input[type="number"] {
+    margin-bottom: 16px;
+    padding: 8px;
+    border: 1px solid #b33333;
+    border-radius: 2px;
+    font-size: 16px;
+    width: 80%; /* Ocupa todo el ancho del contenedor */
+    text-align: center;
+}
+input[type="number"]:focus {
+    outline: none;
+    border-color: #b33333;
+    box-shadow: 0 0 5px rgba(179, 51, 51, 0.5);
+}
+
+label{
+    font-weight: 600;
+    color: black;
+}
+
+option{
+    text-align: center;
+}
+
+.cambiar-parametros {
+    color: #33b35e;
+    font-weight: 600;
+    background-color: white;
+    border-radius: 1px;
+    width: 14vw;
+    height: 5vh;
+    border: 1.5px solid #33b35e;
+    transition: 0.2s;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cambiar-parametros:hover {
+    color: white;
+    background-color: #33b35ea8;
+    border: 1.5px solid #33b35e;
+    cursor: pointer;
 }

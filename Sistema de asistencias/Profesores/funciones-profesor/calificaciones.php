@@ -1,22 +1,15 @@
 <?php
-    require_once '../../Conexion.php';
-    require_once '../../Clases/Profesor.php';
-    require_once '../../Clases/Materia.php';
-    session_start();
 
-    if(isset($_POST['id-materia'])){
-        $id_materia = $_POST['id-materia'];
-        $_SESSION['id_materia'] = $id_materia;
-    }
+require_once '../../Conexion.php';
+require_once '../../Clases/Profesor.php';
+session_start();
 
-    $rowprofesor = $_SESSION['rowprofesor'];
-    $id_instituto = $_SESSION['id_instituto'];
-    $profesor = new Profesor($rowprofesor['nombre'],$rowprofesor['apellido'],$rowprofesor['dni'],$rowprofesor['legajo']);
-    $alumnos = $profesor->mostrarAlumnos($conexion,$_SESSION['id_materia'],$id_instituto);
-    $asistencia_dia = Materia::asistenciasDia($conexion,$_SESSION['id_materia']);
+$rowprofesor = $_SESSION['rowprofesor'];
+$id_instituto = $_SESSION['id_instituto'];
+$profesor = new Profesor($rowprofesor['nombre'],$rowprofesor['apellido'],$rowprofesor['dni'],$rowprofesor['legajo']);
+$alumnos = $profesor->mostrarAlumnos($conexion,$_SESSION['id_materia'],$id_instituto);
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,8 +37,8 @@
 <div class="menu-container">
     <div id="mySidenav" class="sidenav">
         <div class="cont-menu">
-            <a href="../listado-alumnos.php"><img src="../../Resources/Images/listado.png" class="img-menu-admin"><span class="span-listado">Listado diario</span></a>
-            <a href="calificaciones.php"><img src="../../Resources/Images/calificaciones.png" class="img-menu-admin"><span class="calificaciones-span">Calificaciones</span></a>
+            <a href="../profesores-index.php"><img src="../../Resources/Images/menu.png" class="img-menu-admin"><span class="menu-span">Menu principal</span></a>
+            <a href="tomar-asistencia.php"><img src="../../Resources/Images/tomar-asistencia.png" class="img-menu-admin"><span class="menu-span">Tomar asistencia</span></a>
             <a href="../estado-alumno.php"><img src="../../Resources/Images/graduado.png" class="img-menu-admin"><span class="alumno-span">Alumnos</span></a>
             <a href="crear-alumnos.php"><img src="../../Resources/Images/agregar alumno.png" class="img-menu-admin"><span class="agregar-alumno-span">Agregar alumno</span></a>
         </div>
@@ -55,34 +48,41 @@
         </div>
     </div>
 </div>
+
 <body>
-    <div class="container">
+<div class="container">
         <div class="top"><button class="button-back" onclick="redireccion(6)"></button><span class="titulo">LISTADO DE ALUMNOS</span></div>
         <div class="container-alumnos">
-        <?php if($asistencia_dia){  //abre el if del booleano nque comprueba si se tomo la asistencia de esta materia el dia actual?> 
-            <form action="procesar-asistencia.php" method="post" id="formulario-asistencias">
+            <form action="procesar-calificaciones.php" method="post" id="formulario-calificaciones"> 
                 <?php
                     if (!$alumnos) {
                         echo '<input type="button" value="INSCRIBIR ALUMNOS" class="boton-inscribir-alumnos" onclick="redireccion(3)">';
                     } else {
-                        echo'<div class="alumno-top"><div class="top-id">ID</div><div class="top-nombre">NOMBRE COMPLETO</div><div class="top-dni">DNI</div><div class="top-fecha_nacimiento">FECHA DE NACIMIENTO</div><div class="top-asistencia">ASISTENCIA</div></div>';
-                        foreach ($alumnos as $alumno) {
-                            echo '<div class="alumno"><div class="id">'.$alumno['id'].'</div><div class="nombre">'.$alumno['nombre']." ".$alumno['apellido'].'</div><div class="dni">'.$alumno['dni'].'</div><div class="fecha_nacimiento">'.$alumno['fecha_nacimiento'].'</div><input type="checkbox" class="asistencia" name="asistencia[]" value="'.$alumno['id'].'"></div>';
+                        echo'<div class="alumno-top"><div class="calificacion-top-nombre">NOMBRE COMPLETO</div><div class="calificacion-top-dni">DNI</div><div class="calificacion-top-fecha_nacimiento">FECHA DE NACIMIENTO</div><div class="calificacion-top-asistencia">INGRESAR NOTA</div></div>';
+                        foreach($alumnos as $alumno){
+                            echo '<div class="alumno"><div class="calificacion-nombre">'.$alumno['nombre']." ".$alumno['apellido'].'</div><div class="calificacion-dni">'.$alumno['dni'].'</div><div class="calificacion-fecha_nacimiento">'.$alumno['fecha_nacimiento'].'</div><div class="calificacion-clasificacion"><input class="input-notas" type="number" name="notas[]"><input type="hidden" name="id[]" value="'.$alumno['id'].'"></div></div>';
                         }
                     }
                 ?>
+        </div>
+
+        <div class="container-botton">
+            <div>
+                <label for="tipo-examen">Seleccione tipo de examen</label>
+                <select class="styled-select" name="tipo-examen" id="tipo-examen">
+                    <option value="1">PARCIAL</option>
+                    <option value="2">RECUPERATORIO</option>
+                    <option value="3">TRABAJO PRACTICO</option>
+                </select>
+            </div>
+                <input class="subir-calificaciones" type="button" value="SUBIR CALIFICACIOnES" onclick="formularioCalificaciones()">
+            </div>
             </form>
         </div>
-        <?php
-        
-        if($alumnos){
-           echo '<div class="boton"><input class="boton-tomar-asistencia" type="button" value="SUBIR ASISTENCIA" onclick="formularioAsistencias()"></div>';
-        }
-        
-        }else{ //cierra el if del booleano nque comprueba si se tomo la asistencia de esta materia el dia actual
-            echo '<div class="contenedor-lista"><div class="mensaje-asistencias-tomada">Ya se tomo asistencia este dia😊</div></div>';
-        }
-        ?>
-    </div>
+    <?php
+    
+
+
+    ?>
 </body>
 </html>

@@ -18,6 +18,21 @@ class Instituto{
         $this->cue = $cue;
     }
 
+    public function ramInstituto($conexion){
+        $instituto_id = $conexion->lastInsertId();
+        date_default_timezone_set('America/Argentina/Buenos_Aires');
+        $ano_actual = date('Y');
+
+        $sql_ram = 
+        "INSERT INTO ram(desaprobado,regular,promocion,asistencias_regular,asistencias_promocion,fecha_funcionamiento,instituto_id,tolerancia)
+        VALUE(5,6,8,60,70,:ano_actual,:instituto_id,10)"; //arreglar
+
+        $resultado = $conexion->prepare($sql_ram);
+        $resultado->bindParam(':ano_actual',$ano_actual);
+        $resultado->bindParam(':instituto_id',$instituto_id);
+        $resultado->execute();
+    }
+
     public function insertInstituto($conexion){
         $sql_insert =
         "INSERT INTO instituto (nombre,direccion,gestion,cue)
@@ -121,11 +136,26 @@ class Instituto{
         "INSERT INTO materia_instituto(materia_id,instituto_id)
         VALUE (:materia_id,:instituto_id)";
 
-        $resultado = $conexion->prepare();
+        $resultado = $conexion->prepare($sql_asignar_profesor);
         $resultado->bindParam(':materia_id',$materia_id);
         $resultado->bindParam(':instituto_id',$instituto_id);
         $resultado->execute();
     }
+
+    public static function getRam($conexion,$id_instituto){
+        $sql_ram = 
+        "SELECT *
+        FROM ram
+        WHERE instituto_id = :instituto_id";
+
+        $resultado = $conexion->prepare($sql_ram);
+        $resultado->bindParam(':instituto_id', $id_instituto);
+        $resultado->execute();
+
+        return $resultado->fetch(PDO::FETCH_ASSOC);
+    }
+
+
 }
 
 ?>
