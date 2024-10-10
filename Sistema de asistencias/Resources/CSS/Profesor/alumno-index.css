@@ -389,6 +389,23 @@ input[type="number"]:focus {
     transform: scale(1.05);
 }
 
+.boton-eliminar-instituto{
+    background-color: white; /* Color de fondo verde */
+    color: #cc2e2e; /* Color del texto blanco */
+    border: 2px solid #cc2e2e; /* Sin borde */
+    font-weight: 600;
+    width: 70%;
+    border-radius: 2px;
+    height: 70%; 
+    transition: 0.3s;
+}
+
+.boton-eliminar-instituto:hover{
+    background-color: #cc2e2e;
+    color: white;
+    transform: scale(1.05);
+}
+
 .descripcion{
     width: 30%;
     display: flex;

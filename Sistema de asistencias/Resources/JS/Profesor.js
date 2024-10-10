@@ -128,7 +128,7 @@ function formularioInscribirMateria(){
 
 function formularioInscribirInstituto(button) {
     Swal.fire({
-        title: "¿Desea inscribirse a este instituto",
+        title: "¿Desea inscribirse a este instituto?",
         showCancelButton: true,
         confirmButtonText: "Confirmar"
     }).then((result) => {
@@ -147,6 +147,29 @@ function formularioInscribirInstituto(button) {
             }, 1600);
         }
     });
+}
+
+function formularioEliminarInstituto(button) {
+  Swal.fire({
+      title: "¿Desea quitar este instituto?",
+      showCancelButton: true,
+      confirmButtonText: "Confirmar"
+  }).then((result) => {
+      if (result.isConfirmed) {
+          Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Se ha quitado al instituto correctamente!",
+              showConfirmButton: false,
+              timer: 1500
+          });
+
+          // Enviar el formulario al que pertenece el botón
+          setTimeout(() => {
+              button.closest('form').submit(); // Envía el formulario correspondiente
+          }, 1600);
+      }
+  });
 }
 
 

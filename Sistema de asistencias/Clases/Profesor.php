@@ -31,10 +31,10 @@
             // se crea un array del tamaño de la cantidad que tenga institutos_ids asi poder utilizarlo desde la con sulta con IN, sin este array con '?' no se puede ejecutar con pdo ya que es para evitar sql inyection
             $array_ids = implode(',', array_fill(0, count($instituto_ids), '?'));
         
-            $sql_institutos = "
-                SELECT id, nombre
-                FROM instituto
-                WHERE id IN ($array_ids)";
+            $sql_institutos = 
+            "SELECT *
+            FROM instituto
+            WHERE id IN ($array_ids)";
         
             $resultado = $conexion->prepare($sql_institutos);
         
@@ -45,6 +45,19 @@
                 return false;
             }
 
+        }
+
+        public static function quitarInstituto($conexion,$id_profesor,$instituto_ids){
+
+            $sql_eliminar = 
+            "DELETE
+            FROM instituto_profesor
+            WHERE id_profesor = :id_profesor AND id_instituto = :id_instituto";
+
+            $resultado = $conexion->prepare($sql_eliminar);
+            $resultado->bindParam(':id_profesor',$id_profesor);
+            $resultado->bindParam(':id_instituto',$instituto_ids);
+            $resultado->execute();
         }
         
 

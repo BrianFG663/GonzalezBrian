@@ -6,26 +6,34 @@
     $materia_id = $_SESSION['id_materia'];
     $instituto_id = $_SESSION['id_instituto'];
 
+    if (isset($_POST['media-asistencia'])) { //quita media asistencia a los alumnos que se retiren antes de la tolerancia
+
+        $tolerancia = Materia::horaAsistencia($conexion,$materia_id,$instituto_id);
+        $asistencias = $_POST['media-asistencia'];
+        date_default_timezone_set('America/Argentina/Buenos_Aires');
+        $dia_actual = date('Y-m-d');
+
+        if($tolerancia){
+            $valor = 0.5;
+            foreach ($asistencias as $id_alumno) {
+                $sql_salida =
+                "UPDATE asistencias
+                SET valor = :valor
+                WHERE alumno_id = :alumno_id AND DATE(fecha_asistencia) = :dia_actual";
+    
+                $resultado = $conexion->prepare($sql_salida);
+                $resultado->bindParam(':alumno_id', $id_alumno);
+                $resultado->bindParam(':valor', $valor);
+                $resultado->bindParam(':dia_actual', $dia_actual);
+                $resultado->execute();
+            }
+        }
+
+        var_dump($asistencias);
+    }
 
     // busco si alguno de los dos array llega vacio y no, para poder poner el mensaje de que ya se tomo asistencia aunque no se ponga ningun presente
-    if(empty($_POST['asistencia']) && empty($_POST['asistencia-llegada']) || empty($_POST['asistencia-llegada']) && empty($_POST['asistencia'])){
-        date_default_timezone_set('America/Argentina/Buenos_Aires');
-        $dia_actual = date('Y-m-d H:i');
-        $valor = 1;
-        $sql_asistencia =
-        "INSERT INTO asistencias (fecha_asistencia,valor,materia_id)
-        VALUES(:fecha_asistencia,:valor,:materia_id)";
 
-        $resultado = $conexion->prepare($sql_asistencia);
-        $resultado->bindParam(':fecha_asistencia', $dia_actual);
-        $resultado->bindParam(':materia_id', $materia_id);
-        $resultado->bindParam(':valor', $valor);
-        $resultado->execute(); //subo una asistencia sin valor de alumno_id para marcar la asistencia del dia aunque no se tengan alumnos presentes
-
-        header('location: ../listado-alumnos.php');
-        exit();
-    }
-    
     if (isset($_POST['asistencia']) || isset($_POST['asistencia-llegada'])) { //busco los valores de alguno de los dos arrays
 
         date_default_timezone_set('America/Argentina/Buenos_Aires');
@@ -64,30 +72,5 @@
         exit();
     }
 
-    if (isset($_POST['media-asistencia'])) { //quita media asistencia a los alumnos que se retiren antes de la tolerancia
 
-        $tolerancia = Materia::horaAsistencia($conexion,$materia_id,$instituto_id);
-        $asistencias = $_POST['media-asistencia'];
-        date_default_timezone_set('America/Argentina/Buenos_Aires');
-        $dia_actual = date('Y-m-d');
-
-        if($tolerancia){
-            $valor = 0.5;
-            foreach ($asistencias as $id_alumno) {
-                $sql_salida =
-                "UPDATE asistencias
-                SET valor = :valor
-                WHERE alumno_id = :alumno_id AND DATE(fecha_asistencia) = :dia_actual";
-    
-                $resultado = $conexion->prepare($sql_salida);
-                $resultado->bindParam(':alumno_id', $id_alumno);
-                $resultado->bindParam(':valor', $valor);
-                $resultado->bindParam(':dia_actual', $dia_actual);
-                $resultado->execute();
-            }
-        }
-
-        header('location: ../listado-alumnos.php');
-        exit();
-    }
 ?>

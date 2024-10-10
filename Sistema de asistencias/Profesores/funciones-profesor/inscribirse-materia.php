@@ -10,7 +10,18 @@ $instituto = Instituto::buscarInstituto($conexion,$instituto_id);
 $materias_libres= Materia::buscarMateria($conexion,$instituto_id);
 ?>
 
+<?php
 
+    if(isset($_POST['id_materia'])){
+        $materia_id = $_POST['id_materia'];
+        $profesor_id = $rowprofesor['id'];
+        Materia::asignarProfesor($conexion,$materia_id,$profesor_id,$instituto_id);
+
+        header('location: inscribirse-materia.php');
+        exit();
+    }
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -82,15 +93,3 @@ $materias_libres= Materia::buscarMateria($conexion,$instituto_id);
 </html>
 
 
-<?php
-
-    if(isset($_POST['id_materia'])){
-        $materia_id = $_POST['id_materia'];
-        $profesor_id = $rowprofesor['id'];
-        Materia::asignarProfesor($conexion,$materia_id,$profesor_id,$instituto_id);
-
-        header('location: inscribirse-materia.php');
-        exit();
-    }
-
-?>

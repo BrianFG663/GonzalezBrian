@@ -6,17 +6,21 @@ session_start();
 $rowprofesor = $_SESSION['rowprofesor'];
 $profesor_id = $rowprofesor['id'];
 
-$institutos = Instituto::institutosLibres($conexion,$profesor_id); 
+$institutos = Profesor::institutosProfesor($conexion,$profesor_id); 
 ?>
 
 
 <?php
 
-    if (isset($_POST['id_instituto'])){
-        $instituto_id = $_POST['id_instituto'];
-        Profesor::asignarInstituto($conexion,$profesor_id,$instituto_id);
+    if (isset($_POST['ids_institutos'])){
+        $institutos_ids = $_POST['ids_institutos'];
 
-        header('location: inscribirse-instituto.php');
+        foreach($institutos_ids as $instituto_id){
+            Profesor::quitarInstituto($conexion,$profesor_id,$instituto_id);
+        }
+
+        header('location: quitar-instituto.php');
+        exit();
     }
 
 ?>
@@ -65,7 +69,7 @@ $institutos = Instituto::institutosLibres($conexion,$profesor_id);
         <div class="container-alumnos">
                 <?php
                     if(!$institutos){
-                        echo "<div class='mensaje-materias'>NO HAY MATERIAS DISPONIBLES EN ESTE INSTITUTO</div>";
+                        echo "<div class='mensaje-materias'>NO ESTA INSCRIPTO A NINGUN INSTITUTO</div>";
                     }else{
                         echo '<div class="contenedor-materia-top"><div class="id-materia-top">ID</div><div class="nombre_materia_top">NOMBRE</div><div class="descripcion-top">DIRECCION</div><div class="fecha_descripcion-top">C.U.E</div><div class="codigo_materia-top">GESTION DEL INSTITUTO</div><div class="div-inscribirse-materia-top">¿DESEA INSCRIBIRSE?</div></div>';
                         foreach ($institutos as $instituto) {
@@ -77,8 +81,8 @@ $institutos = Instituto::institutosLibres($conexion,$profesor_id);
                                     <div class="codigo_materia">'.$instituto['gestion'].'</div>
                                         <div class="div-inscribirse-materia">
                                             <form action="'.$_SERVER['PHP_SELF'].'" method="post"  id="inscribir-profesor">
-                                                <input class="boton-inscribirse-materia" type="button" value="INSCRIBIRSE AL INSTITUTO" onclick="formularioInscribirInstituto(this)">
-                                                <input type="hidden" name="id_instituto" value="'.$instituto['id'].'">
+                                                <input class="boton-eliminar-instituto" type="button" value="QUITAR INSTITUTO" onclick="formularioInscribirInstituto(this)">
+                                                <input type="hidden" name="ids_institutos[]" value="'.$instituto['id'].'">
                                             </form>
                                         </div>
                                 </div>';

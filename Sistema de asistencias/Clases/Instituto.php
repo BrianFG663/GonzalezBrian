@@ -112,7 +112,7 @@ class Instituto{
         return $resultado->fetch(PDO::FETCH_ASSOC);
     }
 
-    public static function institutos($conexion,$profesor_id){
+    public static function institutosLibres($conexion,$profesor_id){
 
         $sql_institutos = 
         "SELECT i.id, i.nombre, i.cue, i.direccion, i.gestion
