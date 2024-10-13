@@ -1,23 +1,25 @@
 <?php
 require_once '../../Conexion.php';
 require_once '../../Clases/Profesor.php';
-require_once '../../Clases/Instituto.php';
+require_once '../../Clases/Materia.php';
 session_start();
 $rowprofesor = $_SESSION['rowprofesor'];
 $profesor_id = $rowprofesor['id'];
+$instituto_id = $_SESSION['id_instituto'];
 
-$institutos = Instituto::institutosLibres($conexion,$profesor_id); 
+$materias = Profesor::mostrarMaterias($conexion,$profesor_id,$instituto_id); 
 ?>
 
 
 <?php
-
-    if (isset($_POST['id_instituto'])){
-        $instituto_id = $_POST['id_instituto'];
-        Profesor::asignarInstituto($conexion,$profesor_id,$instituto_id);
-
-        header('location: inscribirse-instituto.php');
+    if (isset($_POST['id_materia'])){
+        $materia_id = $_POST['id_materia'];
+        Materia::quitarProfesor($conexion,$materia_id);
+        
+        header('location: quitar-materia.php');
+        exit();
     }
+
 
 ?>
 
@@ -50,7 +52,7 @@ $institutos = Instituto::institutosLibres($conexion,$profesor_id);
     <div id="mySidenav" class="sidenav">
         <div class="cont-menu">
             <a href="../profesores-index.php"><img src="../../Resources/Images/menu.png" class="img-menu-admin"><span class="menu-span">Menu principal</span></a>
-            <a href="quitar-instituto.php"><img src="../../Resources/Images/quitar-instituto.png" class="img-menu-admin"><span class="span-institutos">Institutos</span></a>
+            <a href="inscribirse-materia.php"><img src="../../Resources/Images/agregar materia.png" class="img-menu-admin"><span class="span-institutos">Materias</span></a>
             <a href="cambiar-parametros.php"><img src="../../Resources/Images/parametros.png" class="img-menu-admin"><span class="span-parametros">Parametros</span></a>
         </div>
         <div class="botton-div">
@@ -61,24 +63,24 @@ $institutos = Instituto::institutosLibres($conexion,$profesor_id);
 </div>
 <body>
     <div class="container-materia">
-        <div class="top"><button class="button-back" onclick="redireccion(2)"></button><span class="titulo">INSTITUTOS DISPONIBLES</span></div>
+        <div class="top"><button class="button-back" onclick="redireccion(2)"></button><span class="titulo"></span></div>
         <div class="container-alumnos">
                 <?php
-                    if(!$institutos){
+                    if(!$materias){
                         echo "<div class='mensaje-materias'>NO HAY MATERIAS DISPONIBLES EN ESTE INSTITUTO</div>";
                     }else{
-                        echo '<div class="contenedor-materia-top"><div class="id-materia-top">ID</div><div class="nombre_materia_top">NOMBRE</div><div class="descripcion-top">DIRECCION</div><div class="fecha_descripcion-top">C.U.E</div><div class="codigo_materia-top">GESTION DEL INSTITUTO</div><div class="div-inscribirse-materia-top">¿DESEA INSCRIBIRSE?</div></div>';
-                        foreach ($institutos as $instituto) {
+                        echo '<div class="contenedor-materia-top"><div class="id-materia-top">ID</div><div class="nombre_materia_top">NOMBRE</div><div class="descripcion-top">DESCRIPCION</div><div class="fecha_descripcion-top">FECHA DE CREACION</div><div class="codigo_materia-top">CODIGO DE MATERIA</div><div class="div-inscribirse-materia-top">¿DESEA INSCRIBIRSE?</div></div>';
+                        foreach ($materias as $materia) {
                             echo '<div class="contenedor-materia">
-                                    <div class="id-materia">'.$instituto['id'].'</div>
-                                    <div class="nombre_materia">'.$instituto['nombre'].'</div>
-                                    <div class="descripcion">'.$instituto['direccion'].'</div>
-                                    <div class="fecha_descripcion">'.$instituto['cue'].'</div>
-                                    <div class="codigo_materia">'.$instituto['gestion'].'</div>
+                                    <div class="id-materia">'.$materia['id'].'</div>
+                                    <div class="nombre_materia">'.$materia['nombre'].'</div>
+                                    <div class="descripcion">'.$materia['descripcion'].'</div>
+                                    <div class="fecha_descripcion">'.$materia['fecha_creacion'].'</div>
+                                    <div class="codigo_materia">'.$materia['codigo_materia'].'</div>
                                         <div class="div-inscribirse-materia">
-                                            <form action="'.$_SERVER['PHP_SELF'].'" method="post"  id="inscribir-profesor">
-                                                <input class="boton-inscribirse-materia" type="button" value="INSCRIBIRSE AL INSTITUTO" onclick="formularioInscribirInstituto(this)">
-                                                <input type="hidden" name="id_instituto" value="'.$instituto['id'].'">
+                                            <form action="'.$_SERVER['PHP_SELF'].'" method="post" id="formulario-eliminar-materia">
+                                                <input class="boton-eliminar-instituto" type="button" value="ELIMINAR A LA MATERIA" onclick="formularioInscribirMateria(this)">
+                                                <input type="hidden" name="id_materia" value="'.$materia['id'].'">
                                             </form>
                                         </div>
                                 </div>';

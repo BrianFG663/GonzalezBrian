@@ -40,8 +40,9 @@
     <div id="mySidenav" class="sidenav">
         <div class="cont-menu">
             <a href="funciones-profesor/cambiar-parametros.php"><img src="../Resources/Images/parametros.png" class="img-menu-admin"><span class="span-parametros">Parametros</span></a>
-            <a href="/Administradores/Tablas-DB/Administradores-db.php"><img src="../Resources/Images/graduado.png" class="img-menu-admin"><span class="alumno-span">Alumnos</span></a>
-            <a href="funciones-profesor/inscribirse-materia.php"><img src="../Resources/Images/agregar materia.png" class="img-menu-admin"><span class="span-institutos">Materias</span></a>        </div>
+            <a href="funciones-profesor/inscribirse-materia.php"><img src="../Resources/Images/agregar materia.png" class="img-menu-admin"><span class="span-institutos">Materias</span></a>
+            <a href="funciones-profesor/quitar-materia.php"><img src="../Resources/Images/quitar-materia.png" class="img-menu-admin"><span class="span-institutos">Materias</span></a>                
+        </div>
         <div class="botton-div">
             <img class="image-div" src="../Resources/Images/profesor.png">
             <span class="span-div"><?php echo  $rowprofesor['nombre']." ".$rowprofesor['apellido'] ?></span>

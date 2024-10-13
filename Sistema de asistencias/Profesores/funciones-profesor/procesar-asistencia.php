@@ -29,7 +29,8 @@
             }
         }
 
-        var_dump($asistencias);
+        header('location: ../listado-alumnos.php');
+        exit();
     }
 
     // busco si alguno de los dos array llega vacio y no, para poder poner el mensaje de que ya se tomo asistencia aunque no se ponga ningun presente

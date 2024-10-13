@@ -58,6 +58,17 @@
             $resultado->bindParam(':id_profesor',$id_profesor);
             $resultado->bindParam(':id_instituto',$instituto_ids);
             $resultado->execute();
+
+            $sql_quitar_id = 
+            "UPDATE materias m
+            JOIN materia_instituto mi ON m.id = mi.materia_id
+            SET m.profesor_id = NULL
+            WHERE m.profesor_id = :profesor_id AND mi.instituto_id = :instituto_id";
+
+            $resultado = $conexion->prepare($sql_quitar_id);
+            $resultado->bindParam(':profesor_id',$id_profesor);
+            $resultado->bindParam(':instituto_id',$instituto_ids);
+            $resultado->execute();
         }
         
 
@@ -126,7 +137,7 @@
 
         public static function mostrarMaterias($conexion,$id_profesor,$id_instituto){
             $sql_materias =
-            "SELECT DISTINCT m.id, m.nombre
+            "SELECT DISTINCT m.id, m.nombre, m.descripcion, m.fecha_creacion, m.codigo_materia
             FROM materias m
             JOIN profesor p ON m.profesor_id = p.id
             JOIN instituto_profesor ip ON p.id = ip.id_profesor

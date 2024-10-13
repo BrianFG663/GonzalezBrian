@@ -127,6 +127,17 @@ class Materia{
         $resultado->execute();
     }
 
+    public static function quitarProfesor($conexion,$materia_id){
+        $sql_quitar_materia = 
+        "UPDATE materias
+        SET profesor_id = NULL
+        WHERE id = :materia_id";
+
+        $resultado = $conexion->prepare($sql_quitar_materia);
+        $resultado->bindParam(':materia_id',$materia_id);
+        $resultado->execute();
+    }
+
     public static function asistenciasDia($conexion, $materia_id) {
 
         date_default_timezone_set('America/Argentina/Buenos_Aires');

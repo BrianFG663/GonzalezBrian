@@ -50,9 +50,9 @@ $materias_libres= Materia::buscarMateria($conexion,$instituto_id);
 <div class="menu-container">
     <div id="mySidenav" class="sidenav">
         <div class="cont-menu">
-            <a href="/Administradores/Tablas-DB/Materias-db.php"><img src="../../Resources/Images/libros.png" class="img-menu-admin"><span class="span-materias">Materias</span></a>
-            <a href="/Administradores/Tablas-DB/Institutos-db.php"><img src="../../Resources/Images/instituto.png" class="img-menu-admin"><span class="span-institutos">Institutos</span></a>
-            <a href="/Administradores/Tablas-DB/Administradores-db.php"><img src="../../Resources/Images/graduado.png" class="img-menu-admin"><span class="alumno-span">Alumnos</span></a>
+            <a href="../profesores-index.php"><img src="../../Resources/Images/menu.png" class="img-menu-admin"><span class="menu-span">Menu principal</span></a>
+            <a href="quitar-materia.php"><img src="../../Resources/Images/quitar-materia.png" class="img-menu-admin"><span class="span-institutos">Materias</span></a>
+            <a href="cambiar-parametros.php"><img src="../../Resources/Images/parametros.png" class="img-menu-admin"><span class="span-parametros">Parametros</span></a>
         </div>
         <div class="botton-div">
             <img class="image-div" src="../../Resources/Images/profesor.png">
@@ -60,6 +60,7 @@ $materias_libres= Materia::buscarMateria($conexion,$instituto_id);
         </div>
     </div>
 </div>
+
 <body>
     <div class="container-materia">
         <div class="top"><button class="button-back" onclick="redireccion(2)"></button><span class="titulo">MATERIAS DISPONIBLES EN <?php echo $instituto['nombre'] ?></span></div>
@@ -78,7 +79,7 @@ $materias_libres= Materia::buscarMateria($conexion,$instituto_id);
                                     <div class="codigo_materia">'.$materias['codigo_materia'].'</div>
                                         <div class="div-inscribirse-materia">
                                             <form action="'.$_SERVER['PHP_SELF'].'" method="post" id="formulario-incribir-materia">
-                                                <input class="boton-inscribirse-materia" type="button" value="INSCRIBIRSE A LA MATERIA" onclick="formularioInscribirMateria()">
+                                                <input class="boton-inscribirse-materia" type="button" value="INSCRIBIRSE A LA MATERIA" onclick="formularioInscribirMateria(this)">
                                                 <input type="hidden" name="id_materia" value="'.$materias['id'].'">
                                             </form>
                                         </div>

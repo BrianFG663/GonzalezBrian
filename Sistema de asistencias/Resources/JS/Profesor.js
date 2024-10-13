@@ -100,7 +100,7 @@ function formularioLlegada(){
       });
 }
 
-function formularioInscribirMateria(){
+function formularioInscribirMateria(button){
     Swal.fire({
         title: "¿Desea inscribirse a esta materia?",
         showCancelButton: true,
@@ -118,7 +118,7 @@ function formularioInscribirMateria(){
             });
     
             setTimeout(() => {
-                document.getElementById("formulario-incribir-materia").submit();
+                button.closest('form').submit();
             }, 1600);
 
         }
