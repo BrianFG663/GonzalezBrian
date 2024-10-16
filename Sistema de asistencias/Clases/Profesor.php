@@ -226,6 +226,16 @@
             return $resultado->fetchall(PDO::FETCH_ASSOC);
         }
 
+        public static function eliminarAlumno($id,$conexion){
+            $sql_eliminar = 
+            "DELETE FROM alumno
+            WHERE id = :id";
+            
+            $resultado_eliminar = $conexion->prepare($sql_eliminar);
+            $resultado_eliminar->bindParam(':id', $id);
+            $resultado_eliminar->execute();
+        }
+
     }
 
 ?>

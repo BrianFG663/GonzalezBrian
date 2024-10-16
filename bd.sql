@@ -31,17 +31,18 @@ CREATE TABLE IF NOT EXISTS `alumno` (
   PRIMARY KEY (`id`),
   KEY `FK_alumno_instituto` (`instituto_id`),
   CONSTRAINT `FK_alumno_instituto` FOREIGN KEY (`instituto_id`) REFERENCES `instituto` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Volcando datos para la tabla escueladb.alumno: ~7 rows (aproximadamente)
 INSERT INTO `alumno` (`id`, `apellido`, `nombre`, `dni`, `fecha_nacimiento`, `instituto_id`, `estado`) VALUES
 	(2, 'Ruiz', 'Lucila', '44421224', '2002-12-03', 115, 'desaprobado'),
-	(3, 'Cedres', 'Lucas', '44444444', '2024-09-30', 115, 'desaprobado'),
-	(4, 'Parada', 'Fausto', '33333333', '1997-09-30', 115, 'promocion'),
+	(3, 'Cedres', 'Lucas', '44444444', '2024-09-30', 115, 'promocion'),
+	(4, 'Parada', 'Fausto', '33333333', '1997-09-30', 115, 'desaprobado'),
 	(13, 'Agustin', 'Gomez', '44332243', '1111-11-11', 116, 'regular'),
 	(14, 'Gomez', 'Agus', '33333333', '1111-11-11', 116, 'regular'),
 	(15, 'Gomez', 'Agus', '33333333', '0111-11-11', 116, 'promocion'),
-	(16, 'Gonzalez', 'Brian', '44444433', '2222-02-12', 115, 'regular');
+	(22, 'Gonzalez', 'Brian', '43681175', '2024-10-18', 115, 'sin evaluar'),
+	(23, 'Schimpf', 'Melina', '23233232', '2024-10-26', 117, 'sin evaluar');
 
 -- Volcando estructura para tabla escueladb.asistencias
 CREATE TABLE IF NOT EXISTS `asistencias` (
@@ -55,13 +56,12 @@ CREATE TABLE IF NOT EXISTS `asistencias` (
   KEY `FK_asistencias_materias` (`materia_id`),
   CONSTRAINT `asistencias_ibfk_1` FOREIGN KEY (`alumno_id`) REFERENCES `alumno` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_asistencias_materias` FOREIGN KEY (`materia_id`) REFERENCES `materias` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=259 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=265 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla escueladb.asistencias: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla escueladb.asistencias: ~5 rows (aproximadamente)
 INSERT INTO `asistencias` (`id`, `alumno_id`, `fecha_asistencia`, `materia_id`, `valor`) VALUES
 	(241, 2, '2024-10-09 21:32:00', 13, 0.5),
 	(246, 3, '2024-10-09 21:40:00', 13, 1),
-	(254, 16, '2024-10-09 22:08:00', 13, 0.5),
 	(256, 4, '2024-10-11 00:18:00', 14, 1),
 	(258, 4, '2024-10-11 15:13:00', 14, 0.5);
 
@@ -94,7 +94,8 @@ CREATE TABLE IF NOT EXISTS `instituto_profesor` (
 
 -- Volcando datos para la tabla escueladb.instituto_profesor: ~1 rows (aproximadamente)
 INSERT INTO `instituto_profesor` (`id_profesor`, `id_instituto`) VALUES
-	(29, 115);
+	(29, 115),
+	(29, 117);
 
 -- Volcando estructura para tabla escueladb.materias
 CREATE TABLE IF NOT EXISTS `materias` (
@@ -107,14 +108,15 @@ CREATE TABLE IF NOT EXISTS `materias` (
   PRIMARY KEY (`id`),
   KEY `FK_materias_profesor` (`profesor_id`),
   CONSTRAINT `FK_materias_profesor` FOREIGN KEY (`profesor_id`) REFERENCES `profesor` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Volcando datos para la tabla escueladb.materias: ~4 rows (aproximadamente)
 INSERT INTO `materias` (`id`, `nombre`, `descripcion`, `fecha_creacion`, `codigo_materia`, `profesor_id`) VALUES
-	(13, 'MATEMATICAS', 'matematicas', '2024-09-27', 1, NULL),
+	(13, 'MATEMATICAS', 'matematicas', '2024-09-27', 1, 29),
 	(14, 'PROGRAMACION', 'ssss', '2024-09-29', 111, 29),
 	(15, 'INGLES', 'AAAA', '2024-10-01', 22222, NULL),
-	(16, 'SEMINARIO', 'AAAA', '2024-10-01', 234234, NULL);
+	(16, 'SEMINARIO', 'AAAA', '2024-10-01', 234234, NULL),
+	(17, 'INGLES TECNICO', 'ingles pero tecnico', '2024-10-16', 56743, 29);
 
 -- Volcando estructura para tabla escueladb.materia_alumno
 CREATE TABLE IF NOT EXISTS `materia_alumno` (
@@ -132,7 +134,8 @@ INSERT INTO `materia_alumno` (`alumno_id`, `materia_id`) VALUES
 	(3, 13),
 	(4, 14),
 	(15, 15),
-	(16, 13);
+	(22, 13),
+	(23, 17);
 
 -- Volcando estructura para tabla escueladb.materia_instituto
 CREATE TABLE IF NOT EXISTS `materia_instituto` (
@@ -149,7 +152,8 @@ INSERT INTO `materia_instituto` (`materia_id`, `instituto_id`) VALUES
 	(13, 115),
 	(14, 115),
 	(16, 115),
-	(15, 116);
+	(15, 116),
+	(17, 117);
 
 -- Volcando estructura para tabla escueladb.notas
 CREATE TABLE IF NOT EXISTS `notas` (
@@ -169,13 +173,10 @@ CREATE TABLE IF NOT EXISTS `notas` (
 INSERT INTO `notas` (`id`, `alumno_id`, `nota`, `fecha_nota`, `materia_id`) VALUES
 	(47, 2, 8, '2024-10-09', 13),
 	(48, 3, 8, '2024-10-09', 13),
-	(49, 16, 6, '2024-10-09', 13),
 	(50, 2, 6, '2024-10-09', 13),
 	(51, 3, 8, '2024-10-09', 13),
-	(52, 16, 7, '2024-10-09', 13),
 	(53, 2, 6, '2024-10-09', 13),
 	(54, 3, 8, '2024-10-09', 13),
-	(55, 16, 7, '2024-10-09', 13),
 	(56, 4, 7, '2024-10-10', 14),
 	(57, 4, 6, '2024-10-10', 14),
 	(58, 4, 10, '2024-10-11', 14);
@@ -198,7 +199,6 @@ INSERT INTO `profesor` (`id`, `apellido`, `nombre`, `dni`, `legajo`) VALUES
 
 -- Volcando estructura para tabla escueladb.ram
 CREATE TABLE IF NOT EXISTS `ram` (
-  `desaprobado` int NOT NULL DEFAULT '5',
   `regular` int NOT NULL DEFAULT '6',
   `promocion` int NOT NULL DEFAULT '7',
   `asistencias_regular` int NOT NULL DEFAULT '60',
@@ -210,9 +210,9 @@ CREATE TABLE IF NOT EXISTS `ram` (
   CONSTRAINT `FK_ram_instituto` FOREIGN KEY (`instituto_id`) REFERENCES `instituto` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla escueladb.ram: ~2 rows (aproximadamente)
-INSERT INTO `ram` (`desaprobado`, `regular`, `promocion`, `asistencias_regular`, `asistencias_promocion`, `fecha_funcionamiento`, `instituto_id`, `tolerancia`) VALUES
-	(5, 6, 6, 60, 60, '2024', 115, 1);
+-- Volcando datos para la tabla escueladb.ram: ~1 rows (aproximadamente)
+INSERT INTO `ram` (`regular`, `promocion`, `asistencias_regular`, `asistencias_promocion`, `fecha_funcionamiento`, `instituto_id`, `tolerancia`) VALUES
+	(6, 6, 60, 80, '2024', 115, 10);
 
 -- Volcando estructura para tabla escueladb.usuario
 CREATE TABLE IF NOT EXISTS `usuario` (

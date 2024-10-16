@@ -107,12 +107,12 @@ function formularioInscribirMateria(button){
         confirmButtonText: "Confirmar"
       }).then((result) => {
         if (result.isConfirmed) {
-          Swal.fire("Saved!", "", "success");
+          Swal.fire("Se ha inscrito a la materia!", "", "success");
 
             Swal.fire({
                 position: "center",
                 icon: "success",
-                title: "Se ha inscripto a la materia correctamente!",
+                title: "Se ha inscrito a la materia correctamente!",
                 showConfirmButton: false,
                 timer: 1500
             });
@@ -129,6 +129,29 @@ function formularioInscribirMateria(button){
 function formularioInscribirInstituto(button) {
     Swal.fire({
         title: "¿Desea inscribirse a este instituto?",
+        showCancelButton: true,
+        confirmButtonText: "Confirmar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Se ha inscripto al instituto correctamente!",
+                showConfirmButton: false,
+                timer: 1500
+            });
+
+            // Enviar el formulario al que pertenece el botón
+            setTimeout(() => {
+                button.closest('form').submit(); // Envía el formulario correspondiente
+            }, 1600);
+        }
+    });
+}
+
+function formularioEliminarAsistencia(button) {
+    Swal.fire({
+        title: "¿Desea eliminar esta asistencia?",
         showCancelButton: true,
         confirmButtonText: "Confirmar"
     }).then((result) => {
@@ -172,21 +195,91 @@ function formularioEliminarInstituto(button) {
   });
 }
 
+function formularioEliminarAlumno(button) {
+    Swal.fire({
+        title: "¿Desea quitar este alumno?",
+        showCancelButton: true,
+        confirmButtonText: "Confirmar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Se ha eliminado el alumno correctamente!",
+                showConfirmButton: false,
+                timer: 1500
+            });
+            // Enviar el formulario al que pertenece el botón
+            setTimeout(() => {
+                button.closest('form').submit(); // Envía el formulario correspondiente
+            }, 1600);
+        }
+    });
+  }
+
 
 function formularioAlumno(){
-    Swal.fire({
-        title: "¿Desea inscribir al alumno?",
-        showCancelButton: true,
-        confirmButtonText: "Inscribir"
-      }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-          Swal.fire("Saved!", "", "success");
-          setTimeout(() => {
-            document.getElementById("inscribir-alumno").submit();
-        }, 1000);
+    nombre = document.getElementById("nombre-alumno").value
+    apellido = document.getElementById("apellido-alumno").value
+    dni = document.getElementById("dni-alumno").value
+
+    if(dni !== ""){
+        if(apellido !== ""){
+            if(nombre !==""){
+                if (!isNaN(dni) && !/\s/.test(dni)) {
+                    if (/^[A-Za-z]+$/.test(nombre)) {
+                        if (/^[A-Za-z]+$/.test(apellido)) {
+                            Swal.fire({
+                                title: "¿Desea inscribir al alumno?",
+                                showCancelButton: true,
+                                confirmButtonText: "Inscribir"
+                              }).then((result) => {
+                                /* Read more about isConfirmed, isDenied below */
+                                if (result.isConfirmed) {
+                                  Swal.fire("Alumno inscrito!", "", "success");
+                                  setTimeout(() => {
+                                    document.getElementById("inscribir-alumno").submit();
+                                }, 1000);
+                                }
+                              });
+                        }else {
+                            Swal.fire({
+                                icon: "error",
+                                title: "El apellido no permite caracteres especiales o numeros",
+                            });
+                        }
+                    }else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "El nombre no permite caracteres especiales o numeros",
+                        });
+                    }
+                    
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "El  DNI no permite caracteres especiales o letras",
+                    });
+                }
+
+            }else{
+                Swal.fire({
+                    icon: "error",
+                    title: "Por favor completa el formulario"
+                });
+            }
+        }else{
+            Swal.fire({
+                icon: "error",
+                title: "Por favor completa el formulario"
+            });
         }
-      });
+    }else{
+        Swal.fire({
+            icon: "error",
+            title: "Por favor completa el formulario"
+        });
+    }
 }
 
 function formularioParametros(){

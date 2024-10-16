@@ -41,6 +41,8 @@ $alumnos = $profesor->mostrarAlumnos($conexion,$_SESSION['id_materia'],$id_insti
             <a href="tomar-asistencia.php"><img src="../../Resources/Images/tomar-asistencia.png" class="img-menu-admin"><span class="menu-span">Tomar asistencia</span></a>
             <a href="../estado-alumno.php"><img src="../../Resources/Images/graduado.png" class="img-menu-admin"><span class="alumno-span">Alumnos</span></a>
             <a href="crear-alumnos.php"><img src="../../Resources/Images/agregar alumno.png" class="img-menu-admin"><span class="agregar-alumno-span">Agregar alumno</span></a>
+            <a href="eliminar-alumnos.php"><img src="../../Resources/Images/eliminar-alumno.png" class="img-menu-admin"><span class="agregar-alumno-span">eliminar alumno</span></a>
+
         </div>
         <div class="botton-div">
             <img class="image-div" src="../../Resources/Images/profesor.png">
@@ -51,7 +53,7 @@ $alumnos = $profesor->mostrarAlumnos($conexion,$_SESSION['id_materia'],$id_insti
 
 <body>
 <div class="container">
-        <div class="top"><button class="button-back" onclick="redireccion(6)"></button><span class="titulo">LISTADO DE ALUMNOS</span></div>
+        <div class="top"></button><span class="titulo">LISTADO DE ALUMNOS</span></div>
         <div class="container-alumnos">
             <form action="procesar-calificaciones.php" method="post" id="formulario-calificaciones"> 
                 <?php

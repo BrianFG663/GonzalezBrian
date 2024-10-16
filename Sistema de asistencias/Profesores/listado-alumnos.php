@@ -49,7 +49,6 @@
         <div class="cont-menu">
             <a href="profesores-index.php"><img src="../../Resources/Images/menu.png" class="img-menu-admin"><span class="menu-span">Menu principal</span></a>
             <a href="funciones-profesor/tomar-asistencia.php"><img src="../../Resources/Images/tomar-asistencia.png" class="img-menu-admin"><span class="menu-span">Tomar asistencia</span></a>
-            <a href="/Administradores/Tablas-DB/Institutos-db.php"><img src="../Resources/Images/instituto.png" class="img-menu-admin"><span class="span-institutos">Institutos</span></a>
             <a href="estado-alumno.php"><img src="../Resources/Images/graduado.png" class="img-menu-admin"><span class="alumno-span">Alumnos</span></a>
         </div>
         <div class="botton-div">
@@ -65,9 +64,21 @@
             <form action="funciones-profesor/procesar-asistencia.php" method="post" id="formulario-salida">
                 <?php
                     if($alumnoPresentes){
-                        echo'<div class="alumno-top"><div class="top-id">ID</div><div class="top-nombre">NOMBRE COMPLETO</div><div class="top-dni">DNI</div><div class="top-fecha_nacimiento">FECHA DE NACIMIENTO</div><div class="top-asistencia">MARCAR SALIDA</div></div>';
+                        echo'<div class="alumno-top"><div class="top-id">ID</div><div class="top-nombre">NOMBRE COMPLETO</div><div class="top-dni">DNI</div><div class="top-fecha_nacimiento">FECHA DE NACIMIENTO</div><div class="top-asistencia">MARCAR SALIDA</div><div class="eliminar-asistencia-top">ELIMINAR ASISTENCIA</div></div>';
                         foreach ($alumnoPresentes as $alumnoPresente) {
-                            echo '<div class="alumno"><div class="id">'.$alumnoPresente['id'].'</div><div class="nombre">'.$alumnoPresente['nombre']." ".$alumnoPresente['apellido'].'</div><div class="dni">'.$alumnoPresente['dni'].'</div><div class="fecha_nacimiento">'.$alumnoPresente['fecha_nacimiento'].'</div><input type="checkbox" class="asistencia" name="media-asistencia[]" value="'.$alumnoPresente['id'].'"></div>';
+                            echo '<div class="alumno">
+                                    <div class="id">'.$alumnoPresente['id'].'</div>
+                                    <div class="nombre">'.$alumnoPresente['nombre']." ".$alumnoPresente['apellido'].'</div>
+                                    <div class="dni">'.$alumnoPresente['dni'].'</div>
+                                    <div class="fecha_nacimiento">'.$alumnoPresente['fecha_nacimiento'].'</div>
+                                    <input type="checkbox" class="asistencia" name="media-asistencia[]" value="'.$alumnoPresente['id'].'">
+                                    <div class="eliminar-asistencia">
+                                        <form action="funciones-profesor/procesar-asistencia.php" method="post">
+                                            <input type="button" value="ELIMINAR ASISTENCIA" class="boton-eliminar-asistencia" onclick="formularioEliminarAsistencia(this)">
+                                            <input type="hidden" value="'.$alumnoPresente['id'].'" name="id_eliminar">
+                                        </form>
+                                    </div>
+                                </div>';
                         }
                     }else{
                         echo '<div class="contenedor-lista-asistencia"><div class="mensaje-asistencias-tomada">Hoy se encuentran todos asuentes😑</div></div>';
@@ -89,9 +100,15 @@
             <form action="funciones-profesor/procesar-asistencia.php" method="post" id="formulario-tarde">
                 <?php
                     if($alumnoAusentes){
-                        echo'<div class="alumno-top"><div class="top-id">ID</div><div class="top-nombre">NOMBRE COMPLETO</div><div class="top-dni">DNI</div><div class="top-fecha_nacimiento">FECHA DE NACIMIENTO</div><div class="top-asistencia">MARCAR LLEGADA</div></div>';
+                        echo'<div class="alumno-top"><div class="top-id">ID</div><div class="top-nombre-ausentes">NOMBRE COMPLETO</div><div class="top-dni-ausentes">DNI</div><div class="top-fecha_nacimiento">FECHA DE NACIMIENTO</div><div class="top-asistencia">MARCAR LLEGADA</div></div>';
                         foreach ($alumnoAusentes as $alumnoAusente) {
-                            echo '<div class="alumno"><div class="id">'.$alumnoAusente['id'].'</div><div class="nombre">'.$alumnoAusente['nombre']." ".$alumnoAusente['apellido'].'</div><div class="dni">'.$alumnoAusente['dni'].'</div><div class="fecha_nacimiento">'.$alumnoAusente['fecha_nacimiento'].'</div><input type="checkbox" class="asistencia" name="asistencia-llegada[]" value="'.$alumnoAusente['id'].'"></div>';
+                            echo '<div class="alumno">
+                                    <div class="id">'.$alumnoAusente['id'].'</div>
+                                    <div class="nombre-ausente">'.$alumnoAusente['nombre']." ".$alumnoAusente['apellido'].'</div>
+                                    <div class="dni-ausente">'.$alumnoAusente['dni'].'</div>
+                                    <div class="fecha_nacimiento">'.$alumnoAusente['fecha_nacimiento'].'</div>
+                                    <input type="checkbox" class="asistencia" name="asistencia-llegada[]" value="'.$alumnoAusente['id'].'">
+                                </div>';
                         }
                     }else{
                         echo '<div class="contenedor-lista-asistencia"><div class="mensaje-asistencias-tomada">Hoy se encuentran todos presentes😦</div></div>';

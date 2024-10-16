@@ -17,10 +17,10 @@ body {
 
 .container{
     position: relative;
-    top: 15vh;
+    top: 29vh;
     left: 27%;
     width: 60%;
-    height: 75vh;
+    height: 50vh;
     background-color: white;
     overflow-y: auto;
     margin-bottom: 4vh;
@@ -116,6 +116,8 @@ option{
 }
 
 .cambiar-parametros {
+    position: relative;
+    top: 3vh;
     color: #33b35e;
     font-weight: 600;
     background-color: white;
@@ -132,4 +134,42 @@ option{
     background-color: #33b35ea8;
     border: 1.5px solid #33b35e;
     cursor: pointer;
+}
+
+#instituto-select {
+    width: 84%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #b33333;
+    border-radius: 2px;
+    font-size: 16px;
+    color: #333;
+    background-color: white;
+    position: relative;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+#instituto-select::after {
+    content: '▼';
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #b33333; /* Color de la flecha */
+}
+
+#instituto-select:hover {
+    border-color: white;
+    background-color: rgb(240, 240, 240);
+}
+
+#instituto-select:focus {
+    outline: none;
+    border-color: #b33333;
+    box-shadow: 0 0 5px rgba(179, 51, 51, 0.5);
+}
+
+/* Estilo para el desplegable */
+#instituto-select option {
+    background-color: white; /* Fondo de las opciones */
+    color: #333; /* Color de texto */
+    border: 1px solid #b33333; /* Bordes de las opciones (esto puede no aplicarse en todos los navegadores) */
 }

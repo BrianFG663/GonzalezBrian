@@ -73,5 +73,24 @@
         exit();
     }
 
+    if(isset($_POST['id_eliminar'])){
+        date_default_timezone_set('America/Argentina/Buenos_Aires');
+        $dia_actual = date('Y-m-d');
+        $id_alumno = $_POST['id_eliminar'];
+        var_dump($id_alumno);
+
+        $sql_eliminar_asistencia = 
+        "DELETE FROM asistencias
+        WHERE alumno_id = :alumno_id AND DATE(fecha_asistencia) = :fecha_asistencia";
+
+        $resultado = $conexion->prepare($sql_eliminar_asistencia);
+        $resultado->bindParam(':alumno_id', $id_alumno);
+        $resultado->bindParam(':fecha_asistencia', $dia_actual);
+        $resultado->execute();
+
+        header('location: ../listado-alumnos.php');
+        exit();
+    }
+
 
 ?>

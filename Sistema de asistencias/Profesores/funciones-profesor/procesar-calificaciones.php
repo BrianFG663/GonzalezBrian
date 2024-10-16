@@ -44,29 +44,6 @@
             $resultado->bindParam(':materia_id',$materia_id);
             $resultado->execute();
         }
-
-        /*  if($notasFiltradas[$index] <= $ram['desaprobado'] ){
-                $estado = "desaprobado";
-            }
-
-            if($notasFiltradas[$index] >= $ram['regular'] && $notasFiltradas[$index] < $ram['promocion']){
-                $estado = "regular";
-            }
-
-            if($notasFiltradas[$index] >= $ram['promocion']){
-                $estado = "promocion";
-            }
-                $sql_estado = 
-                "UPDATE alumno
-                SET estado = :estado
-                WHERE id = :alumno_id";
-
-                $resultado = $conexion->prepare($sql_estado);
-                $resultado->bindParam(':estado',$estado);
-                $resultado->bindParam(':alumno_id',$idsFiltrado);
-                $resultado->execute(); 
-                
-            } */
         
     }
 

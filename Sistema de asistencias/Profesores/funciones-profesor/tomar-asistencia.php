@@ -48,6 +48,7 @@
             <a href="calificaciones.php"><img src="../../Resources/Images/calificaciones.png" class="img-menu-admin"><span class="calificaciones-span">Calificaciones</span></a>
             <a href="../estado-alumno.php"><img src="../../Resources/Images/graduado.png" class="img-menu-admin"><span class="alumno-span">Alumnos</span></a>
             <a href="crear-alumnos.php"><img src="../../Resources/Images/agregar alumno.png" class="img-menu-admin"><span class="agregar-alumno-span">Agregar alumno</span></a>
+            <a href="eliminar-alumnos.php"><img src="../../Resources/Images/eliminar-alumno.png" class="img-menu-admin"><span class="agregar-alumno-span">eliminar alumno</span></a>
         </div>
         <div class="botton-div">
             <img class="image-div" src="../../Resources/Images/profesor.png">
@@ -57,17 +58,17 @@
 </div>
 <body>
     <div class="container">
-        <div class="top"><button class="button-back" onclick="redireccion(6)"></button><span class="titulo">LISTADO DE ALUMNOS</span></div>
+        <div class="top"><button class="button-back" onclick="redireccion(2)"></button><span class="titulo">LISTADO DE ALUMNOS</span></div>
         <div class="container-alumnos">
         <?php if($asistencia_dia){  //abre el if del booleano nque comprueba si se tomo la asistencia de esta materia el dia actual?> 
             <form action="procesar-asistencia.php" method="post" id="formulario-asistencias">
                 <?php
                     if (!$alumnos) {
-                        echo '<input type="button" value="INSCRIBIR ALUMNOS" class="boton-inscribir-alumnos" onclick="redireccion(3)">';
+                        echo "<div class='mensaje-alumno'>No hay alumnos en esta materia 😑</div>";
                     } else {
-                        echo'<div class="alumno-top"><div class="top-id">ID</div><div class="top-nombre">NOMBRE COMPLETO</div><div class="top-dni">DNI</div><div class="top-fecha_nacimiento">FECHA DE NACIMIENTO</div><div class="top-asistencia">ASISTENCIA</div></div>';
+                        echo'<div class="alumno-top"><div class="top-id">ID</div><div class="top-nombre-ausentes">NOMBRE COMPLETO</div><div class="top-dni-ausentes">DNI</div><div class="top-fecha_nacimiento">FECHA DE NACIMIENTO</div><div class="top-asistencia">ASISTENCIA</div></div>';
                         foreach ($alumnos as $alumno) {
-                            echo '<div class="alumno"><div class="id">'.$alumno['id'].'</div><div class="nombre">'.$alumno['nombre']." ".$alumno['apellido'].'</div><div class="dni">'.$alumno['dni'].'</div><div class="fecha_nacimiento">'.$alumno['fecha_nacimiento'].'</div><input type="checkbox" class="asistencia" name="asistencia[]" value="'.$alumno['id'].'"></div>';
+                            echo '<div class="alumno"><div class="id">'.$alumno['id'].'</div><div class="nombre-ausente">'.$alumno['nombre']." ".$alumno['apellido'].'</div><div class="dni-ausente">'.$alumno['dni'].'</div><div class="fecha_nacimiento">'.$alumno['fecha_nacimiento'].'</div><input type="checkbox" class="asistencia" name="asistencia[]" value="'.$alumno['id'].'"></div>';
                         }
                     }
                 ?>
