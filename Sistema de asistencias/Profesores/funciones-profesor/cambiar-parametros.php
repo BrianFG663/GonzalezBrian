@@ -56,7 +56,7 @@
             <div class="container-input">
 
                 <label for="regular">Nota minima para alumno regular:</label>
-                <input type="number" name="regular" id="relgula">
+                <input type="number" name="regular" id="regular">
                 <label for="promocion">Nota minima para alumno promocionado:</label>
                 <input type="number" name="promocion" id="promocion">
                 <label for="asistencia-regular">Porcentaje de asistencias para alumnos regulares:</label>

@@ -209,9 +209,8 @@ function formularioEliminarAlumno(button) {
                 showConfirmButton: false,
                 timer: 1500
             });
-            // Enviar el formulario al que pertenece el botón
             setTimeout(() => {
-                button.closest('form').submit(); // Envía el formulario correspondiente
+                button.closest('form').submit();
             }, 1600);
         }
     });
@@ -222,39 +221,57 @@ function formularioAlumno(){
     nombre = document.getElementById("nombre-alumno").value
     apellido = document.getElementById("apellido-alumno").value
     dni = document.getElementById("dni-alumno").value
+    fecha = document.getElementById("fecha-alumno").value
+
+    const comprobar_dni = /^\d+$/.test(dni);
+    const comprobar_nombre = /^[a-zA-Z\s]*$/.test(nombre);
+    const comprobar_apellido = /^[a-zA-Z\s]*$/.test(apellido);
+    const intMax = 100000000;
 
     if(dni !== ""){
         if(apellido !== ""){
             if(nombre !==""){
-                if (!isNaN(dni) && !/\s/.test(dni)) {
-                    if (/^[A-Za-z]+$/.test(nombre)) {
-                        if (/^[A-Za-z]+$/.test(apellido)) {
-                            Swal.fire({
-                                title: "¿Desea inscribir al alumno?",
-                                showCancelButton: true,
-                                confirmButtonText: "Inscribir"
-                              }).then((result) => {
-                                /* Read more about isConfirmed, isDenied below */
-                                if (result.isConfirmed) {
-                                  Swal.fire("Alumno inscrito!", "", "success");
-                                  setTimeout(() => {
-                                    document.getElementById("inscribir-alumno").submit();
-                                }, 1000);
+                if (comprobar_dni) {
+                    if(dni <= intMax){
+                        if (comprobar_nombre) {
+                            if (comprobar_apellido) {
+                                if(fecha !== ""){
+                                    Swal.fire({
+                                        title: "¿Desea inscribir al alumno?",
+                                        showCancelButton: true,
+                                        confirmButtonText: "Inscribir"
+                                      }).then((result) => {
+                                        if (result.isConfirmed) {
+                                          Swal.fire("Alumno inscrito!", "", "success");
+                                          setTimeout(() => {
+                                            document.getElementById("inscribir-alumno").submit();
+                                        }, 1000);
+                                        }
+                                    });
+                                }else{
+                                    Swal.fire({
+                                        icon: "error",
+                                        title: "Debe asignar una fecha de nacimiento",
+                                    });
                                 }
-                              });
+                            }else {
+                                Swal.fire({
+                                    icon: "error",
+                                    title: "El apellido no permite caracteres especiales o numeros",
+                                });
+                            }
                         }else {
                             Swal.fire({
                                 icon: "error",
-                                title: "El apellido no permite caracteres especiales o numeros",
+                                title: "El nombre no permite caracteres especiales o numeros",
                             });
                         }
-                    }else {
+                    }else{
                         Swal.fire({
                             icon: "error",
-                            title: "El nombre no permite caracteres especiales o numeros",
+                            title: "el DNI no puede ser mayor a 100.000.000",
                         });
-                    }
-                    
+                    }    
                 } else {
                     Swal.fire({
                         icon: "error",
@@ -283,19 +300,46 @@ function formularioAlumno(){
 }
 
 function formularioParametros(){
-    Swal.fire({
-        title: "¿Desea cambiar los parametros?",
-        showCancelButton: true,
-        confirmButtonText: "Inscribir"
-      }).then((result) => {
+    regular = document.getElementById("regular").value;
+    promocion = document.getElementById("promocion").value;
+    asistenciaRegular = document.getElementById("asistencia-regular").value;
+    asistenciaPromocion = document.getElementById("asistencia-promocion").value;
+    tolerancia = document.getElementById("tolerancia").value;
 
-        if (result.isConfirmed) {
-          Swal.fire("Parametros cambiados!", "", "success");
-          setTimeout(() => {
-            document.getElementById("formulario-parametros").submit();
-        }, 1000);
+    if(regular == "" && promocion == "" && asistenciaPromocion == "" && asistenciaRegular == "" && tolerancia == ""){
+        Swal.fire({
+            icon: "error",
+            title: "Debe rellenar al menos un campo"
+        });
+    }else{
+        if(regular >= 0 && promocion >= 0){
+            if(regular <= 10 && promocion <= 10){
+                Swal.fire({
+                    title: "¿Desea cambiar los parametros?",
+                    showCancelButton: true,
+                    confirmButtonText: "Inscribir"
+                  }).then((result) => {
+            
+                    if (result.isConfirmed) {
+                      Swal.fire("Parametros cambiados!", "", "success");
+                      setTimeout(() => {
+                        document.getElementById("formulario-parametros").submit();
+                    }, 1000);
+                    }
+                });
+            }else{
+                Swal.fire({
+                    icon: "error",
+                    title: "No se puede asignar una nota mayor a diez"
+                });   
+            }
+        }else{
+            Swal.fire({
+                icon: "error",
+                title: "No se puede asignar una nota menor a cero"
+            }); 
         }
-      });
+    }
 }
 
 function formularioCalificaciones(){

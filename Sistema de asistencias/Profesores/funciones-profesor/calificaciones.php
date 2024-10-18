@@ -78,13 +78,8 @@ $alumnos = $profesor->mostrarAlumnos($conexion,$_SESSION['id_materia'],$id_insti
                 </select>
             </div>
                 <input class="subir-calificaciones" type="button" value="SUBIR CALIFICACIOnES" onclick="formularioCalificaciones()">
-            </div>
             </form>
         </div>
-    <?php
-    
-
-
-    ?>
+</div>
 </body>
 </html>

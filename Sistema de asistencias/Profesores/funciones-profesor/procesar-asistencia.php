@@ -56,7 +56,7 @@
 
         }
 
-        foreach ($asistencias as $id_alumno) {
+        foreach ($asistencias as $id_alumno){
             $sql_asistencia =
             "INSERT INTO asistencias (alumno_id,fecha_asistencia,materia_id,valor)
             VALUES(:alumno_id,:fecha_asistencia,:materia_id,:valor)";

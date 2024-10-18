@@ -44,7 +44,11 @@
             $resultado->bindParam(':materia_id',$materia_id);
             $resultado->execute();
         }
-        
+
+        header('location: calificaciones.php');
+        exit();
     }
+
+    
 
 ?>
