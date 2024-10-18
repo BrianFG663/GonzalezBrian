@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `alumno` (
   CONSTRAINT `FK_alumno_instituto` FOREIGN KEY (`instituto_id`) REFERENCES `instituto` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla escueladb.alumno: ~7 rows (aproximadamente)
+-- Volcando datos para la tabla escueladb.alumno: ~8 rows (aproximadamente)
 INSERT INTO `alumno` (`id`, `apellido`, `nombre`, `dni`, `fecha_nacimiento`, `instituto_id`, `estado`) VALUES
 	(2, 'Ruiz', 'Lucila', '44421224', '2002-12-03', 115, 'desaprobado'),
 	(3, 'Cedres', 'Lucas', '44444444', '2024-09-30', 115, 'promocion'),
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `asistencias` (
   CONSTRAINT `FK_asistencias_materias` FOREIGN KEY (`materia_id`) REFERENCES `materias` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=265 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla escueladb.asistencias: ~5 rows (aproximadamente)
+-- Volcando datos para la tabla escueladb.asistencias: ~4 rows (aproximadamente)
 INSERT INTO `asistencias` (`id`, `alumno_id`, `fecha_asistencia`, `materia_id`, `valor`) VALUES
 	(241, 2, '2024-10-09 21:32:00', 13, 0.5),
 	(246, 3, '2024-10-09 21:40:00', 13, 1),
@@ -110,7 +110,7 @@ CREATE TABLE IF NOT EXISTS `materias` (
   CONSTRAINT `FK_materias_profesor` FOREIGN KEY (`profesor_id`) REFERENCES `profesor` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla escueladb.materias: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla escueladb.materias: ~5 rows (aproximadamente)
 INSERT INTO `materias` (`id`, `nombre`, `descripcion`, `fecha_creacion`, `codigo_materia`, `profesor_id`) VALUES
 	(13, 'MATEMATICAS', 'matematicas', '2024-09-27', 1, 29),
 	(14, 'PROGRAMACION', 'ssss', '2024-09-29', 111, 29),
@@ -128,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `materia_alumno` (
   CONSTRAINT `FK__materias` FOREIGN KEY (`materia_id`) REFERENCES `materias` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla escueladb.materia_alumno: ~5 rows (aproximadamente)
+-- Volcando datos para la tabla escueladb.materia_alumno: ~6 rows (aproximadamente)
 INSERT INTO `materia_alumno` (`alumno_id`, `materia_id`) VALUES
 	(2, 13),
 	(3, 13),

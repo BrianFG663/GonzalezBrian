@@ -85,16 +85,14 @@
                     <span class="fecha_creacion">' . $result['fecha_creacion'] . '</span>
                     <span class="codigo_materia">' . $result['codigo_materia'] . '</span>
                     <div class="boton-eliminar">
-                        <form action="'.$_SERVER['PHP_SELF'].'" method="post" id="eliminar-admin-' . $result['id'] . '"> <!-- Cambiado aquí -->
+                        <form action="'.$_SERVER['PHP_SELF'].'" method="post" id="eliminar-admin">
                             <input type="hidden" name="id" value="' . $result['id'] . '">
-                            <input type="button" class="eliminar-boton" value="Eliminar materia" onclick="EliminarAdmin(' . $result['id'] . ')">
+                            <input type="button" class="eliminar-boton" value="Eliminar materia" onclick="EliminarAdmin(this)">
                         </form>
                     </div>
                 </div>';
-}
-?>
-
-
+            }
+        ?>
     </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

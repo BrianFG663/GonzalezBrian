@@ -13,12 +13,11 @@ $row = $_SESSION['row'];
     <title>Agregar instituto</title>
     <link rel="stylesheet" href="../../Resources/CSS/Administrador/Agregar-institutos.css">
     <link rel="stylesheet" href="../../Resources/CSS/Encabezado.css">
-    <link rel="stylesheet" href="../../Resources/CSS/menu-desplegable.css">
+    <link rel="stylesheet" href="../../Resources/CSS/menu-fijo.css">
     <link rel="shortcut icon" href="../../Resources/Images/icono.png" sizes="64x64">
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../../Resources/JS/administrador.js"></script>
-    <script src="../../Resources/JS/Menu.js"></script>
 </head>
 
 <!-- encabezado superior -->
@@ -37,8 +36,6 @@ $row = $_SESSION['row'];
 
 <div class="menu-container">
     <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <span id="button" onclick="openNav()">&#9776;</span>
         <div class="cont-menu">
             <a href="../Administrador-index.php"><img src="../../Resources/Images/menu.png" class="img-menu"><span class="admin-span">Menu principal</span></a>
             <a href="Agregar-materia.php"><img src="../../Resources/Images/libros.png" class="img-menu"><span>Agregar materia</span></a>
@@ -103,22 +100,22 @@ $row = $_SESSION['row'];
                 $instituto->ramInstituto($conexion);
 
                 echo '<script> 
-                    Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Instituto agregado con exito",
-                    showConfirmButton: false,
-                    timer: 1500
-                    });
-                  </script>';
+                        Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Instituto agregado con exito",
+                        showConfirmButton: false,
+                        timer: 1500
+                        });
+                    </script>';
             }else{
                 echo '<script> 
-                Swal.fire({
-                icon: "error",
-                title: "Error",
-                text: "Ya existe un instituto con este nombre",
-                });
-            </script>';
+                        Swal.fire({
+                        icon: "error",
+                        title: "Error",
+                        text: "Ya existe un instituto con este nombre",
+                        });
+                    </script>';
             }
         }else{
             echo '<script> 

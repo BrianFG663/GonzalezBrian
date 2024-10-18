@@ -42,7 +42,7 @@ form{
     flex-direction: column;
     align-items: center;
     position: relative;
-    top: 20vh;
+    top: 30vh;
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
@@ -51,17 +51,31 @@ form{
     background-color: white;
 }
 
-.formulario-instituto form {
+.formulario-materia{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: 25vh;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: white;
+}
+
+.formulario-instituto form,.formulario-materia form {
     display: flex;
     flex-direction: column;
 }
 
-.formulario-instituto label {
+.formulario-instituto label,.formulario-materia label {
     margin-bottom: 8px;
     font-weight: bold;
 }
 
-.formulario-instituto input[type="text"] {
+.formulario-instituto input[type="text"],.formulario-materia input[type="text"] {
     margin-bottom: 16px;
     padding: 8px;
     border: 1px solid #b33333;
@@ -71,13 +85,13 @@ form{
     text-align: center;
 }
 
-.formulario-instituto input[type="text"]:focus {
+.formulario-instituto input[type="text"]:focus,.formulario-materia input[type="text"]:focus {
     outline: none;
     border-color: #b33333;
     box-shadow: 0 0 5px rgba(179, 51, 51, 0.5);
 }
 
-.formulario-instituto input[type="button"]{
+.formulario-instituto input[type="button"], .formulario-materia input[type="button"]{
     width: 30%;
 }
 

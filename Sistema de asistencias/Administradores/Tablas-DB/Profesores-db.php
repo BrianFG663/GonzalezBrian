@@ -83,9 +83,9 @@ while ($result = $resultado->fetch(PDO::FETCH_ASSOC)) {
             <span class="dni">'.$result['dni'].'</span>
             <span class="legajo">'.$result['legajo'].'</span>
             <div class="boton-eliminar">
-                <form action="'.$_SERVER['PHP_SELF'].'" method="post" id="eliminar-admin-' . $result['id'] . '"> <!-- Cambiado aquí -->
+                <form action="'.$_SERVER['PHP_SELF'].'" method="post" id="eliminar-admin">
                     <input type="hidden" name="id" value="' . $result['id'] . '">
-                    <input type="button" class="eliminar-boton" value="Eliminar profesor" onclick="EliminarAdmin(' . $result['id'] . ')">
+                    <input type="button" class="eliminar-boton" value="Eliminar profesor" onclick="EliminarAdmin(this)">
                 </form>
 
             </div>

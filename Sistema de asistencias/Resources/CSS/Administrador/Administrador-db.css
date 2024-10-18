@@ -16,10 +16,10 @@ body {
 .contenedor{
     background-color: white;
     position: relative;
-    top: 20vh;
+    top: 23vh;
     left: 15%;
     width: 70%;
-    height: 50vh;
+    height: 60vh;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -157,6 +157,7 @@ body {
     border-right: 1px solid rgb(199, 199, 199); 
     height: 100%;
     width: 20%;
+    font-weight: 600;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -176,6 +177,7 @@ body {
     border-right: 1px solid rgb(199, 199, 199); 
     height: 100%;
     width: 40%;
+    font-weight: 600;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -196,6 +198,7 @@ body {
     height: 100%;
     width: 20%;
     display: flex;
+    font-weight: 600;
     justify-content: center;
     align-items: center;
 
@@ -235,6 +238,7 @@ body {
     border-right: 1px solid rgb(199, 199, 199); 
     height: 100%;
     width: 15%;
+    font-weight: 600;
     display: flex;
     justify-content: center;
     align-items: center;

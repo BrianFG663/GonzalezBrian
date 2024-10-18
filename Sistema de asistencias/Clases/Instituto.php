@@ -24,8 +24,8 @@ class Instituto{
         $ano_actual = date('Y');
 
         $sql_ram = 
-        "INSERT INTO ram(desaprobado,regular,promocion,asistencias_regular,asistencias_promocion,fecha_funcionamiento,instituto_id,tolerancia)
-        VALUE(5,6,8,60,70,:ano_actual,:instituto_id,10)"; //arreglar
+        "INSERT INTO ram(regular,promocion,asistencias_regular,asistencias_promocion,fecha_funcionamiento,instituto_id,tolerancia)
+        VALUE(6,8,60,70,:ano_actual,:instituto_id,10)"; //arreglar
 
         $resultado = $conexion->prepare($sql_ram);
         $resultado->bindParam(':ano_actual',$ano_actual);

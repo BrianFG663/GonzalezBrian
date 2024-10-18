@@ -13,10 +13,9 @@ $row = $_SESSION['row'];
     <link rel="shortcut icon" href="../../Resources/Images/icono.png" sizes="64x64">
     <link rel="stylesheet" href="../../Resources/CSS/Encabezado.css">
     <link rel="stylesheet" href="../../Resources/CSS/Administrador/Agregar-profesor.css">
-    <link rel="stylesheet" href="../../Resources/CSS/menu-desplegable.css">
+    <link rel="stylesheet" href="../../Resources/CSS/menu-fijo.css">
     <script src="../../Resources/JS/administrador.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../../Resources/JS/Menu.js"></script>
 
 </head>
 
@@ -32,8 +31,6 @@ $row = $_SESSION['row'];
 
 <div class="menu-container">
     <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <span id="button" onclick="openNav()">&#9776;</span>
         <div class="cont-menu">
             <a href="../Administrador-index.php"><img src="../../Resources/Images/menu.png" class="img-menu"><span class="admin-span">Menu principal</span></a>
             <a href="Agregar-materia.php"><img src="../../Resources/Images/libros.png" class="img-menu"><span>Agregar materia</span></a>
