@@ -96,7 +96,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div><label for="contraseña-actual">Contraseña actual</label><input name="contraseña-actual" id="contraseña-actual" type="text" autocomplete="off"></div>
                 <div><label for="contraseña-nueva">Contraseña nueva</label><input name="contraseña-nueva" id="contraseña-nueva" type="text" autocomplete="off"></div>
                 <div class="container-botones-editar">
-                    <input type="submit" value="Menu" id="boton_atras" name="boton_atras">
                     <input type="button" value="Editar" id="boton_agregar" name="boton_agregar" onclick="editarPerfil()">
                 </div>
             </form>
@@ -116,19 +115,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nuevo_row = $usuario->buscarUsuario($conexion, $id);
             $_SESSION['row'] = $nuevo_row;
 
-            echo '<script>
-                    Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Se ha cambiado el correo correctamente",
-                    showConfirmButton: false,
-                    timer: 1500
-                    });
-
-                    setTimeout(() => {
-                        location.href = "Editar-perfil-administrador.php";
-                    }, 1600);
-                </script>';
+            header('location: Editar-perfil-administrador.php');
+            exit();
 
         }else{
             echo '<script>

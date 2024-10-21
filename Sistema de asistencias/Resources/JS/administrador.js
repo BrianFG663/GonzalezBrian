@@ -379,51 +379,38 @@ function EliminarAdmin(button) {
 }
 
 function editarPerfil(){
-
-    
     let nombre = document.getElementById("nombre").value
     let apellido = document.getElementById("apellido").value
     let mail = document.getElementById("mail").value
     let contraseñaActual = document.getElementById("contraseña-actual").value
     let contraseñaNueva = document.getElementById("contraseña-nueva").value
 
-
-    if(nombre !== ""){
+    if(nombre == "" && apellido == "" && mail == "" && contraseñaActual == "" && contraseñaNueva == ""){
         Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Se ha cambiado el nombre correctamente",
-            showConfirmButton: false,
-            timer: 1500
+            icon: "error",
+            title: "Debe rellenar al menos un campo"
         });
-
-        setTimeout(() => {
-            document.getElementById("formulario-editar").submit();
-        }, 1600);
-    }
-
-    if(apellido !== ""){
+    }else{
         Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Se ha cambiado el apellido correctamente",
-            showConfirmButton: false,
-            timer: 1500
+            title: "¿Desea actualizar su informacion?",
+            showCancelButton: true,
+            confirmButtonText: "Actualizar",
+            denyButtonText: `Cancelar`
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Se ha cambiado el correo correctamente",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+
+                setTimeout(() => {
+                    document.getElementById("formulario-editar").submit();
+                }, 1600);
+            }
         });
-
-        setTimeout(() => {
-            document.getElementById("formulario-editar").submit();
-        }, 1600);
-    }
-
-    if(mail !== ""){
-        document.getElementById("formulario-editar").submit();
-
-
-    }
-
-    if(contraseñaActual !== ""){
-        document.getElementById("formulario-editar").submit();
     }
 }
 
