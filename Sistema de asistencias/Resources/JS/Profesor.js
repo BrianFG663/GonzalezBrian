@@ -159,7 +159,7 @@ function formularioEliminarAsistencia(button) {
             Swal.fire({
                 position: "center",
                 icon: "success",
-                title: "Se ha inscripto al instituto correctamente!",
+                title: "Se ha eliminado la asistencia correctamente!",
                 showConfirmButton: false,
                 timer: 1500
             });
