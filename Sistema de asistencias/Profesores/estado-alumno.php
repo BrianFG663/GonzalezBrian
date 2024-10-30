@@ -41,7 +41,6 @@
 
     <div class="container-button">
         <div><a href="../index.php"><img src="../Resources/Images/cerrar-sesion.png" class="img-session"><span class="span-sesion">CERRAR SESION</span></a></div>
-        <div><a href="Editar-perfil-profesor.php"><img src="../Resources/Images/avatar-de-usuario.png" class="img-perfil"><span class="span-perfil">EDITAR PERFIL</span></a></div>
     </div>
 </header>
 
@@ -59,6 +58,7 @@
         </div>
     </div>
 </div> 
+
 <body>
 
     <div class="container">
@@ -79,9 +79,10 @@
                             <div class="id">' . $alumno['id'] . '</div>
                             <div class="nombre">' . $alumno['nombre'] . " " . $alumno['apellido'] . '</div>
                             <div class="dni">' . $alumno['dni'] . '</div>
-                            <div class="notas">';
+                            <div class="notas">
+                            <form action="funciones-profesor/eliminar-modificar-calificaciones.php" method="post" id="formulario-eliminar-nota"><input type="hidden" name="id-alumno" value="' . $alumno['id'] . '"><input type="button" value="ELIMINAR-MODIFICAR NOTAS" class="eliminar-nota" id="eliminar-nota" onclick="editarEliminarNota(this)"></form>';
                     if (!empty($notas)) {
-                        foreach ($notas as $nota) { //todo esto se realiza dentro del div de notas
+                        foreach ($notas as $nota) { 
                             echo '<div class="nota-individual">' . $nota['nota'] . '</div>';
                         }
                     }else{
@@ -90,7 +91,7 @@
                     echo    '</div> 
                             <div class="asistencias">%'.$asistencias_alumno.'</div>
                             <div class="estado">'.$estado.'</div>
-                        </div>'; // cierra el div de alumno
+                        </div>';
                 }
             
             ?>
@@ -99,5 +100,8 @@
     </div>
 
 </body>
+
+<script src="../Resources/JS/boton.js"></script>
+
 </html>
 

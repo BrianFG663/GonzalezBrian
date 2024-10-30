@@ -19,6 +19,19 @@
             $this->fecha_nacimiento = $fecha_nacimiento;
         }
 
+        public static function getAlumno($conexion,$id_alumno){
+            $sql_materia = 
+            "SELECT *
+            FROM alumno
+            WHERE id = :id";
+    
+            $resultado = $conexion->prepare($sql_materia);
+            $resultado->bindParam(':id', $id_alumno);
+            $resultado->execute();
+    
+            return $resultado->fetch(PDO::FETCH_ASSOC);
+        }
+
         public function inscribirAlumno($conexion,$instituto_id,$materia_id){
 
             $sql_alumno =
@@ -47,7 +60,7 @@
 
         public static function notasAlumno($conexion,$alumno_id){
             $sql_notas = 
-            "SELECT nota 
+            "SELECT *
             FROM notas 
             WHERE alumno_id = :alumno_id";
 

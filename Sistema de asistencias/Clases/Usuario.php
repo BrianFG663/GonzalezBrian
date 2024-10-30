@@ -158,6 +158,26 @@
 
         }
 
+        public static function verificarMail($conexion,$mail){
+            $sql_mail = 
+            "SELECT mail
+            FROM usuario
+            WHERE mail = :mail";
+
+            $resultado = $conexion->prepare($sql_mail);
+            $resultado->bindParam(':mail', $mail);
+            $resultado->execute();
+
+            $row = $resultado->fetch(PDO::FETCH_ASSOC);
+
+            if($row){
+                return false;
+            }else{
+                return true;
+            }
+
+        }
+
     }
 
 

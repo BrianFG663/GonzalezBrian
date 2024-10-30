@@ -25,11 +25,10 @@ $row = $_SESSION['row'];
 
     <div class="container-button">
         <div><a href="../../index.php"><img src="../../Resources/Images/cerrar-sesion.png" class="img-session"><span class="span-sesion">CERRAR SESION</span></a></div>
-        <div><a href="../Editar-perfil-administrador.php"><img src="../../Resources/Images/avatar-de-usuario.png" class="img-perfil"><span class="span-perfil">EDITAR PERFIL</span></a></div>
     </div>
 </header>
 
-<div class="menu-container">
+<div class="menu-container">    
     <div id="mySidenav" class="sidenav">
         <div class="cont-menu">
             <a href="../Administrador-index.php"><img src="../../Resources/Images/menu.png" class="img-menu"><span class="admin-span">Menu principal</span></a>

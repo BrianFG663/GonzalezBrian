@@ -7,7 +7,7 @@
       }
 
       public function uperCase($nombre){
-        return ucwords($nombre);  
+        return ucfirst(strtolower($nombre));  
       }
     }
 

@@ -164,7 +164,52 @@ function formularioEliminarAsistencia(button) {
                 timer: 1500
             });
 
-            // Enviar el formulario al que pertenece el botón
+            setTimeout(() => {
+                button.closest('form').submit(); 
+            }, 1600);
+        }
+    });
+}
+
+function formularioMarcarSalida(button){
+    Swal.fire({
+        title: "¿Desea marcar salida de este alumno?",
+        showCancelButton: true,
+        confirmButtonText: "Confirmar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Se ha marcado la salida correctamente!",
+                showConfirmButton: false,
+                timer: 1500
+            });
+
+
+            setTimeout(() => {
+                button.closest('form').submit(); // Envía el formulario correspondiente
+            }, 1600);
+        }
+    });
+}
+
+function formularioMarcarEntrada(button){
+    Swal.fire({
+        title: "¿Desea marcar entrada de este alumno?",
+        showCancelButton: true,
+        confirmButtonText: "Confirmar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Se ha marcado la entrada correctamente!",
+                showConfirmButton: false,
+                timer: 1500
+            });
+
+
             setTimeout(() => {
                 button.closest('form').submit(); // Envía el formulario correspondiente
             }, 1600);
@@ -343,17 +388,141 @@ function formularioParametros(){
 }
 
 function formularioCalificaciones(){
-    Swal.fire({
-        title: "¿Desea subir calificaciones?",
-        showCancelButton: true,
-        confirmButtonText: "Inscribir"
-      }).then((result) => {
+    fecha = document.getElementById("fecha").value
+    let formulario = document.getElementById("formulario-calificaciones");
 
-        if (result.isConfirmed) {
-          Swal.fire("Calificaciones subidas!", "", "success");
-          setTimeout(() => {
-            document.getElementById("formulario-calificaciones").submit();
-        }, 1000);
+    
+    if(fecha !== ""){
+        Swal.fire({
+            title: "¿Desea subir calificaciones?",
+            showCancelButton: true,
+            confirmButtonText: "Inscribir"
+          }).then((result) => {
+    
+            if (result.isConfirmed) {
+
+
+                let datos = new FormData(formulario);
+                fetch('calificaciones.php',{
+                    method: 'POST',
+                    body: datos
+                })
+                .then(res => res.json())
+                .then(data =>{
+
+                    if(data.tipo == "normal"){
+                        if(data.mensaje == "verdadero"){
+                            Swal.fire("Calificaciones subidas!", "", "success");
+                        }
+                    }
+
+                    if(data.tipo == "recuperatorio"){
+                        if(data.mensaje == "verdadero"){
+                            Swal.fire("Recuperatorios subidss!", "", "success");
+                        }else{
+                            Swal.fire({
+                                icon: "error",
+                                title: "No se encontro un examen ese dia"
+                            }); 
+                        }
+                    }
+
+                })
+                
+              
+            }
+        });
+    }else{
+        Swal.fire({
+            icon: "error",
+            title: "La fecha es obligatoria"
+        }); 
+    }
+}
+
+
+function mostrarLabel() {
+    const valor = Number(document.getElementById("tipo-examen").value);
+
+    switch(valor){
+        case 1:
+            document.getElementById("label-fecha").innerHTML = 
+            `<label for="fecha-recuperatorio">Seleccione fecha del parcial</label>`;
+        break
+
+        case 2:
+            document.getElementById("label-fecha").innerHTML = 
+            `<label for="fecha-recuperatorio">Seleccione fecha del parcial a recuperar</label>`;
+        break
+
+        case 3:
+            document.getElementById("label-fecha").innerHTML = 
+            `<label for="fecha-recuperatorio">Seleccione fecha del trabajo practico</label>`;
+        break
+    }
+}
+
+
+function editarEliminarNota(button){
+    button.closest('form').submit();
+}
+
+function formularioEditarNota(button){
+    let nota = document.getElementById("nota-nueva").value
+    console.log(nota)
+    if(nota !== ""){
+        if(nota >= 0 && nota <= 10){
+            Swal.fire({
+                title: "¿Desea editar esta nota?",
+                showCancelButton: true,
+                confirmButtonText: "Confirmar"
+            }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Se ha editado la nota correctamente!",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                setTimeout(() => {
+                    button.closest('form').submit();
+                }, 1600);
+            }
+            });
+        }else{
+            Swal.fire({
+                icon: "error",
+                title: "La nota ingresada debe estar entre 0 y 10"
+            });
         }
-      });
+    }else{
+        Swal.fire({
+            icon: "error",
+            title: "Debe ingresar una nota"
+        });
+    }
+    
+}
+
+function formularioeliminarNota(button){
+    Swal.fire({
+        title: "¿Desea eliminar esta nota?",
+        showCancelButton: true,
+        confirmButtonText: "Confirmar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Se ha eliminado la nota correctamente!",
+                showConfirmButton: false,
+                timer: 1500
+            });
+            setTimeout(() => {
+                button.closest('form').submit();
+            }, 1600);
+        }
+    });
+
 }

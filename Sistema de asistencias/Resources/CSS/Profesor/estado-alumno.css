@@ -108,6 +108,25 @@ body {
     box-sizing: border-box;
 }
 
+.eliminar-nota{
+    display: none;
+    position: absolute;
+    height: 99%;
+    width: 19.76%;
+    background-color: white;
+    color: #b33333;
+    font-weight: 600;
+    border: 1.7px solid #b33333;
+    cursor: pointer;
+}
+
+#formulario-eliminar-nota{
+    width: 0%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
 .nota-individual{
     flex: 1; /* Hace que cada elemento interno tome el mismo ancho disponible */
     padding: 10px;

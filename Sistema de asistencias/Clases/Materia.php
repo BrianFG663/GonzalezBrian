@@ -19,6 +19,19 @@ class Materia{
         $this->codigo_materia = $codigo_materia;
     }
 
+    public static function getMateria($conexion,$id_materia){
+        $sql_materia = 
+        "SELECT *
+        FROM materias
+        WHERE id = :id";
+
+        $resultado = $conexion->prepare($sql_materia);
+        $resultado->bindParam(':id', $id_materia);
+        $resultado->execute();
+
+        return $resultado->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function comprobarMateria($conexion){
         
         $sql_comprobar = 

@@ -16,6 +16,55 @@
             $this->legajo = $legajo;
         }
 
+        public static function getProfesor($conexion,$id){
+            $sql_id = 
+            "SELECT *
+            FROM profesor
+            WHERE id = :id";
+
+            $resultado = $conexion->prepare($sql_id);
+            $resultado->bindParam(':id', $id);
+            $resultado->execute();
+
+            return $resultado->fetch(PDO::FETCH_ASSOC);
+        }
+
+        public static function getUsuario($conexion,$id){
+            $sql_usuario = 
+            "SELECT *
+            FROM usuario
+            WHERE id_profesor = :id_profesor";
+
+            $resultado = $conexion->prepare($sql_usuario);
+            $resultado->bindParam(':id_profesor',$id);
+            $resultado->execute();
+
+            return $resultado->fetch(PDO::FETCH_ASSOC);
+        }
+
+        public static function editarNota($conexion,$id_nota,$nota){
+            $sql_notas = 
+            "UPDATE notas
+            SET nota = :nota
+            WHERE id = :id";
+
+            $resultado = $conexion->prepare($sql_notas);
+            $resultado->bindParam(':nota',$nota);
+            $resultado->bindParam(':id',$id_nota);
+            $resultado->execute();
+        }
+
+        public static function eliminarNota($conexion,$id_nota){
+            $sql_notas = 
+            "DELETE
+            FROM notas
+            WHERE id = :id";
+
+            $resultado = $conexion->prepare($sql_notas);
+            $resultado->bindParam(':id',$id_nota);
+            $resultado->execute();
+        }
+
         public static function institutosProfesor($conexion, $id) {
             $sql_profesor = "
                 SELECT id_instituto
@@ -46,6 +95,27 @@
             }
 
         }
+
+        public static function verificarCalificacion($conexion,$materia_id,$fecha){
+            $sql_calificacion = 
+            "SELECT *
+            FROM notas
+            WHERE materia_id = :materia_id AND fecha_nota = :fecha_nota";
+
+            $resultado = $conexion->prepare($sql_calificacion);
+            $resultado->bindParam(':materia_id',$materia_id);
+            $resultado->bindParam(':fecha_nota',$fecha);
+            $resultado->execute();
+            $row = $resultado->fetchAll(PDO::FETCH_ASSOC);
+
+            if(!$row){
+                return false;
+            }else{
+                return true;
+            }
+
+
+        } 
 
         public static function quitarInstituto($conexion,$id_profesor,$instituto_ids){
 

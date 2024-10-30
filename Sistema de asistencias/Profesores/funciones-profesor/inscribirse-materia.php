@@ -43,7 +43,6 @@ $materias_libres= Materia::buscarMateria($conexion,$instituto_id);
 
     <div class="container-button">
         <div><a href="../../index.php"><img src="../../Resources/Images/cerrar-sesion.png" class="img-session"><span class="span-sesion">CERRAR SESION</span></a></div>
-        <div><a href="Editar-perfil-profesor.php"><img src="../../Resources/Images/avatar-de-usuario.png" class="img-perfil"><span class="span-perfil">EDITAR PERFIL</span></a></div>
     </div>
 </header>
 

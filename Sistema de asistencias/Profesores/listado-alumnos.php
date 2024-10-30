@@ -40,7 +40,6 @@
 
     <div class="container-button">
         <div><a href="../index.php"><img src="../Resources/Images/cerrar-sesion.png" class="img-session"><span class="span-sesion">CERRAR SESION</span></a></div>
-        <div><a href="Editar-perfil-profesor.php"><img src="../Resources/Images/avatar-de-usuario.png" class="img-perfil"><span class="span-perfil">EDITAR PERFIL</span></a></div>
     </div>
 </header>
 
@@ -58,9 +57,9 @@
     </div>
 </div>
 <body>
-    <div class="container">
-        <div class="top"><span class="titulo">ALUMNOS PRESENTES</span></div>
-        <div class="container-alumnos">
+    <div class="container-listado">
+        <div class="top-listado"><span class="titulo">ALUMNOS PRESENTES</span></div>
+        <div class="container-alumnos-listado">
             <form action="funciones-profesor/procesar-asistencia.php" method="post" id="formulario-salida">
                 <?php
                     if($alumnoPresentes){
@@ -71,7 +70,12 @@
                                     <div class="nombre">'.$alumnoPresente['nombre']." ".$alumnoPresente['apellido'].'</div>
                                     <div class="dni">'.$alumnoPresente['dni'].'</div>
                                     <div class="fecha_nacimiento">'.$alumnoPresente['fecha_nacimiento'].'</div>
-                                    <input type="checkbox" class="asistencia" name="media-asistencia[]" value="'.$alumnoPresente['id'].'">
+                                    <div class="media-asistencia">
+                                        <form action="funciones-profesor/procesar-asistencia.php" method="post">
+                                            <input type="button" value="MARCAR SALIDA" class="boton-eliminar-asistencia" onclick="formularioMarcarSalida(this)">
+                                            <input type="hidden" value="'.$alumnoPresente['id'].'" name="media-asistencia">
+                                        </form>
+                                    </div>
                                     <div class="eliminar-asistencia">
                                         <form action="funciones-profesor/procesar-asistencia.php" method="post">
                                             <input type="button" value="ELIMINAR ASISTENCIA" class="boton-eliminar-asistencia" onclick="formularioEliminarAsistencia(this)">
@@ -86,17 +90,11 @@
                 ?>
             </form>
         </div>
-
-        <?php
-        if($alumnoPresentes){
-            echo '<div class="boton"><input class="boton-tomar-asistencia" type="button" value="MARCAR SALIDA" onclick="formularioSalida()"></div>';
-         }
-        ?>
     </div>
 
-    <div class="container">
-        <div class="top"></button><span class="titulo">ALUMNOS AUSENTES</span></div>
-        <div class="container-alumnos" id="container-alumnos">
+    <div class="container-listado">
+        <div class="top-listado"></button><span class="titulo">ALUMNOS AUSENTES</span></div>
+        <div class="container-alumnos-listado" id="container-alumnos">
             <form action="funciones-profesor/procesar-asistencia.php" method="post" id="formulario-tarde">
                 <?php
                     if($alumnoAusentes){
@@ -107,7 +105,12 @@
                                     <div class="nombre-ausente">'.$alumnoAusente['nombre']." ".$alumnoAusente['apellido'].'</div>
                                     <div class="dni-ausente">'.$alumnoAusente['dni'].'</div>
                                     <div class="fecha_nacimiento">'.$alumnoAusente['fecha_nacimiento'].'</div>
-                                    <input type="checkbox" class="asistencia" name="asistencia-llegada[]" value="'.$alumnoAusente['id'].'">
+                                    <div class="media-asistencia">
+                                        <form action="funciones-profesor/procesar-asistencia.php" method="post">
+                                            <input type="button" value="MARCAR ENTRADA" class="boton-eliminar-asistencia" onclick="formularioMarcarEntrada(this)">
+                                            <input type="hidden" value="'.$alumnoAusente['id'].'" name="asistencia-llegada">
+                                        </form>
+                                    </div>
                                 </div>';
                         }
                     }else{
@@ -116,13 +119,6 @@
                 ?>
             </form>
         </div>
-        
-        <?php
-        if($alumnoAusentes){
-            echo '<div class="boton"><input class="boton-tomar-asistencia" type="button" value="SUBIR ASISTENCIA" onclick="formularioLlegada()"></div>';
-         }
-        ?>
-        
     </div>
 
 </body>
