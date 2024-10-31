@@ -29,6 +29,21 @@
             return $resultado->fetch(PDO::FETCH_ASSOC);
         }
 
+        public static function cambiarContraseña($conexion,$id,$contraseña_nueva){
+            $contraseña_nueva = password_hash($contraseña_nueva, PASSWORD_BCRYPT);
+
+            $sql_cambiar_pass = 
+            "UPDATE usuario
+            SET passw = :pass
+            WHERE id_profesor = :id_profesor";
+
+            $resultado_cambio = $conexion->prepare($sql_cambiar_pass);
+            $resultado_cambio->bindParam(':id_profesor', $id);
+            $resultado_cambio->bindParam(':pass', $contraseña_nueva);
+            $resultado_cambio->execute();
+
+        }
+
         public static function getUsuario($conexion,$id){
             $sql_usuario = 
             "SELECT *

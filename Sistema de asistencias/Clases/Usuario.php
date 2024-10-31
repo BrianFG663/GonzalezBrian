@@ -77,7 +77,25 @@
             }
         }
 
-        public function insertUsuario($conexion,$dni){
+        
+
+        public function insertUserAdmin($conexion){
+            $contraseña = password_hash("admin", PASSWORD_DEFAULT);
+
+            $sql_insert =
+            "INSERT INTO  usuario(nombre,apellido,mail,passw,rol)
+            VALUE (:nombre,:apellido,:mail,:passw,:rol)";
+
+            $resultado = $conexion->prepare($sql_insert);
+            $resultado->bindParam(':nombre', $this->apellido);
+            $resultado->bindParam(':apellido', $this->nombre);
+            $resultado->bindParam(':mail', $this->mail);
+            $resultado->bindParam(':passw', $contraseña);
+            $resultado->bindParam(':rol', $this->rol);
+            $resultado->execute();
+        }
+
+        public function insertUserProfesor($conexion,$dni){
             $contraseña = password_hash($this->pass, PASSWORD_DEFAULT);
             $sql_dni = 
             "SELECT id
@@ -119,44 +137,8 @@
             $resultado_eliminar->execute();
         }
 
-        public function cambiarNombre($conexion,$id,$nombre){
-            $sql_cambiar_nombre = 
-            "UPDATE usuario
-            SET nombre = :nombre 
-            WHERE id = :id";
 
-            $resultado_cambio = $conexion->prepare($sql_cambiar_nombre);
-            $resultado_cambio->bindParam(':id', $id);
-            $resultado_cambio->bindParam(':nombre', $this->uperCase($nombre));
-            $resultado_cambio->execute();
-        }
-
-        public function cambiarApellido($conexion,$id,$apellido){
-            $sql_cambiar_apellido = 
-            "UPDATE usuario
-            SET apellido = :apellido
-            WHERE id = :id";
-
-            $resultado_cambio = $conexion->prepare($sql_cambiar_apellido);
-            $resultado_cambio->bindParam(':id', $id);
-            $resultado_cambio->bindParam(':apellido', $this->uperCase($apellido));
-            $resultado_cambio->execute();
-        }
-
-        public function cambiarMail($conexion,$id,$mail){
-            $sql_cambiar_mail = 
-            "UPDATE usuario
-            SET mail = :mail
-            WHERE id = :id";
-
-            $resultado_cambio = $conexion->prepare($sql_cambiar_mail);
-            $resultado_cambio->bindParam(':id', $id);
-            $resultado_cambio->bindParam(':mail', $mail);
-            $resultado_cambio->execute();
-        }
-
-        public function cambiarContraseña($conexion,$id,$contraseña_nueva){
-
+        public static function cambiarContraseña($conexion,$id,$contraseña_nueva){
             $contraseña_nueva = password_hash($contraseña_nueva, PASSWORD_BCRYPT);
 
             $sql_cambiar_pass = 

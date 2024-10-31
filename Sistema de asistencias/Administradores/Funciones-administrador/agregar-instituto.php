@@ -91,40 +91,23 @@ $row = $_SESSION['row'];
         
         $instituto = new Instituto($nombre,$direccion,$gestion,$cue);
         $validarcue = $instituto->comprobarCue($conexion);
-        $validarnombre = $instituto->comprobarNombre($conexion);
 
         if($validarcue){
-            if($validarnombre){
-                $instituto->insertInstituto($conexion);
-                $instituto->ramInstituto($conexion);
+            $instituto->insertInstituto($conexion);
+            $instituto->ramInstituto($conexion);
 
-                echo '<script> 
-                        Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: "Instituto agregado con exito",
-                        showConfirmButton: false,
-                        timer: 1500
-                        });
-                    </script>';
-            }else{
-                echo '<script> 
-                        Swal.fire({
-                        icon: "error",
-                        title: "Error",
-                        text: "Ya existe un instituto con este nombre",
-                        });
-                    </script>';
-            }
+            ob_clean();
+            echo json_encode(['mensaje' => 'verdadero']);
+            exit;
+            
         }else{
-            echo '<script> 
-                    Swal.fire({
-                    icon: "error",
-                    title: "Error",
-                    text: "Esta instituto ya existe",
-                    });
-                </script>';
+
+            ob_clean();
+            echo json_encode(['mensaje' => 'falso']);
+            exit;
+
         }
+    
     }
     
 

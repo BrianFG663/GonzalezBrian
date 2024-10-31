@@ -1,6 +1,6 @@
 <?php
-session_start();
-$row = $_SESSION['row'];
+    session_start();
+    $row = $_SESSION['row'];
 
 ?>
 
@@ -85,26 +85,18 @@ $row = $_SESSION['row'];
         $comprobarMail = $usuario->comprobarMail($conexion,$mail);
 
         if($comprobarMail){
-            $usuario->insertUsuario($conexion,null);
+            $usuario->insertUserAdmin($conexion);
 
-            echo '<script> 
-                    Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Profesor agregado con exito",
-                    showConfirmButton: false,
-                    timer: 1500
-                    });
-                </script>';
+            ob_clean();
+            echo json_encode(['mensaje' => 'verdadero']);
+            exit;
 
         }else{
-            echo '<script>
-                    Swal.fire({
-                    icon: "error",
-                    text: "Prueba con otro!",
-                    title: "Correo electronico ya registrado"
-                    })
-                </script>';
+
+            ob_clean();
+            echo json_encode(['mensaje' => 'falso']);
+            exit;
+
         }
 
 

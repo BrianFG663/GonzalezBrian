@@ -12,6 +12,7 @@
 
     $resultado = $conexion->prepare($institutos);
     $resultado->execute();
+    $institutos = $resultado->fetchall(PDO::FETCH_ASSOC)
 
 ?>
 
@@ -67,8 +68,8 @@
             <select name="instituto" id="instituto" class="styled-select"> <!-- Ingreso en el option las institutciones en base de datos buscadas anteriormente -->
                 <?php
 
-                while ($rowinstitutos = $resultado->fetch(PDO::FETCH_ASSOC)) {
-                    echo '<option value="' . $rowinstitutos['id'] . '">' . htmlspecialchars($rowinstitutos['nombre']) . '</option>';
+                foreach($institutos as $instituto){
+                    echo '<option value="' . $instituto['id'] . '">' .$instituto['nombre']. '</option>';
                 }
                 ?>
             </select>
@@ -104,23 +105,14 @@
         if($result){ //en caso de retornar true se sube la materia a base de datos
             $materia->insertMateria($conexion,$id_insituto);
 
-            echo '<script> 
-                    Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Materia agregada con exito",
-                    showConfirmButton: false,
-                    timer: 1500
-                    });
-                  </script>';
+            ob_clean();
+            echo json_encode(['mensaje' => 'verdadero']);
+            exit;
+
         }else{
-            echo '<script> 
-                    Swal.fire({
-                    icon: "error",
-                    title: "Error",
-                    text: "Esta materia ya existe",
-                    });
-                </script>';
+            ob_clean();
+            echo json_encode(['mensaje' => 'falso']);
+            exit;
         }
 
         

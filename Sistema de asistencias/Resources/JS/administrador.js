@@ -38,6 +38,7 @@ function redireccion(valor){
 }
 
 function formularioMateria(valor){
+    let formulario = document.getElementById("inscribir-materia");
     let nombre = document.getElementById("nombre_materia").value
     let descripcion = document.getElementById("descripcion_materia").value
     let numero_materia = document.getElementById("numero_materia").value
@@ -67,7 +68,41 @@ function formularioMateria(valor){
                                 denyButtonText: `Cancelar`
                             }).then((result) => {
                                 if (result.isConfirmed) {
-                                    document.getElementById("inscribir-materia").submit();
+
+
+                                    let datos = new FormData(formulario);
+                                    fetch('agregar-materia.php',{
+                                        method: 'POST',
+                                        body: datos
+                                    })
+                                    .then(res => res.json())
+                                    .then(data =>{
+    
+                                        if(data.mensaje == "verdadero"){
+                                            Swal.fire({
+                                                position: "center",
+                                                icon: "success",
+                                                title: "Se ha registrado correctamente!",
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            });
+    
+                                            setTimeout(() => {
+                                                formulario.submit();
+                                                location.href =  "agregar-materia.php";
+                                            }, 1600);
+                                        }
+    
+                                        if(data.mensaje == "falso"){
+                                            Swal.fire({
+                                                icon: "error",
+                                                title: "Materia ya registrada"
+                                            });
+                                        }
+    
+                                    })
+
+
                                 }
                             });
                         }else{
@@ -114,6 +149,7 @@ function formularioMateria(valor){
 }
 
 function formularioInstituto(valor){
+    let formulario = document.getElementById("inscribir-instituto");
     let nombre = document.getElementById("nombre_instituto").value
     let direccion = document.getElementById("direccion_instituto").value
     let cue = document.getElementById("cue_instituto").value
@@ -135,7 +171,39 @@ function formularioInstituto(valor){
                                 denyButtonText: `Cancelar`
                             }).then((result) => {
                                 if (result.isConfirmed) {
-                                    document.getElementById("inscribir-instituto").submit();
+
+                                    let datos = new FormData(formulario);
+                                    fetch('agregar-instituto.php',{
+                                        method: 'POST',
+                                        body: datos
+                                    })
+                                    .then(res => res.json())
+                                    .then(data =>{
+    
+                                        if(data.mensaje == "verdadero"){
+                                            Swal.fire({
+                                                position: "center",
+                                                icon: "success",
+                                                title: "Se ha registrado correctamente!",
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            });
+    
+                                            setTimeout(() => {
+                                                formulario.submit();
+                                                location.href =  "agregar-instituto.php";
+                                            }, 1600);
+                                        }
+    
+                                        if(data.mensaje == "falso"){
+                                            Swal.fire({
+                                                icon: "error",
+                                                title: "Instituto ya registrado"
+                                            });
+                                        }
+    
+                                    })
+
                                 }
                             });
                         }else{
@@ -182,6 +250,7 @@ function formularioInstituto(valor){
 }
 
 function formularioProfesor(valor){
+    let formulario = document.getElementById("inscribir-profesor");
     let nombre = document.getElementById("nombre-profesor").value
     let apellido = document.getElementById("apellido-profesor").value
     let dni = document.getElementById("dni-profesor").value
@@ -211,7 +280,56 @@ function formularioProfesor(valor){
                                                 denyButtonText: `Cancelar`
                                             }).then((result) => {
                                                 if (result.isConfirmed) {
-                                                    document.getElementById("inscribir-profesor").submit();
+
+
+                                                    let datos = new FormData(formulario);
+                                                    fetch('agregar-profesor.php',{
+                                                        method: 'POST',
+                                                        body: datos
+                                                    })
+                                                    .then(res => res.json())
+                                                    .then(data =>{
+                    
+                                                        if(data.mensaje == "verdadero"){
+                                                            Swal.fire({
+                                                                position: "center",
+                                                                icon: "success",
+                                                                title: "Se ha registrado correctamente!",
+                                                                showConfirmButton: false,
+                                                                timer: 1500
+                                                            });
+                    
+                                                            setTimeout(() => {
+                                                                formulario.submit();
+                                                                location.href =  "agregar-profesor.php";
+                                                            }, 1600);
+                                                        }
+                    
+                                                        if(data.mensaje == "false-legajo"){
+                                                            Swal.fire({
+                                                                icon: "error",
+                                                                title: "Legajo ya registrado"
+                                                            });
+                                                        }
+
+                                                        if(data.mensaje == "false-dni"){
+                                                            Swal.fire({
+                                                                icon: "error",
+                                                                title: "Profesor ya registrado"
+                                                            });
+                                                        }
+
+                                                        if(data.mensaje == "false-mail"){
+                                                            Swal.fire({
+                                                                icon: "error",
+                                                                title: "Mail ya registrado"
+                                                            });
+                                                        }
+                    
+                                                    })
+                  
+
+
                                                 }
                                             });
                                         }else{
@@ -282,7 +400,8 @@ function formularioProfesor(valor){
     }
 }
 
-function formularioAdministrador(valor){
+function formularioAdministrador(){
+    let formulario = document.getElementById("inscribir-administrador");
     let nombre = document.getElementById("nombre-administrador").value
     let apellido = document.getElementById("apellido-administrador").value
     let mail = document.getElementById("correo-administrador").value
@@ -304,7 +423,40 @@ function formularioAdministrador(valor){
                                 denyButtonText: `Cancelar`
                             }).then((result) => {
                                 if (result.isConfirmed) {
-                                    document.getElementById("inscribir-administrador").submit();
+
+
+                                let datos = new FormData(formulario);
+                                fetch('agregar-administrador.php',{
+                                    method: 'POST',
+                                    body: datos
+                                })
+                                .then(res => res.json())
+                                .then(data =>{
+
+                                    if(data.mensaje == "verdadero"){
+                                        Swal.fire({
+                                            position: "center",
+                                            icon: "success",
+                                            title: "Se ha registrado correctamente!",
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        });
+
+                                        setTimeout(() => {
+                                            formulario.submit();
+                                            location.href =  "agregar-administrador.php";
+                                        }, 1600);
+                                    }
+
+                                    if(data.mensaje == "falso"){
+                                        Swal.fire({
+                                            icon: "error",
+                                            title: "Mail ya registrado"
+                                        });
+                                    }
+
+                                })
+
                                 }
                             });
                         }else{
@@ -343,12 +495,7 @@ function formularioAdministrador(valor){
             title: "El nombre es obligatorio."
         });
     }
-                   
-                    
-
-    if(valor == 1){
-        location.href = 'Administrador-index.php';
-    }
+        
 }
 
 function EliminarAdmin(button) {

@@ -76,3 +76,36 @@ function verificarFormulario(){
         });
     }
 }
+
+function cambiarContraseña(){
+    let formulario = document.getElementById("formulario-contrasena");
+    let contraseña = document.getElementById("contrasena").value;
+    let ncontraseña = document.getElementById("ncontrasena").value;
+
+    if(contraseña !=="" && ncontraseña !==""){
+        if(contraseña == ncontraseña){
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Contraseña actualizada!",
+                showConfirmButton: false,
+                timer: 1500
+              });
+            
+            setTimeout(() => {
+                document.getElementById("formulario-contrasena").submit()
+            }, 1600);
+        }else{
+            Swal.fire({
+                icon: "error",
+                title: "Las contraseñas deben coincidir"
+            });
+        }
+    }else{
+        Swal.fire({
+            icon: "error",
+            title: "Por favor, rellene ambos campos"
+        });
+    }
+
+}

@@ -468,9 +468,15 @@ function editarEliminarNota(button){
 }
 
 function formularioEditarNota(button){
-    let nota = document.getElementById("nota-nueva").value
-    console.log(nota)
-    
+    const notasNuevas = document.querySelectorAll('.nota-nueva');
+
+const algunaNotaNoVacia = Array.from(notasNuevas).some(input => input.value.trim() !== '');
+
+const notaInput = button.closest('form').querySelector('.nota-nueva');
+const nota = notaInput.value.trim();
+
+
+    if(algunaNotaNoVacia){
         if(nota >= 0 && nota <= 10){
             Swal.fire({
                 title: "¿Desea editar esta nota?",
@@ -496,6 +502,13 @@ function formularioEditarNota(button){
                 title: "La nota ingresada debe estar entre 0 y 10"
             });
         }
+    }else{
+        Swal.fire({
+            icon: "error",
+            title: "Debe ingresar al menos una nota"
+        });
+    }
+        
     
 }
 

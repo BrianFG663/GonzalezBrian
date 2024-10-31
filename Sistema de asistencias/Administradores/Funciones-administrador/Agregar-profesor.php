@@ -100,42 +100,33 @@ $row = $_SESSION['row'];
             if($comprobarDni){
                 if($comprobarlegajo){
                     $profesor->insertProfesor($conexion,$mail);
-                    $usuario->insertUsuario($conexion,$dni);
+                    $usuario->insertUserProfesor($conexion,$dni);
+
+                    ob_clean();
+                    echo json_encode(['mensaje' => 'verdadero']);
+                    exit;
     
-                    echo '<script> 
-                            Swal.fire({
-                            position: "center",
-                            icon: "success",
-                            title: "Profesor agregado con exito",
-                            showConfirmButton: false,
-                            timer: 1500
-                            });
-                        </script>';
                 }else{
-                    echo '<script>
-                    Swal.fire({
-                    icon: "error",
-                    title: "Este profesor ya esta registrado"
-                    })
-                    </script>';
+
+                    ob_clean();
+                    echo json_encode(['mensaje' => 'false-legajo']);
+                    exit;
+
                 }
             }else{
-                echo '<script>
-                        Swal.fire({
-                        icon: "error",
-                        title: "Este profesor ya esta registrado"
-                        })
-                        </script>';
+
+                ob_clean();
+                echo json_encode(['mensaje' => 'false-dni']);
+                exit;
+
             }
 
         }else{
-            echo '<script>
-            Swal.fire({
-                        icon: "error",
-                        text: "Prueba con otro!",
-                        title: "Correo electronico ya registrado"
-                    })
-                </script>';
+
+            ob_clean();
+            echo json_encode(['mensaje' => 'false-mail']);
+            exit;
+
         }
 
 

@@ -35,7 +35,12 @@
                 ob_clean();
                 if ($user['rol'] == "administrador") {
                     $_SESSION['row'] = $user;
-                    echo json_encode(['mensaje' => 'verdadero', 'url' => '/Administradores/Administrador-index.php']); //mando como url el url al que voy a redireccionar en js
+                    unset($_SESSION['rowprofesor']);
+                    if ($contraseña == "admin") {
+                        echo json_encode(['mensaje' => 'verdadero', 'url' => 'Cambio-contraseña.php']);
+                    } else {
+                        echo json_encode(['mensaje' => 'verdadero', 'url' => '/Administradores/Administrador-index.php']); //mando como url el url al que voy a redireccionar en js
+                    }
                     exit();
         
                 } elseif ($user['rol'] == "profesor") {
@@ -43,6 +48,7 @@
                     $id_profesor = $user['id_profesor'];
                     $row_profesor = Profesor::getProfesor($conexion, $id_profesor);
                     $_SESSION['rowprofesor'] = $row_profesor;
+                    unset($_SESSION['row']);
         
                     if ($contraseña === $row_profesor['dni']) {
                         echo json_encode(['mensaje' => 'verdadero', 'url' => 'Cambio-contraseña.php']);
