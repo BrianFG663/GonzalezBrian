@@ -1,5 +1,4 @@
 <?php
-
 require_once '../../Conexion.php';
 require_once '../../Clases/Profesor.php';
 session_start();
@@ -8,7 +7,6 @@ $rowprofesor = $_SESSION['rowprofesor'];
 $id_instituto = $_SESSION['id_instituto'];
 $profesor = new Profesor($rowprofesor['nombre'],$rowprofesor['apellido'],$rowprofesor['dni'],$rowprofesor['legajo']);
 $alumnos = $profesor->mostrarAlumnos($conexion,$_SESSION['id_materia'],$id_instituto);
-
 ?>
 
 <?php
@@ -144,7 +142,15 @@ $alumnos = $profesor->mostrarAlumnos($conexion,$_SESSION['id_materia'],$id_insti
                     } else {
                         echo'<div class="alumno-top"><div class="calificacion-top-nombre">NOMBRE COMPLETO</div><div class="calificacion-top-dni">DNI</div><div class="calificacion-top-fecha_nacimiento">FECHA DE NACIMIENTO</div><div class="calificacion-top-asistencia">INGRESAR NOTA</div></div>';
                         foreach($alumnos as $alumno){
-                            echo '<div class="alumno"><div class="calificacion-nombre">'.$alumno['nombre']." ".$alumno['apellido'].'</div><div class="calificacion-dni">'.$alumno['dni'].'</div><div class="calificacion-fecha_nacimiento">'.$alumno['fecha_nacimiento'].'</div><div class="calificacion-clasificacion"><input class="input-notas" id="notas" type="number" name="notas[]"><input type="hidden" name="id[]" value="'.$alumno['id'].'"></div></div>';
+                            echo '<div class="alumno">
+                                    <div class="calificacion-nombre">'.$alumno['nombre']." ".$alumno['apellido'].'</div>
+                                    <div class="calificacion-dni">'.$alumno['dni'].'</div>
+                                    <div class="calificacion-fecha_nacimiento">'.$alumno['fecha_nacimiento'].'</div>
+                                    <div class="calificacion-clasificacion">
+                                        <input class="input-notas" id="notas" type="number" name="notas[]">
+                                        <input type="hidden" name="id[]" value="'.$alumno['id'].'">
+                                    </div>
+                                </div>';
                         }
                     }
                 ?>
@@ -172,7 +178,7 @@ $alumnos = $profesor->mostrarAlumnos($conexion,$_SESSION['id_materia'],$id_insti
                 </select>
             </div>
             
-            <input class="subir-calificaciones" type="button" value="SUBIR CALIFICACIONES" onclick="formularioCalificaciones()">
+            <input class="subir-calificaciones" type="button" value="SUBIR CALIFICACIONES" onclick="formularioCalificaciones(this)">
             </form>
 
             

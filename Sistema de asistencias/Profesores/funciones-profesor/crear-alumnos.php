@@ -86,8 +86,21 @@
         $dni = $_POST['dni-alumno'];
         $fecha_nacimiento =$_POST['fecha-alumno'];
 
-        $alumno = new Alumno($nombre,$apellido,$dni,$fecha_nacimiento);
-        $alumno->inscribirAlumno($conexion,$instituto_id,$materia_id);
+        $validar_dni = Alumno::validarAlumno($conexion,$dni);
+
+        if($validar_dni){
+            $alumno = new Alumno($nombre,$apellido,$dni,$fecha_nacimiento);
+            $alumno->inscribirAlumno($conexion,$instituto_id,$materia_id);
+
+            ob_clean();
+            echo json_encode(['mensaje' => 'verdadero']);
+            exit;
+        }else{
+            ob_clean();
+            echo json_encode(['mensaje' => 'falso']);
+            exit;
+        }
+
     }
 
 ?>

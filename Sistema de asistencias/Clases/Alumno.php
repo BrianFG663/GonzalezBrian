@@ -32,6 +32,24 @@
             return $resultado->fetch(PDO::FETCH_ASSOC);
         }
 
+        public static function validarAlumno($conexion,$dni){
+            $sql_materia = 
+            "SELECT *
+            FROM alumno
+            WHERE dni = :dni";
+    
+            $resultado = $conexion->prepare($sql_materia);
+            $resultado->bindParam(':dni', $dni);
+            $resultado->execute();
+            $row = $resultado->fetch(PDO::FETCH_ASSOC);
+
+            if($row){
+                return false;
+            }else{
+                return true;
+            }
+        }
+
         public function inscribirAlumno($conexion,$instituto_id,$materia_id){
 
             $sql_alumno =

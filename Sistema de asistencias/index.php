@@ -1,6 +1,8 @@
 <?php
     include_once 'Setup.php';
     session_unset();
+
+    
 ?>
 
 <!DOCTYPE html>

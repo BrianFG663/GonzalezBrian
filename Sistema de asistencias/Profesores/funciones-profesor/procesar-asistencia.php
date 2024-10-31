@@ -84,7 +84,8 @@
         $resultado->bindParam(':valor', $valor);
         $resultado->execute();
 
-        var_dump($id_alumno);
+        header('location: ../listado-alumnos.php');
+        exit();
     }
 
 

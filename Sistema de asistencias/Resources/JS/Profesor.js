@@ -267,6 +267,8 @@ function formularioAlumno(){
     apellido = document.getElementById("apellido-alumno").value
     dni = document.getElementById("dni-alumno").value
     fecha = document.getElementById("fecha-alumno").value
+    const formulario = document.getElementById("inscribir-alumno");
+
 
     const comprobar_dni = /^\d+$/.test(dni);
     const comprobar_nombre = /^[a-zA-Z\s]*$/.test(nombre);
@@ -287,10 +289,40 @@ function formularioAlumno(){
                                         confirmButtonText: "Inscribir"
                                       }).then((result) => {
                                         if (result.isConfirmed) {
-                                          Swal.fire("Alumno inscrito!", "", "success");
-                                          setTimeout(() => {
-                                            document.getElementById("inscribir-alumno").submit();
-                                        }, 1000);
+                                                               
+
+                                            let datos = new FormData(formulario);
+                                            fetch('crear-alumnos.php', {
+                                                method: 'POST',
+                                                body: datos
+                                            })
+                                            .then(res => res.json())
+                                            .then(data => {
+                                                
+                                                if(data.mensaje == "verdadero"){
+                                                    Swal.fire({
+                                                        position: "center",
+                                                        icon: "success",
+                                                        title: "Se ha registrado el alumno correctamente!",
+                                                        showConfirmButton: false,
+                                                        timer: 1500
+                                                    });
+                                                    setTimeout(() => {
+                                                        formulario.submit();
+                                                        location.href = "crear-alumnos.php";
+                                                    }, 1600);
+                                                }
+
+                                                if(data.mensaje == "falso"){
+                                                    Swal.fire({
+                                                        icon: "error",
+                                                        title: "El alumno ya esta inscripto",
+                                                    });
+                                                }
+
+                                            });
+
+
                                         }
                                     });
                                 }else{
@@ -387,58 +419,74 @@ function formularioParametros(){
     }
 }
 
-function formularioCalificaciones(){
-    fecha = document.getElementById("fecha").value
-    let formulario = document.getElementById("formulario-calificaciones");
-
+function formularioCalificaciones(button) {
+    const fecha = document.getElementById("fecha").value;
+    const formulario = document.getElementById("formulario-calificaciones");
+    const notasNuevas = document.querySelectorAll('.input-notas');
     
-    if(fecha !== ""){
-        Swal.fire({
-            title: "¿Desea subir calificaciones?",
-            showCancelButton: true,
-            confirmButtonText: "Inscribir"
-          }).then((result) => {
-    
-            if (result.isConfirmed) {
+    const algunaNotaNoVacia = Array.from(notasNuevas).some(input => input.value.trim() !== '');
 
-
-                let datos = new FormData(formulario);
-                fetch('calificaciones.php',{
-                    method: 'POST',
-                    body: datos
-                })
-                .then(res => res.json())
-                .then(data =>{
-
-                    if(data.tipo == "normal"){
-                        if(data.mensaje == "verdadero"){
-                            Swal.fire("Calificaciones subidas!", "", "success");
-                        }
-                    }
-
-                    if(data.tipo == "recuperatorio"){
-                        if(data.mensaje == "verdadero"){
-                            Swal.fire("Recuperatorios subidss!", "", "success");
-                        }else{
-                            Swal.fire({
-                                icon: "error",
-                                title: "No se encontro un examen ese dia"
-                            }); 
-                        }
-                    }
-
-                })
-                
-              
+    if (algunaNotaNoVacia) {
+        let notasValidas = true; 
+        
+        notasNuevas.forEach(input => {
+            const nota = parseFloat(input.value);
+            if (nota < 0 || nota > 10) {  
+                notasValidas = false;
             }
         });
-    }else{
+        
+        if (notasValidas) {
+            if (fecha !== "") {
+                Swal.fire({
+                    title: "¿Desea subir calificaciones?",
+                    showCancelButton: true,
+                    confirmButtonText: "Inscribir"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        let datos = new FormData(formulario);
+                        fetch('calificaciones.php', {
+                            method: 'POST',
+                            body: datos
+                        })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.tipo == "normal" && data.mensaje == "verdadero") {
+                                Swal.fire("Calificaciones subidas!", "", "success");
+                            }
+                            if (data.tipo == "recuperatorio") {
+                                if (data.mensaje == "verdadero") {
+                                    Swal.fire("Recuperatorios subidos!", "", "success");
+                                } else {
+                                    Swal.fire({
+                                        icon: "error",
+                                        title: "No se encontró un examen ese día"
+                                    });
+                                }
+                            }
+                        });
+                    }
+                });
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "La fecha es obligatoria"
+                });
+            }
+        } else {
+            Swal.fire({
+                icon: "error",
+                title: "Cada nota ingresada debe estar entre 0 y 10"
+            });
+        }
+    } else {
         Swal.fire({
             icon: "error",
-            title: "La fecha es obligatoria"
-        }); 
+            title: "Debe ingresar al menos una nota"
+        });
     }
 }
+
 
 
 function mostrarLabel() {
@@ -468,7 +516,7 @@ function editarEliminarNota(button){
 }
 
 function formularioEditarNota(button){
-    const notasNuevas = document.querySelectorAll('.nota-nueva');
+const notasNuevas = document.querySelectorAll('.nota-nueva');
 
 const algunaNotaNoVacia = Array.from(notasNuevas).some(input => input.value.trim() !== '');
 
