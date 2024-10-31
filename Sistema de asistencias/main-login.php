@@ -16,6 +16,7 @@
     
     require_once 'Conexion.php';
     require_once 'Clases/Profesor.php';
+    require_once 'Clases/Usuario.php';
 
     if(isset($_POST["login-name"]) &&!empty($_POST["login-name"]) && isset($_POST["login-pass"]) && !empty($_POST["login-pass"])){
         $mail = $_POST["login-name"];
@@ -26,31 +27,20 @@
         $mail = trim($mail); 
         $contraseña = trim($contraseña);
 
-        $sql_login =
-        "SELECT *
-        FROM usuario
-        WHERE mail = :mail";
+        $user = Usuario::getUser($conexion,$mail);
 
-        $resultado = $conexion->prepare($sql_login);
-        $resultado->bindParam(':mail', $mail);
-        $resultado->execute();
-        
-        $row = $resultado->fetch(PDO::FETCH_ASSOC);
-
-
-
-        if ($row) {
-            if (password_verify($contraseña, $row['passw'])) {
+        if ($user) {
+            if (password_verify($contraseña, $user['passw'])) {
                 session_start();
                 ob_clean();
-                if ($row['rol'] == "administrador") {
-                    $_SESSION['row'] = $row;
+                if ($user['rol'] == "administrador") {
+                    $_SESSION['row'] = $user;
                     echo json_encode(['mensaje' => 'verdadero', 'url' => '/Administradores/Administrador-index.php']); //mando como url el url al que voy a redireccionar en js
                     exit();
         
-                } elseif ($row['rol'] == "profesor") {
-                    $_SESSION['rowuser'] = $row;
-                    $id_profesor = $row['id_profesor'];
+                } elseif ($user['rol'] == "profesor") {
+                    $_SESSION['rowuser'] = $user;
+                    $id_profesor = $user['id_profesor'];
                     $row_profesor = Profesor::getProfesor($conexion, $id_profesor);
                     $_SESSION['rowprofesor'] = $row_profesor;
         

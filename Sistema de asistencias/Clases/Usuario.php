@@ -35,6 +35,19 @@
             return $row;
         }
 
+        public static function getUser($conexion,$mail){
+            $sql_login =
+            "SELECT *
+            FROM usuario
+            WHERE mail = :mail";
+    
+            $resultado = $conexion->prepare($sql_login);
+            $resultado->bindParam(':mail', $mail);
+            $resultado->execute();
+            
+            return $resultado->fetch(PDO::FETCH_ASSOC);
+        }
+
         public function comprobarMail($conexion,$mail){
             $sql_mail = 
             "SELECT mail

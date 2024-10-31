@@ -470,7 +470,7 @@ function editarEliminarNota(button){
 function formularioEditarNota(button){
     let nota = document.getElementById("nota-nueva").value
     console.log(nota)
-    if(nota !== ""){
+    
         if(nota >= 0 && nota <= 10){
             Swal.fire({
                 title: "¿Desea editar esta nota?",
@@ -496,12 +496,6 @@ function formularioEditarNota(button){
                 title: "La nota ingresada debe estar entre 0 y 10"
             });
         }
-    }else{
-        Swal.fire({
-            icon: "error",
-            title: "Debe ingresar una nota"
-        });
-    }
     
 }
 
