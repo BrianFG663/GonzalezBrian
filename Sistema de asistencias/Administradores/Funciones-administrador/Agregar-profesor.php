@@ -43,6 +43,11 @@ $row = $_SESSION['row'];
 </div>
 
 <body>
+    <div class="mensaje">
+        <img src="../../Resources/Images/recordatorio.png" alt="">
+        <span>Recordatorio: su contraseña inicial sera su documento</span>
+    </div>
+
     <div class="formulario-materia">
     <h2 class="title">INSCRIBIR PROFESOR</h2>
         <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" id="inscribir-profesor">

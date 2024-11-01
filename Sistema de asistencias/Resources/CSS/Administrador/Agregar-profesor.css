@@ -51,7 +51,7 @@ form {
     flex-direction: column;
     align-items: center;
     position: relative;
-    top: 25vh;
+    top: 22vh;
     height: 55vh;
     left: 7%;
     width: 60%;
@@ -67,7 +67,7 @@ form {
     flex-direction: column;
     align-items: center;
     position: relative;
-    top: 25vh;
+    top: 22vh;
     left: 5%;
     height: 55vh;
     width: 40%;
@@ -172,3 +172,28 @@ input[type="button"] {
 }
 
 
+.mensaje{
+    position: relative;
+    left: 40%;
+    top: 15vh;
+    border: 1px solid #ddd;
+    width: 30%;
+    height: 6vh;
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.mensaje img {
+    position: relative;
+    left: 18%;
+    width: 8%;
+    height: 80%;
+}
+
+.mensaje span{
+    position: relative;
+    left: 20%;
+    font-weight: 600;
+}

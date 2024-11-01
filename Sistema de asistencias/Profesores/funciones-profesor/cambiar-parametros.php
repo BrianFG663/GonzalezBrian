@@ -49,6 +49,11 @@
 </div>
 
 <body> 
+
+    <div class="">
+
+    </div>
+
     <form action="cambiar-parametros.php" method="post" class="container" id="formulario-parametros">
         <div class="encabezado-contenedor">CAMBIAR PARAMETROS</div>
         <div class="container-container">
