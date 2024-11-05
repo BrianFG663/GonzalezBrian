@@ -31,7 +31,7 @@ body {
     top: 15vh;
     left: 15%;
     width: 83%;
-    height: 39vh;
+    height: 36vh;
     background-color: white;
     overflow-y: auto;
     margin-bottom: 4vh;
@@ -47,6 +47,34 @@ body {
     flex-direction: row;
     background-color: white;
 }
+
+.cantidad-asistencias{
+    position: relative;
+    left: 82%;
+    top: 12.5vh;
+    border: 1px solid #ddd;
+    width: 16%;
+    height: 5vh;
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.cantidad-asistencias img {
+    position: relative;
+    left: 5%;
+    width: 12.5%;
+    height: 80%;
+}
+
+.cantidad-asistencias span{
+    position: relative;
+    left: 9%;
+    font-weight: 600;
+}
+
+
 
 .recuperatorio{
     position: relative;
@@ -183,6 +211,15 @@ input[type="number"]:focus {
     flex-direction: row;
     width: 90%;
     height: 100%;
+}
+
+.date-formulario{
+    margin-left: 10px;
+    height: 88%;
+    border: 1px solid #b33333;
+    border-radius: 2px;
+    width: 90%;
+    text-align: center;
 }
 
 input[type="date"] {
@@ -644,6 +681,8 @@ input[type="date"]:focus {
     font-weight: 600;
 }
 
+
+
 .boton-inscribir-alumnos{
     position: relative;
     top: 35vh;
@@ -1053,12 +1092,12 @@ input[type="date"]:focus {
 
 .contenedor-lista-asistencia{
     position: relative;
-    top: 30vh;      
+    top: 8vh;
     height: 20vh;
     margin-right: 1vw;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 

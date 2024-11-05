@@ -164,6 +164,25 @@
 
 
         } 
+
+        public static function catidadAsistencias($conexion,$materia_id,$alumno_id){
+            $sql_asistencia = 
+            "SELECT SUM(CASE 
+                       WHEN valor = 0.5 THEN 0.5 
+                       WHEN valor = 1 THEN 1 
+                   END) AS total_asistencia
+FROM asistencias
+WHERE materia_id = :materia_id 
+      AND alumno_id = :alumno_id
+      AND valor IN (0.5, 1)";
+    
+            $resultado = $conexion->prepare($sql_asistencia);
+            $resultado->bindParam(':materia_id',$materia_id);
+            $resultado->bindParam(':alumno_id',$alumno_id);
+            $resultado->execute();
+    
+            return $resultado->fetch(PDO::FETCH_ASSOC);
+        }
     }
 
 ?>
