@@ -90,9 +90,8 @@
                     $asistencias_alumno = Alumno::asistenciasAlumno($conexion,$id_materia,$alumno['id'],$asistencias_materia,$ram);
                     $asistencias_alumno = floatval($asistencias_alumno);
                     $asistencias_alumno = round($asistencias_alumno, 0);
-                    $cantidad_asistencia_alumno = Alumno::catidadAsistencias($conexion,$id_materia,$alumno["id"]);
+                    $cantidad_asistencia_alumno = Alumno::cantidadAsistencias($conexion,$id_materia,$alumno["id"]);
                     $estado = Alumno::estadoAlumno($conexion,$alumno['id'],$ram,$asistencias_alumno);
-
 
                     echo '<div class="alumno">
                             <div class="id">' . $alumno['id'] . '</div>

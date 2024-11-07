@@ -46,3 +46,13 @@ document.addEventListener("DOMContentLoaded", function() {
         console.error("No se encontraron uno o más elementos con los ID especificados.");
     }
 });
+
+
+//menu cumpleaños
+
+window.addEventListener('load', function() {
+    const desplegable = document.getElementById('desplegable');
+    desplegable.classList.add('visible');
+});
+
+
